@@ -1,5 +1,6 @@
 package com.example.against_pandemic;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,6 +8,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LogIn extends AppCompatActivity {
     Intent intent=getIntent();
@@ -15,6 +26,7 @@ public class LogIn extends AppCompatActivity {
     Button login;
     Button signup;
     String Email,Password;
+    private ApiServices apiServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +36,19 @@ public class LogIn extends AppCompatActivity {
         password=findViewById(R.id.password);
         login=findViewById(R.id.login_button);
         signup=findViewById(R.id.signup_question);
- 
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        apiServices = retrofit.create(ApiServices.class);
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Email=email.getText().toString();
                 Password=password.getText().toString();
+                getPosts();
             }
         });
 
@@ -40,5 +59,43 @@ public class LogIn extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+
+    private void getPosts() {
+        HashMap<String, String> parameters = new HashMap<>();
+        parameters.put("Email", Email);
+        parameters.put("Password",Password);
+
+        Call<LoginResult> call = apiServices.executeLogin(parameters);
+
+        call.enqueue(new Callback<LoginResult>() {
+            @Override
+            public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
+
+                if (response.code() == 200) {
+
+                    LoginResult result = response.body();
+
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(LogIn.this);
+                    builder1.setMessage("LogIn Successfull");
+                    builder1.setMessage(result.getEmail());
+
+                    builder1.show();
+
+                } else if (response.code() == 404) {
+                    Toast.makeText(LogIn.this, "Wrong Credentials",
+                            Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<LoginResult> call, Throwable t) {
+                Toast.makeText(LogIn.this, t.getMessage(),
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 }
