@@ -32,6 +32,7 @@ public class SignUp extends AppCompatActivity {
     String Status,NID,Contact_no,Email,Password;
 
     private ApiServices apiServices;
+    Validation validation=new Validation();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +61,11 @@ public class SignUp extends AppCompatActivity {
                 Contact_no=contact_no.getText().toString();
                 Email=email.getText().toString();
                 Password=password.getText().toString();
-                createPost();
-
+                boolean validEmail=validation.validateEmail(Email);
+                boolean validPassword=validation.validatePassword(Password);
+                if(validEmail&&validPassword) {
+                    createPost();
+                }
             }
         });
 
