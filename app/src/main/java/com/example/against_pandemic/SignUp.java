@@ -21,6 +21,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignUp extends AppCompatActivity {
+    SignUp signUpobj=new SignUp();
     Intent intent =getIntent();
     EditText nid;
     EditText contact_no;
@@ -61,8 +62,8 @@ public class SignUp extends AppCompatActivity {
                 Contact_no=contact_no.getText().toString();
                 Email=email.getText().toString();
                 Password=password.getText().toString();
-                boolean validEmail=validation.validateEmail(Email);
-                boolean validPassword=validation.validatePassword(Password);
+                boolean validEmail=validation.validateEmail(Email,signUpobj);
+                boolean validPassword=validation.validatePassword(Password,signUpobj);
                 if(validEmail&&validPassword) {
                     createPost();
                 }

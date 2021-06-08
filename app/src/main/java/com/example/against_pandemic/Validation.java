@@ -5,8 +5,7 @@ import android.util.Patterns;
 import java.util.regex.Pattern;
 
 public class Validation {
-    SignUp signUp=new SignUp();
-    LogIn logIn=new LogIn();
+
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
@@ -18,7 +17,7 @@ public class Validation {
                     "$");
 
 
-    boolean validateEmail(String email) {
+    boolean validateEmail(String email,SignUp signUp) {
 
         if (email.isEmpty()) {
             signUp.email.setError("Field can't be empty");
@@ -32,7 +31,7 @@ public class Validation {
         }
     }
 
-     boolean validatePassword(String password) {
+     boolean validatePassword(String password,SignUp signUp) {
 
         if (password.isEmpty()) {
             signUp.password.setError("Field can't be empty");
@@ -42,6 +41,34 @@ public class Validation {
             return false;
         } else {
             signUp.password.setError(null);
+            return true;
+        }
+    }
+
+    boolean validateEmail(String email,LogIn logIn) {
+
+        if (email.isEmpty()) {
+            logIn.email.setError("Field can't be empty");
+            return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            logIn.email.setError("Please enter a valid email address");
+            return false;
+        } else {
+            logIn.email.setError(null);
+            return true;
+        }
+    }
+
+    boolean validatePassword(String password,LogIn logIn) {
+
+        if (password.isEmpty()) {
+            logIn.password.setError("Field can't be empty");
+            return false;
+        } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
+            logIn.password.setError("Password too weak");
+            return false;
+        } else {
+            logIn.password.setError(null);
             return true;
         }
     }
