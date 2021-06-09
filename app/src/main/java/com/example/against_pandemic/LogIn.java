@@ -50,9 +50,15 @@ public class LogIn extends AppCompatActivity {
             public void onClick(View v) {
                 Email=email.getText().toString();
                 Password=password.getText().toString();
-                boolean validEmail=validation.validateEmail(Email,logInobj);
-                boolean validPassword=validation.validatePassword(Password,logInobj);
-                getPosts();
+                String validEmail=validation.validateEmail(Email);
+                String validPassword=validation.validatePassword(Password);
+                if(validEmail!="null"&&validPassword!="null") {
+                    email.setError(validEmail);
+                    password.setError(validPassword);
+                }
+                else {
+                    getPosts();
+                }
             }
         });
 

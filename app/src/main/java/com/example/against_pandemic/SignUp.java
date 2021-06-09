@@ -62,9 +62,13 @@ public class SignUp extends AppCompatActivity {
                 Contact_no=contact_no.getText().toString();
                 Email=email.getText().toString();
                 Password=password.getText().toString();
-                boolean validEmail=validation.validateEmail(Email,signUpobj);
-                boolean validPassword=validation.validatePassword(Password,signUpobj);
-                if(validEmail&&validPassword) {
+                String validEmail=validation.validateEmail(Email);
+                String validPassword=validation.validatePassword(Password);
+                if(validEmail!="null"&&validPassword!="null") {
+                    email.setError(validEmail);
+                    password.setError(validPassword);
+                }
+                else {
                     createPost();
                 }
             }

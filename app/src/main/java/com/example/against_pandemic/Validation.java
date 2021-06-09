@@ -17,59 +17,37 @@ public class Validation {
                     "$");
 
 
-    boolean validateEmail(String email,SignUp signUp) {
+    String validateEmail(String email) {
 
         if (email.isEmpty()) {
-            signUp.email.setError("Field can't be empty");
-            return false;
+            //signUp.email.setError("Field can't be empty");
+            String errorMassage= "Field can't be empty";
+            return errorMassage;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            signUp.email.setError("Please enter a valid email address");
-            return false;
+           // signUp.email.setError("Please enter a valid email address");
+            String errorMassage= "Please enter a valid email address";
+            return errorMassage;
         } else {
-            signUp.email.setError(null);
-            return true;
+            //signUp.email.setError(null);
+            String errorMassage= "null";
+            return errorMassage;
         }
     }
 
-     boolean validatePassword(String password,SignUp signUp) {
+     String validatePassword(String password) {
 
         if (password.isEmpty()) {
-            signUp.password.setError("Field can't be empty");
-            return false;
+            //signUp.password.setError("Field can't be empty");
+            String errorMassage= "Field can't be empty";
+            return errorMassage;
         } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
-            signUp.password.setError("Password too weak");
-            return false;
+           // signUp.password.setError("Password too weak");
+            String errorMassage= "Password too weak";
+            return errorMassage;
         } else {
-            signUp.password.setError(null);
-            return true;
-        }
-    }
-
-    boolean validateEmail(String email,LogIn logIn) {
-
-        if (email.isEmpty()) {
-            logIn.email.setError("Field can't be empty");
-            return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            logIn.email.setError("Please enter a valid email address");
-            return false;
-        } else {
-            logIn.email.setError(null);
-            return true;
-        }
-    }
-
-    boolean validatePassword(String password,LogIn logIn) {
-
-        if (password.isEmpty()) {
-            logIn.password.setError("Field can't be empty");
-            return false;
-        } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
-            logIn.password.setError("Password too weak");
-            return false;
-        } else {
-            logIn.password.setError(null);
-            return true;
+           // signUp.password.setError(null);
+            String errorMassage= "null";
+            return errorMassage;
         }
     }
 
