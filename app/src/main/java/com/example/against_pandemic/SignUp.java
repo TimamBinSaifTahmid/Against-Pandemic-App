@@ -74,6 +74,8 @@ public class SignUp extends AppCompatActivity {
                 }
                 else {
                     createPost();
+                    Intent intent=new Intent(SignUp.this,LogIn.class);
+                    startActivity(intent);
                 }
             }
         });
