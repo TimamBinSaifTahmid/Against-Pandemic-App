@@ -36,12 +36,12 @@ app.post("/signin", (req, res) => {
           .from("users")
           .where("email", "=", req.body.email)
           .then((user) => {
-            res.json(user[0]);
+            res.json(user[0].email);
           })
           .catch((err) => res.status(400).json("cant find user"));
       }
       else{
-        res.status(400).json("wrong credential"));
+        res.status(400).json("wrong credential");
       }
     })
     .catch((err) => res.status(400).json("wrong credential"));

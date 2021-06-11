@@ -40,7 +40,7 @@ public class LogIn extends AppCompatActivity {
         signup=findViewById(R.id.signup_question);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("http://127.0.0.1:3000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiServices = retrofit.create(ApiServices.class);
@@ -74,8 +74,8 @@ public class LogIn extends AppCompatActivity {
 
     private void getPosts() {
         HashMap<String, String> parameters = new HashMap<>();
-        parameters.put("Email", Email);
-        parameters.put("Password",Password);
+        parameters.put("email", Email);
+        parameters.put("password",Password);
 
         Call<LoginResult> call = apiServices.executeLogin(parameters);
 
@@ -93,7 +93,7 @@ public class LogIn extends AppCompatActivity {
 
                     builder1.show();
 
-                } else if (response.code() == 404) {
+                } else if (response.code() == 400) {
                     Toast.makeText(LogIn.this, "Wrong Credentials",
                             Toast.LENGTH_LONG).show();
                 }

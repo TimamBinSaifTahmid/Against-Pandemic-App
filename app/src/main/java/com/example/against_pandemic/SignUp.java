@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.jar.Attributes;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,13 +25,14 @@ public class SignUp extends AppCompatActivity {
     SignUp signUpobj=new SignUp();
     Intent intent =getIntent();
     EditText nid;
+    EditText name;
     EditText contact_no;
     EditText email;
     EditText password;
     RadioGroup financial_status;
     RadioButton status;
     Button signup;
-    String Status,NID,Contact_no,Email,Password;
+    String Status,NID,userName,Contact_no,Email,Password;
 
     private ApiServices apiServices;
     Validation validation=new Validation();
@@ -40,6 +42,7 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         nid=findViewById(R.id.nid);
+        name=findViewById(R.id.name);
         contact_no=findViewById(R.id.contact_no);
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
@@ -47,7 +50,7 @@ public class SignUp extends AppCompatActivity {
         signup=findViewById(R.id.signup_button);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("http://127.0.0.1:3000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiServices = retrofit.create(ApiServices.class);
@@ -59,6 +62,7 @@ public class SignUp extends AppCompatActivity {
                 status =findViewById(radioid);
                 Status=status.getText().toString();
                 NID=nid.getText().toString();
+                userName=name.getText().toString();
                 Contact_no=contact_no.getText().toString();
                 Email=email.getText().toString();
                 Password=password.getText().toString();
@@ -80,11 +84,13 @@ public class SignUp extends AppCompatActivity {
 
 private void createPost() {
     HashMap<String, String> fields = new HashMap<>();
-    fields.put("NID", NID);
-    fields.put("Contact_no", Contact_no);
-    fields.put("Financial_Status", Status);
-    fields.put("Email", Email);
-    fields.put("Password", Password);
+    fields.put("nid", NID);
+    fields.put("name",userName);
+    fields.put("location","Null");
+    fields.put("contact_info", Contact_no);
+    fields.put("financial_condition", Status);
+    fields.put("email", Email);
+    fields.put("password", Password);
 
     Call<Void> call = apiServices.executeSignup(fields);
     call.enqueue(new Callback<Void>() {
