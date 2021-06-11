@@ -9,7 +9,7 @@ import retrofit2.http.POST;
 
 public interface ApiServices {
     @POST("/login")
-    Call<LoginResult> executeLogin(@Body HashMap<String, String> map);
+    Call<LoginResult> executeLogin(@Body HashMap<String, String> parameters);
 
     @POST("/signup")
     Call<Void> executeSignup (@Body HashMap<String, String> fields);

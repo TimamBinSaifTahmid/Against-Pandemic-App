@@ -20,6 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LogIn extends AppCompatActivity {
+    LogIn logInobj=new LogIn();
     Intent intent=getIntent();
     EditText email;
     EditText password;
@@ -27,6 +28,7 @@ public class LogIn extends AppCompatActivity {
     Button signup;
     String Email,Password;
     private ApiServices apiServices;
+    Validation validation=new Validation();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,15 @@ public class LogIn extends AppCompatActivity {
             public void onClick(View v) {
                 Email=email.getText().toString();
                 Password=password.getText().toString();
-                getPosts();
+                String validEmail=validation.validateEmail(Email);
+                String validPassword=validation.validatePassword(Password);
+                if(validEmail!="null"&&validPassword!="null") {
+                    email.setError(validEmail);
+                    password.setError(validPassword);
+                }
+                else {
+                    getPosts();
+                }
             }
         });
 
