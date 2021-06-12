@@ -30,17 +30,18 @@ app.post("/signin", (req, res) => {
     .where("email", "=", req.body.email)
     .then((data) => {
       const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
+
       if (isValid) {
         postgres
           .select("*")
           .from("users")
           .where("email", "=", req.body.email)
           .then((user) => {
-            res.json(user[0].email);
+            console.log(user[0].email);
+            res.status(200).json(user[0].email);
           })
           .catch((err) => res.status(400).json("cant find user"));
-      }
-      else{
+      } else {
         res.status(400).json("wrong credential");
       }
     })

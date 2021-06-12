@@ -20,7 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LogIn extends AppCompatActivity {
-    LogIn logInobj=new LogIn();
+//    LogIn logInobj=new LogIn();
     Intent intent=getIntent();
     EditText email;
     EditText password;
@@ -34,13 +34,14 @@ public class LogIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
         login=findViewById(R.id.login_button);
         signup=findViewById(R.id.signup_question);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://127.0.0.1:3000")
+                .baseUrl("http://192.168.0.104:3000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiServices = retrofit.create(ApiServices.class);
@@ -84,7 +85,7 @@ public class LogIn extends AppCompatActivity {
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
 
                 if (response.code() == 200) {
-
+                    Toast.makeText(getApplicationContext(),"success",Toast.LENGTH_SHORT).show();
                     LoginResult result = response.body();
 
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(LogIn.this);

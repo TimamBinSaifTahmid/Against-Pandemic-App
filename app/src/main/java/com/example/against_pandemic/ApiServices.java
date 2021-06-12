@@ -8,10 +8,10 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface ApiServices {
-    @POST("/login")
+    @POST("/signin")
     Call<LoginResult> executeLogin(@Body HashMap<String, String> parameters);
 
-    @POST("/signup")
+    @POST("/register")
     Call<Void> executeSignup (@Body HashMap<String, String> fields);
 
 

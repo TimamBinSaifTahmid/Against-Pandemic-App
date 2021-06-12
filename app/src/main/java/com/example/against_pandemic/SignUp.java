@@ -22,7 +22,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignUp extends AppCompatActivity {
-    SignUp signUpobj=new SignUp();
+   // SignUp signUpobj=new SignUp();
     Intent intent =getIntent();
     EditText nid;
     EditText name;
@@ -41,6 +41,7 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
         nid=findViewById(R.id.nid);
         name=findViewById(R.id.name);
         contact_no=findViewById(R.id.contact_no);
@@ -50,7 +51,7 @@ public class SignUp extends AppCompatActivity {
         signup=findViewById(R.id.signup_button);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://127.0.0.1:3000")
+                .baseUrl("http://192.168.0.104:3000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiServices = retrofit.create(ApiServices.class);

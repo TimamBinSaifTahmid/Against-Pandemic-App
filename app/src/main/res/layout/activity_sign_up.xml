@@ -31,16 +31,16 @@
     <TextView
         android:id="@+id/signup"
         android:layout_width="309dp"
-        android:layout_height="62dp"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="SignUp"
         android:textAlignment="center"
-        android:textSize="48sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.059" />
+        app:layout_constraintVertical_bias="0.01" />
 
     <EditText
         android:id="@+id/nid"
@@ -140,12 +140,14 @@
         android:id="@+id/signup_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="2dp"
         android:text="SignUp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contact_no" />
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/name"
