@@ -79,18 +79,17 @@ public class LogIn extends AppCompatActivity {
         parameters.put("password",Password);
 
         Call<LoginResult> call = apiServices.executeLogin(parameters);
-
+        Toast.makeText(getApplicationContext(),"get post",Toast.LENGTH_SHORT).show();
         call.enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-
+                Toast.makeText(getApplicationContext(),"on response",Toast.LENGTH_SHORT).show();
                 if (response.code() == 200) {
-                    Toast.makeText(getApplicationContext(),"success",Toast.LENGTH_SHORT).show();
                     LoginResult result = response.body();
 
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(LogIn.this);
-                    builder1.setMessage("LogIn Successfull");
-                    builder1.setMessage(result.getEmail());
+                    builder1.setTitle("LogIn Successfull");
+                    builder1.setMessage(result.getEmail());-+
 
                     builder1.show();
 
