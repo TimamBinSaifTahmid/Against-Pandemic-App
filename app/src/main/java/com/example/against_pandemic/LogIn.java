@@ -99,6 +99,9 @@ public class LogIn extends AppCompatActivity {
 
                     builder1.show();
 
+                    Intent intent=new Intent(LogIn.this,Dashboard.class);
+                    startActivity(intent);
+
                 } else if (response.code() == 400) {
                     Toast.makeText(LogIn.this, "Wrong Credentials",
                             Toast.LENGTH_LONG).show();
@@ -144,6 +147,8 @@ public class LogIn extends AppCompatActivity {
                         if (response.code() == 200) {
                             Toast.makeText(LogIn.this,
                                     "login successfully", Toast.LENGTH_LONG).show();
+                            Intent intent=new Intent(LogIn.this,Dashboard.class);
+                            startActivity(intent);
                         } else if (response.code() == 400) {
                             Toast.makeText(LogIn.this,
                                     "Not varified, Try again", Toast.LENGTH_LONG).show();
