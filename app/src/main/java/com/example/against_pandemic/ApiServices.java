@@ -14,5 +14,7 @@ public interface ApiServices {
     @POST("/register")
     Call<Void> executeSignup (@Body HashMap<String, String> fields);
 
+    @POST("/emailVerification")
+    Call<Void> verifyUser (@Body HashMap<String, String> verifyCode);
 
 }
