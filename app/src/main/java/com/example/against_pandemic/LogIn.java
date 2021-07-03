@@ -27,6 +27,10 @@ public class LogIn extends AppCompatActivity {
     Button login;
     Button signup;
     String Email,Password;
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private EditText verficationCode;
+    private Button submit,resend;
     private ApiServices apiServices;
     Validation validation=new Validation();
 
@@ -59,6 +63,7 @@ public class LogIn extends AppCompatActivity {
                 }
                 else {
                     getPosts();
+
                 }
             }
         });
@@ -87,15 +92,22 @@ public class LogIn extends AppCompatActivity {
                 if (response.code() == 200) {
                     LoginResult result = response.body();
 
+
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(LogIn.this);
                     builder1.setTitle("LogIn Successfull");
-                    builder1.setMessage(result.getEmail());-+
+                    builder1.setMessage(result.getEmail());
 
                     builder1.show();
+
+                    Intent intent=new Intent(LogIn.this,Dashboard.class);
+                    startActivity(intent);
 
                 } else if (response.code() == 400) {
                     Toast.makeText(LogIn.this, "Wrong Credentials",
                             Toast.LENGTH_LONG).show();
+                }
+                else if (response.code() == 405) {
+                    verifyEmail();
                 }
 
             }
@@ -104,6 +116,52 @@ public class LogIn extends AppCompatActivity {
             public void onFailure(Call<LoginResult> call, Throwable t) {
                 Toast.makeText(LogIn.this, t.getMessage(),
                         Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    public void verifyEmail(){
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View codePopupView = getLayoutInflater().inflate(R.layout.varification_code_popup,null);
+        verficationCode =(EditText) findViewById(R.id.verificationCode);
+        submit = (Button) findViewById(R.id.ok_code);
+        resend = (Button) findViewById(R.id.resend_btn);
+        String v_code = verficationCode.getText().toString();
+
+        dialogBuilder.setView(codePopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HashMap<String, String> verifyCode = new HashMap<>();
+                verifyCode.put("verficationCode", v_code);
+                Call<Void> call = apiServices.verifyUser(verifyCode);
+
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+
+                        if (response.code() == 200) {
+                            Toast.makeText(LogIn.this,
+                                    "login successfully", Toast.LENGTH_LONG).show();
+                            Intent intent=new Intent(LogIn.this,Dashboard.class);
+                            startActivity(intent);
+                        } else if (response.code() == 400) {
+                            Toast.makeText(LogIn.this,
+                                    "Not varified, Try again", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Toast.makeText(LogIn.this, t.getMessage(),
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 

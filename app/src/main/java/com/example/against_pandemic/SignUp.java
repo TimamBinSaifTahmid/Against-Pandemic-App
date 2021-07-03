@@ -1,5 +1,6 @@
 package com.example.against_pandemic;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -33,6 +34,10 @@ public class SignUp extends AppCompatActivity {
     RadioButton status;
     Button signup;
     String Status,NID,userName,Contact_no,Email,Password;
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private EditText verficationCode;
+    private Button submit,resend;
 
     private ApiServices apiServices;
     Validation validation=new Validation();
@@ -75,8 +80,7 @@ public class SignUp extends AppCompatActivity {
                 }
                 else {
                     createPost();
-                    Intent intent=new Intent(SignUp.this,LogIn.class);
-                    startActivity(intent);
+
                 }
             }
         });
@@ -103,6 +107,7 @@ private void createPost() {
             if (response.code() == 200) {
                 Toast.makeText(SignUp.this,
                         "Signed up successfully", Toast.LENGTH_LONG).show();
+                createPopup();
             } else if (response.code() == 400) {
                 Toast.makeText(SignUp.this,
                         "Already registered", Toast.LENGTH_LONG).show();
@@ -114,6 +119,51 @@ private void createPost() {
         public void onFailure(Call<Void> call, Throwable t) {
             Toast.makeText(SignUp.this, t.getMessage(),
                     Toast.LENGTH_LONG).show();
+        }
+    });
+}
+
+public void createPopup(){
+    dialogBuilder = new AlertDialog.Builder(this);
+    final View codePopupView = getLayoutInflater().inflate(R.layout.varification_code_popup,null);
+    verficationCode =(EditText) findViewById(R.id.verificationCode);
+    submit = (Button) findViewById(R.id.ok_code);
+    resend = (Button) findViewById(R.id.resend_btn);
+    String v_code = verficationCode.getText().toString();
+
+    dialogBuilder.setView(codePopupView);
+    dialog = dialogBuilder.create();
+    dialog.show();
+
+    submit.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            HashMap<String, String> verifyCode = new HashMap<>();
+            verifyCode.put("verficationCode", v_code);
+            Call<Void> call = apiServices.verifyUser(verifyCode);
+
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+
+                    if (response.code() == 200) {
+                        Toast.makeText(SignUp.this,
+                                "Email varified", Toast.LENGTH_LONG).show();
+                        Intent intent=new Intent(SignUp.this,LogIn.class);
+                        startActivity(intent);
+                    } else if (response.code() == 400) {
+                        Toast.makeText(SignUp.this,
+                                "Not varified, Try again", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(SignUp.this, t.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
+            });
         }
     });
 }
