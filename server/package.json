@@ -9,10 +9,10 @@
     "dotenv": "^10.0.0",
     "env": "0.0.2",
     "express": "^4.17.1",
-    "googleapis": "^80.0.0",
+    "googleapis": "^80.1.0",
     "knex": "^0.95.6",
     "nodemailer": "^6.6.2",
-    "nodemon": "^2.0.7",
+    "nodemon": "^2.0.9",
     "pg": "^8.6.0",
     "random": "^3.0.6"
   },

@@ -34,7 +34,7 @@ public class HelpForm extends AppCompatActivity {
         setContentView(R.layout.activity_help_form);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.104:3000")
+                .baseUrl(getResources().getString(R.string.baseURL))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiServices = retrofit.create(ApiServices.class);

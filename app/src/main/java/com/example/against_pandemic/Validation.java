@@ -5,7 +5,7 @@ import android.util.Patterns;
 import java.util.regex.Pattern;
 
 public class Validation {
-
+    static int flag;
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
@@ -49,6 +49,14 @@ public class Validation {
             String errorMassage= "null";
             return errorMassage;
         }
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
+
+    public int isloggedin(){
+        return flag;
     }
 
 }

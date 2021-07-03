@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".VarificationPopup">
 
     <TextView
-        android:id="@+id/d"
+        android:id="@+id/textView"
         android:layout_width="341dp"
         android:layout_height="79dp"
         android:layout_marginStart="16dp"
@@ -22,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/c"
+        android:id="@+id/verificationCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -38,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/b"
+        android:id="@+id/ok_code"
         android:layout_width="91dp"
         android:layout_height="36dp"
         android:layout_marginStart="24dp"
@@ -52,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/verificationCode" />
 
     <TextView
-        android:id="@+id/e"
+        android:id="@+id/textView3"
         android:layout_width="228dp"
         android:layout_height="33dp"
         android:layout_marginStart="24dp"
@@ -67,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ok_code" />
 
     <Button
-        android:id="@+id/a"
+        android:id="@+id/resend_btn"
         android:layout_width="88dp"
         android:layout_height="39dp"
         android:layout_marginStart="270dp"
@@ -79,4 +80,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

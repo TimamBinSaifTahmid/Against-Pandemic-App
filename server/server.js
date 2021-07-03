@@ -100,16 +100,24 @@ app.post("/register", (req, res) => {
             .catch((error) => {
               console.log(error);
             });
+            console.log( nid,
+              name,
+              email,
+              password,
+              location,
+              contact_info,
+              financial_condition)
           userCreation(
-            user[0].nid,
-            user[0].name,
-            user[0].email,
-            user[0].password,
-            user[0].location,
-            user[0].contact_info,
-            user[0].financial_condition
+            nid,
+            name,
+            email,
+            password,
+            location,
+            contact_info,
+            financial_condition
           );
           setVerificationCode(verificationCode);
+          console.log("vrify kaj orse");
           return trx("users").insert({
             nid: nid,
             name: name,
@@ -128,9 +136,10 @@ app.post("/register", (req, res) => {
 
 app.post("/emailVerification", (req, res) => {
   const verficationCode = req.body.verificationCode;
+  console.log(user,getVerificationCode(),verficationCode);
   if (verficationCode == getVerificationCode()) {
-    res.statusCode(200).send("success");
-  } else res.send(400).send("failed");
+    res.status(200).send("success");
+  } else res.status(400).send("failed");
 });
 
 app.post("/helpForm", (req, res) => {

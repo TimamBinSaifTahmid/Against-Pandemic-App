@@ -38,6 +38,7 @@ public class LogIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        validation.setFlag(1);
         Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
@@ -45,7 +46,7 @@ public class LogIn extends AppCompatActivity {
         signup=findViewById(R.id.signup_question);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.104:3000")
+                .baseUrl(getResources().getString(R.string.baseURL))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiServices = retrofit.create(ApiServices.class);
@@ -93,11 +94,7 @@ public class LogIn extends AppCompatActivity {
                     LoginResult result = response.body();
 
 
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(LogIn.this);
-                    builder1.setTitle("LogIn Successfull");
-                    builder1.setMessage(result.getEmail());
 
-                    builder1.show();
 
                     Intent intent=new Intent(LogIn.this,Dashboard.class);
                     startActivity(intent);
@@ -107,7 +104,10 @@ public class LogIn extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 }
                 else if (response.code() == 405) {
-                    verifyEmail();
+                    //verifyEmail();
+
+                    Intent intent=new Intent(LogIn.this,VarificationPopup.class);
+                    startActivity(intent);
                 }
 
             }
@@ -121,7 +121,7 @@ public class LogIn extends AppCompatActivity {
 
     }
 
-    public void verifyEmail(){
+    /*public void verifyEmail(){
         dialogBuilder = new AlertDialog.Builder(this);
         final View codePopupView = getLayoutInflater().inflate(R.layout.varification_code_popup,null);
         verficationCode =(EditText) findViewById(R.id.verificationCode);
@@ -165,5 +165,5 @@ public class LogIn extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 }

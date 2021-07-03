@@ -1,4 +1,4 @@
-const user = {
+let user = {
   nid: "",
   name: "",
   email: "",
@@ -7,7 +7,7 @@ const user = {
   contact_info: "",
   financial_condition: "",
 };
-const verficationCode = "";
+let verficationCode = 0;
 const userCreation = (
   nid,
   name,

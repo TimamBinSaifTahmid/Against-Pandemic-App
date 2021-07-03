@@ -23,7 +23,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignUp extends AppCompatActivity {
-   // SignUp signUpobj=new SignUp();
+
     Intent intent =getIntent();
     EditText nid;
     EditText name;
@@ -34,11 +34,11 @@ public class SignUp extends AppCompatActivity {
     RadioButton status;
     Button signup;
     String Status,NID,userName,Contact_no,Email,Password;
-    private AlertDialog.Builder dialogBuilder;
+   /* private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     private EditText verficationCode;
     private Button submit,resend;
-
+*/
     private ApiServices apiServices;
     Validation validation=new Validation();
 
@@ -46,6 +46,7 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        validation.setFlag(2);
         Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
         nid=findViewById(R.id.nid);
         name=findViewById(R.id.name);
@@ -56,7 +57,7 @@ public class SignUp extends AppCompatActivity {
         signup=findViewById(R.id.signup_button);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.104:3000")
+                .baseUrl(getResources().getString(R.string.baseURL))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiServices = retrofit.create(ApiServices.class);
@@ -107,7 +108,9 @@ private void createPost() {
             if (response.code() == 200) {
                 Toast.makeText(SignUp.this,
                         "Signed up successfully", Toast.LENGTH_LONG).show();
-                createPopup();
+                //createPopup();
+                Intent intent=new Intent(SignUp.this,VarificationPopup.class);
+                startActivity(intent);
             } else if (response.code() == 400) {
                 Toast.makeText(SignUp.this,
                         "Already registered", Toast.LENGTH_LONG).show();
@@ -123,8 +126,8 @@ private void createPost() {
     });
 }
 
-public void createPopup(){
-    dialogBuilder = new AlertDialog.Builder(this);
+/*public void createPopup(){
+    dialogBuilder = new AlertDialog.Builder(SignUp.this);
     final View codePopupView = getLayoutInflater().inflate(R.layout.varification_code_popup,null);
     verficationCode =(EditText) findViewById(R.id.verificationCode);
     submit = (Button) findViewById(R.id.ok_code);
@@ -166,5 +169,5 @@ public void createPopup(){
             });
         }
     });
-}
+}*/
 }
