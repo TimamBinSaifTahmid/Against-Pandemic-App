@@ -3,7 +3,7 @@ const bodyPerser = require("body-parser");
 const bcrypt = require("bcrypt-nodejs");
 const nodemailer = require("nodemailer");
 const sendMail = require("./controller/userController.controller");
-const {
+let {
   user,
   userCreation,
   getVerificationCode,
@@ -71,7 +71,7 @@ app.post("/signin", (req, res) => {
     .catch((err) => res.status(400).json("wrong credential"));
 });
 app.post("/register", (req, res) => {
-  const {
+  let {
     nid,
     name,
     email,
@@ -80,7 +80,7 @@ app.post("/register", (req, res) => {
     contact_info,
     financial_condition,
   } = req.body;
-  const hash = bcrypt.hashSync(password);
+  let hash = bcrypt.hashSync(password);
   postgres
     .transaction((trx) => {
       trx
@@ -100,13 +100,15 @@ app.post("/register", (req, res) => {
             .catch((error) => {
               console.log(error);
             });
-            console.log( nid,
-              name,
-              email,
-              password,
-              location,
-              contact_info,
-              financial_condition)
+          console.log(
+            nid,
+            name,
+            email,
+            password,
+            location,
+            contact_info,
+            financial_condition
+          );
           userCreation(
             nid,
             name,
@@ -117,7 +119,8 @@ app.post("/register", (req, res) => {
             financial_condition
           );
           setVerificationCode(verificationCode);
-          console.log("vrify kaj orse");
+          console.log(user);
+          console.log("asd" + getVerificationCode());
           return trx("users").insert({
             nid: nid,
             name: name,
@@ -136,7 +139,7 @@ app.post("/register", (req, res) => {
 
 app.post("/emailVerification", (req, res) => {
   const verficationCode = req.body.verificationCode;
-  console.log(user,getVerificationCode(),verficationCode);
+  console.log(getVerificationCode());
   if (verficationCode == getVerificationCode()) {
     res.status(200).send("success");
   } else res.status(400).send("failed");
