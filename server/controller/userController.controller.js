@@ -212,57 +212,66 @@ const isVerified = (req, res) => {
 const postHelpRequest = (req, res) => {
   const reason = req.body.reason;
   const condition = req.body.condition;
-  const type = req.body.type;
+  const type = req.body.choice;
   let date_ob = new Date();
+  let date_ob1 = new Date();
   let date1 = ("0" + date_ob.getDate()).slice(-2);
   let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
   let year = date_ob.getFullYear();
   let date = year + "-" + month + "-" + date1;
+  console.log(user.nid);
   postgres
-    .select("date - " + date + "::date")
+    .select("date")
     .from("needhelp")
     .where("nid", "=", user.nid)
-    .then((user1) => {
-      if (user > 20) {
+    .then((date1) => {
+      date_ob1 = new Date(date1[0].date);
+      day = parseInt(
+        (date_ob.getTime() - date_ob1.getTime()) / (1000 * 3600 * 24)
+      );
+      console.log(day);
+      if (day > 20) {
         postgres
           .insert({
             nid: user.nid,
             location: user.location,
             contact_info: user.contact_info,
-            financial_Condition: financial_condition,
+            financial_condition: user.financial_condition,
             reason: reason,
             current_situation: condition,
             type: type,
           })
           .into("needhelp")
           .then(() => {
-            res.send("success");
+            res.status(200).send("success");
           })
           .catch((err) => {
-            res.send("fail");
+            console.log(err);
+            res.status(400).send("fail");
           });
       } else {
-        res.send("already asked");
+        res.status(405).send("already asked");
       }
     })
     .catch((err) => {
-      console.log("new asd");
+      console.log("new asd", err);
       postgres
         .insert({
           nid: user.nid,
           location: user.location,
           contact_info: user.contact_info,
-          financial_Condition: user.financial_condition,
+          financial_condition: user.financial_condition,
           reason: reason,
           current_situation: condition,
           type: type,
         })
         .into("needhelp")
         .then(() => {
-          res.send("success");
+          res.status(200).send("success");
         })
         .catch((err) => {
-          res.send("fail");
+          console.log(err);
+          res.status(400).send("fail");
         });
     });
 };
