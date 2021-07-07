@@ -27,13 +27,14 @@ public class SignUp extends AppCompatActivity {
     Intent intent =getIntent();
     EditText nid;
     EditText name;
+    EditText currentlocation;
     EditText contact_no;
     EditText email;
     EditText password;
     RadioGroup financial_status;
     RadioButton status;
     Button signup;
-    String Status,NID,userName,Contact_no,Email,Password;
+    String Status,NID,userName,Contact_no,Email,Password,location;
    /* private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     private EditText verficationCode;
@@ -50,6 +51,7 @@ public class SignUp extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
         nid=findViewById(R.id.nid);
         name=findViewById(R.id.name);
+        currentlocation=findViewById(R.id.currentlocation);
         contact_no=findViewById(R.id.contact_no);
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
@@ -70,6 +72,7 @@ public class SignUp extends AppCompatActivity {
                 Status=status.getText().toString();
                 NID=nid.getText().toString();
                 userName=name.getText().toString();
+                location=currentlocation.getText().toString();
                 Contact_no=contact_no.getText().toString();
                 Email=email.getText().toString();
                 Password=password.getText().toString();
@@ -94,7 +97,7 @@ private void createPost() {
     HashMap<String, String> fields = new HashMap<>();
     fields.put("nid", NID);
     fields.put("name",userName);
-    fields.put("location","Null");
+    fields.put("location",location);
     fields.put("contact_info", Contact_no);
     fields.put("financial_condition", Status);
     fields.put("email", Email);
