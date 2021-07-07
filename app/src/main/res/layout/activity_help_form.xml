@@ -6,39 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".HelpForm">
 
-    <EditText
-        android:id="@+id/condition_writer"
-        android:layout_width="328dp"
-        android:layout_height="79dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
-        android:ems="10"
-        android:hint="Write Here"
-        android:inputType="textPersonName"
-        android:verticalScrollbarPosition="defaultPosition"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/condition" />
-
     <TextView
         android:id="@+id/condition"
         android:layout_width="364dp"
         android:layout_height="57dp"
         android:layout_marginStart="34dp"
         android:layout_marginLeft="34dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="55dp"
         android:layout_marginRight="55dp"
-        android:text="Current Condition ( minimum 100 words ) :"
-        android:textSize="20sp"
+        android:text="Current Financial Condition :"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reason_writer" />
+        app:layout_constraintTop_toBottomOf="@+id/reason_btn" />
 
     <CheckBox
         android:id="@+id/money_box"
@@ -80,28 +62,11 @@
         android:layout_marginTop="63dp"
         android:layout_marginEnd="55dp"
         android:layout_marginRight="55dp"
-        android:text="Reason ( minimum 150 words ) :"
-        android:textSize="20sp"
+        android:text="Reasons  :"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/money_box" />
-
-    <EditText
-        android:id="@+id/reason_writer"
-        android:layout_width="326dp"
-        android:layout_height="175dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
-        android:ems="10"
-        android:hint="Write Here"
-        android:inputType="textPersonName"
-        android:verticalScrollbarPosition="defaultPosition"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
         android:id="@+id/done_btn"
@@ -109,15 +74,45 @@
         android:layout_height="52dp"
         android:layout_marginStart="264dp"
         android:layout_marginLeft="264dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="123dp"
         android:layout_marginEnd="55dp"
         android:layout_marginRight="55dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="84dp"
         android:text="Done"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/condition_writer" />
+        app:layout_constraintTop_toBottomOf="@+id/condition_btn" />
+
+    <Button
+        android:id="@+id/reason_btn"
+        android:layout_width="302dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:text="Please Select your reasons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <Button
+        android:id="@+id/condition_btn"
+        android:layout_width="302dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:text="Please select the range of your monthly income"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/condition" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

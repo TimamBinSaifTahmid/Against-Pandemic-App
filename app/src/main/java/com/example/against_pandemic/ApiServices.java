@@ -1,6 +1,7 @@
 package com.example.against_pandemic;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import retrofit2.Call;
@@ -18,6 +19,6 @@ public interface ApiServices {
     Call<Void> verifyUser (@Body HashMap<String, String> verifyCode);
 
     @POST("/helpForm")
-    Call<Void> submitHelpForm(@Body HashMap<String, String> helpform);
+    Call<Void> submitHelpForm(@Body HashMap<String, ArrayList<String>> helpform);
 
 }

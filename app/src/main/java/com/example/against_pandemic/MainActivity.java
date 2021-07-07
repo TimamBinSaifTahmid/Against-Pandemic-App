@@ -26,20 +26,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pop(){
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
-        final View codePopupView = getLayoutInflater().inflate(R.layout.varification_code_popup,null);
-                builder1.setView(codePopupView);
-                builder1.create();
-                builder1.show();
-         Button submit;
-        submit = (Button)findViewById(R.id.ok_code);
-         submit.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 Toast.makeText(MainActivity.this,
-                         "varified", Toast.LENGTH_LONG).show();
-             }
-         });
 
     }
 }
