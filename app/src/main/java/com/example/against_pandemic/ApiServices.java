@@ -19,6 +19,6 @@ public interface ApiServices {
     Call<Void> verifyUser (@Body HashMap<String, String> verifyCode);
 
     @POST("/helpForm")
-    Call<Void> submitHelpForm(@Body HashMap<String, ArrayList<String>> helpform);
+    Call<Void> submitHelpForm(@Body HashMap<String,String> helpform);
 
 }

@@ -66,7 +66,7 @@ public class VarificationPopup extends AppCompatActivity {
                                 startActivity(intent);
                             }
                             else if(validation.isloggedin()==2){
-                                Intent intent = new Intent(VarificationPopup.this, Dashboard.class);
+                                Intent intent = new Intent(VarificationPopup.this, LogIn.class);
                                 startActivity(intent);
                             }
                         } else if (response.code() == 400) {

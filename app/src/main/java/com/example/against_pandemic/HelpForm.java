@@ -108,12 +108,13 @@ public class HelpForm extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int which) {
                         String item = "";
                         for (int i = 0; i < reasons.size(); i++) {
-                            help_reasons.add(listreasons[reasons.get(i)]);
+
                             item = item + listreasons[reasons.get(i)];
                             if (i != reasons.size() - 1) {
                                 item = item + ", ";
                             }
                         }
+                        help_reasons.add(item);
                         Toast.makeText(HelpForm.this, item, Toast.LENGTH_LONG).show();
                     }
                 });
@@ -166,13 +167,21 @@ public class HelpForm extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int which) {
                         String item = "";
                         for (int i = 0; i < conditions.size(); i++) {
-                            help_conditions.add(listCondition[conditions.get(i)]);
+
                             item = item + listCondition[conditions.get(i)];
                             if (i != conditions.size() - 1) {
                                 item = item + ", ";
                             }
                         }
-                        Toast.makeText(HelpForm.this, item, Toast.LENGTH_LONG).show();
+                        if(conditions.size()>1){
+                            Intent intent=new Intent(HelpForm.this,HelpForm.class);
+                            startActivity(intent);
+                            Toast.makeText(HelpForm.this, "Please select a single range", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            help_conditions.add(item);
+                            Toast.makeText(HelpForm.this, item, Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
 
@@ -215,7 +224,7 @@ public class HelpForm extends AppCompatActivity {
     }
 
     private void askingHelp() {
-        HashMap<String, ArrayList<String>> helpfrom = new HashMap<>();
+        HashMap<String, String> helpfrom = new HashMap<>();
         if(choice.isEmpty()){
             Toast.makeText(HelpForm.this,
                     "choose a helpline", Toast.LENGTH_LONG).show();
@@ -225,11 +234,11 @@ public class HelpForm extends AppCompatActivity {
                     "choose either food or money", Toast.LENGTH_LONG).show();
         }
         else {
-            helpfrom.put("choice",choice);
+            helpfrom.put("choice", choice.get(0));
         }
 
-        helpfrom.put("reason",help_reasons);
-        helpfrom.put("condition",help_conditions);
+        helpfrom.put("reason",help_reasons.get(0));
+        helpfrom.put("condition",help_conditions.get(0));
 
 
         Call<Void> call = apiServices.submitHelpForm(helpfrom);
@@ -243,7 +252,11 @@ public class HelpForm extends AppCompatActivity {
 
                 } else if (response.code() == 400) {
                     Toast.makeText(HelpForm.this,
-                            "already on list", Toast.LENGTH_LONG).show();
+                            "database error", Toast.LENGTH_LONG).show();
+                }
+                else if (response.code() == 405) {
+                    Toast.makeText(HelpForm.this,
+                            "Request already exists. Ask for help in 20 days.", Toast.LENGTH_LONG).show();
                 }
 
             }

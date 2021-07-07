@@ -126,48 +126,5 @@ private void createPost() {
     });
 }
 
-/*public void createPopup(){
-    dialogBuilder = new AlertDialog.Builder(SignUp.this);
-    final View codePopupView = getLayoutInflater().inflate(R.layout.varification_code_popup,null);
-    verficationCode =(EditText) findViewById(R.id.verificationCode);
-    submit = (Button) findViewById(R.id.ok_code);
-    resend = (Button) findViewById(R.id.resend_btn);
-    String v_code = verficationCode.getText().toString();
 
-    dialogBuilder.setView(codePopupView);
-    dialog = dialogBuilder.create();
-    dialog.show();
-
-    submit.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            HashMap<String, String> verifyCode = new HashMap<>();
-            verifyCode.put("verficationCode", v_code);
-            Call<Void> call = apiServices.verifyUser(verifyCode);
-
-            call.enqueue(new Callback<Void>() {
-                @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-
-                    if (response.code() == 200) {
-                        Toast.makeText(SignUp.this,
-                                "Email varified", Toast.LENGTH_LONG).show();
-                        Intent intent=new Intent(SignUp.this,LogIn.class);
-                        startActivity(intent);
-                    } else if (response.code() == 400) {
-                        Toast.makeText(SignUp.this,
-                                "Not varified, Try again", Toast.LENGTH_LONG).show();
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<Void> call, Throwable t) {
-                    Toast.makeText(SignUp.this, t.getMessage(),
-                            Toast.LENGTH_LONG).show();
-                }
-            });
-        }
-    });
-}*/
 }
