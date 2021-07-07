@@ -1,5 +1,24 @@
 <resources>
     <string name="app_name">Against_Pandemic</string>
-    <string name="baseURL">http://192.168.1.102:3000</string>
+    <string name="baseURL">http://192.168.87.5:3000</string>
 
+    <string name="reasons_title">Select the appropriate reasons</string>
+    <string name="conditions_title">Range of monthly income</string>
+    <string name="ok_label">OK</string>
+    <string name="dismiss_label">Dismiss</string>
+    <string name="clear_all_label">Clear all</string>
+
+    <string-array name="help_reasons">
+        <item>Physical-Disability</item>
+        <item>Loss_of_job</item>
+        <item>Medical-complexity</item>
+        <item>Diseased-family_member </item>
+    </string-array>
+
+    <string-array name="help_condition">
+        <item>0-500_BDT</item>
+        <item>500-1000_BDT</item>
+        <item>1000-1500_BDT</item>
+        <item>1500-2000_BDT</item>
+    </string-array>
 </resources>

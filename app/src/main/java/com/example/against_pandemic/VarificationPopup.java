@@ -37,15 +37,16 @@ public class VarificationPopup extends AppCompatActivity {
                 .build();
         apiServices = retrofit.create(ApiServices.class);
 
-        verficationCode =(EditText) findViewById(R.id.verificationCode);
+        verficationCode =(EditText) findViewById(R.id.vCode);
         submit = (Button) findViewById(R.id.ok_code);
         resend = (Button) findViewById(R.id.resend_btn);
-        String v_code=verficationCode.getText().toString();
+
 
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String v_code=verficationCode.getText().toString();
                 Log.i("Varificatin_code",v_code);
                 Toast.makeText(VarificationPopup.this,
                         "Verific"+v_code, Toast.LENGTH_LONG).show();
@@ -65,7 +66,7 @@ public class VarificationPopup extends AppCompatActivity {
                                 startActivity(intent);
                             }
                             else if(validation.isloggedin()==2){
-                                Intent intent = new Intent(VarificationPopup.this, LogIn.class);
+                                Intent intent = new Intent(VarificationPopup.this, Dashboard.class);
                                 startActivity(intent);
                             }
                         } else if (response.code() == 400) {

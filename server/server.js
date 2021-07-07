@@ -48,20 +48,32 @@ app.post("/signin", (req, res) => {
           .select("*")
           .from("users")
           .where("email", "=", req.body.email)
-          .then((user) => {
-            if (user.verified) {
-              userCreation(
-                user[0].nid,
-                user[0].name,
-                user[0].email,
-                user[0].password,
-                user[0].location,
-                user[0].contact_info,
-                user[0].financial_condition
-              );
-              console.log(user[0].email);
-              res.status(200).json(user[0]);
-            } else res.status(405).json("email not varified");
+          .then((user1) => {
+            userCreation(
+              user1[0].nid,
+              user1[0].name,
+              user1[0].email,
+              user1[0].password,
+              user1[0].location,
+              user1[0].contact_info,
+              user1[0].financial_condition
+            );
+            if (user1.verified) {
+              console.log(user1[0].nid,
+                user1[0].name,
+                user1[0].email,
+                user1[0].password,
+                user1[0].location,
+                user1[0].contact_info,
+                user1[0].financial_condition);
+              
+              console.log(user);
+              console.log(getVerificationCode());
+              res.status(200).json(user1[0]);
+            } else {
+              res.status(405).json("email not varified");
+              console.log(user);
+            }
           })
           .catch((err) => res.status(400).json("cant find user"));
       } else {
@@ -139,7 +151,7 @@ app.post("/register", (req, res) => {
 
 app.post("/emailVerification", (req, res) => {
   const verficationCode = req.body.verificationCode;
-  console.log(getVerificationCode());
+  console.log(verficationCode);
   if (verficationCode == getVerificationCode()) {
     res.status(200).send("success");
   } else res.status(400).send("failed");
