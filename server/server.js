@@ -42,4 +42,3 @@ app.listen(PORT, () => {
 // });
 // bcrypt.compare("veggies", hash, function(err, res) {
 //   // res = false
-// });
