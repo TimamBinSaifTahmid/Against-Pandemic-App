@@ -149,34 +149,31 @@ const postLogin = (req, res) => {
       if (isValid) {
         postgres
           .select("*")
-          .from("users")
+          .from("login")
           .where("email", "=", req.body.email)
           .then((user1) => {
-            console.log(user1);
-            if (user1.verified) {
-              userCreation(
-                user1[0].nid,
-                user1[0].name,
-                user1[0].email,
-                user1[0].password,
-                user1[0].location,
-                user1[0].contact_info,
-                user1[0].financial_condition
-              );
-              console.log(user.email);
-              res.status(200).json(user[0]);
-            } else {
-              userCreation(
-                user1[0].nid,
-                user1[0].name,
-                user1[0].email,
-                user1[0].password,
-                user1[0].location,
-                user1[0].contact_info,
-                user1[0].financial_condition
-              );
-              res.status(405).json("email not varified");
-            }
+            console.log(user1, user1[0].verified);
+            postgres
+              .select("*")
+              .from("users")
+              .where("email", "=", req.body.email)
+              .then((user2) => {
+                console.log(user2);
+                userCreation(
+                  user2[0].nid,
+                  user2[0].name,
+                  user2[0].email,
+                  user2[0].password,
+                  user2[0].location,
+                  user2[0].contact_info,
+                  user2[0].financial_condition
+                );
+                console.log(user.email);
+                console.log(user1[0].verified);
+                if (user1[0].verified) res.status(200).json(user2[0]);
+                else res.status(405).json("email not verified");
+              })
+              .catch((err) => res.status(400).json("cant find user"));
           })
           .catch((err) => res.status(400).json("cant find user"));
       } else {
