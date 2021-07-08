@@ -7,6 +7,16 @@ public class LoginResult {
     public String Email;
     @SerializedName("password")
     public String Password;
+    @SerializedName("financial_condition")
+    public String financial_condition;
+
+    public String getFinancial_condition() {
+        return financial_condition;
+    }
+
+    public void setFinancial_condition(String financial_condition) {
+        this.financial_condition = financial_condition;
+    }
 
     public void setEmail(String email) {
         Email = email;
@@ -23,5 +33,6 @@ public class LoginResult {
     public String getEmail() {
         return Email;
     }
+
 
 }

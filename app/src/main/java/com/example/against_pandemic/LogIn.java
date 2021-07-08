@@ -92,9 +92,10 @@ public class LogIn extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"on response",Toast.LENGTH_SHORT).show();
                 if (response.code() == 200) {
                     LoginResult result = response.body();
-
-
-
+                    Users users= new Users();
+                    users.setFinancial_condition(result.getFinancial_condition());
+                    Toast.makeText(LogIn.this, result.getFinancial_condition(),
+                            Toast.LENGTH_LONG).show();
 
                     Intent intent=new Intent(LogIn.this,MainActivity.class);
                     startActivity(intent);

@@ -30,7 +30,7 @@ public class Dashboard extends Fragment {
         askHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getApplication(), LocationOfNeedy.class);
+                Intent intent = new Intent(getActivity().getApplication(), HelpForm.class);
                 startActivity(intent);
             }
         });

@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Intent intent=getIntent();
     MeowBottomNavigation bottomNavigation;
 
+    Users users=new Users();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +43,15 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case 2:
-                        fragment = new SelectedNeedyArea();
-                        break;
+                        if(users.getFinancial_condition()=="Good"){
+                            fragment = new HelpPeopleAreaList();
+                            break;
+                        }
+                        else {
+                            fragment = new Dashboard();
+                            break;
+                        }
+
 
                     case 3:
                         fragment = new CoronaStatus();
