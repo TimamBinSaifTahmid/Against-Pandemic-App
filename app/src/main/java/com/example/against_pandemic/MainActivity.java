@@ -14,16 +14,32 @@ import android.widget.Toast;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MainActivity extends AppCompatActivity {
 
 
     Intent intent=getIntent();
+    static String covidResult;
     MeowBottomNavigation bottomNavigation;
 
+    private ApiServices apiServices;
+    Users users=new Users();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getResources().getString(R.string.baseURL))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        apiServices = retrofit.create(ApiServices.class);
 
         bottomNavigation = findViewById(R.id.bottomNavigation);
 
@@ -42,12 +58,32 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case 2:
-                        fragment = new SelectedNeedyArea();
-                        break;
+                        if(users.getFinancial_condition()=="Good"){
+                            fragment = new HelpPeopleAreaList();
+                            break;
+                        }
+                        else {
+                            fragment = new Dashboard();
+                            break;
+                        }
+
 
                     case 3:
-                        fragment = new CoronaStatus();
-                        break;
+
+                        Toast.makeText(MainActivity.this, users.getCoronaResult(),Toast.LENGTH_LONG).show();
+                        if(users.getCoronaResult().equals("Positive")){
+                            fragment = new CoronaPositive();
+                            break;
+                        }
+                        else if(users.getCoronaResult().equals("Negative")){
+                            fragment = new CoronaNegative();
+                            break;
+                        }
+                        else{
+                            fragment = new CoronaStatus();
+                            break;
+                        }
+
                 }
 
                 loadFragment(fragment);
@@ -87,9 +123,9 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public void pop(){
 
-    }
+
+
 }
 
 

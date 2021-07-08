@@ -39,10 +39,12 @@ public class SelectedNeedyArea extends Fragment implements AdapterView.OnItemCli
         fragment.setArguments(args);
         return fragment;
     }
-
+    Users users=new Users();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Toast.makeText(getActivity(), users.getFinancial_condition(),
+                Toast.LENGTH_LONG).show();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
