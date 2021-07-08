@@ -1,118 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HelpForm">
+    tools:context=".HelpForm"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/condition"
-        android:layout_width="364dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
-        android:text="Current Financial Condition :"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reason_btn" />
+
 
     <CheckBox
         android:id="@+id/money_box"
-        android:layout_width="175dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="200dp"
-        android:layout_marginRight="200dp"
         android:text="Money"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/food_box" />
+        android:textSize="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
 
     <CheckBox
         android:id="@+id/food_box"
-        android:layout_width="175dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="200dp"
-        android:layout_marginRight="200dp"
         android:text="Food"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.222"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
+
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="322dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="63dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
-        android:text="Reasons  :"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/money_box" />
+        android:text="Reasons:"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/darkLight"
+        />
 
-    <Button
-        android:id="@+id/done_btn"
-        android:layout_width="106dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="264dp"
-        android:layout_marginLeft="264dp"
-        android:layout_marginTop="123dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
-        android:layout_marginBottom="84dp"
-        android:text="Done"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/condition_btn" />
 
     <Button
         android:id="@+id/reason_btn"
-        android:layout_width="302dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
         android:text="Please Select your reasons"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.003"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/dark"
+        android:background="@drawable/secondarybutton"
+        />
+
+
+    <TextView
+        android:id="@+id/condition"
+        android:text="Current Financial Condition:"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/darkLight"
+        />
+
 
     <Button
         android:id="@+id/condition_btn"
-        android:layout_width="302dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginLeft="39dp"
+        android:text="Please select your income range"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp"
-        android:text="Please select the range of your monthly income"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/condition" />
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/dark"
+        android:background="@drawable/secondarybutton"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/done_btn"
+        android:layout_marginBottom="84dp"
+        android:text="Done"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/bold"
+        android:textColor="#fff"
+        android:background="@drawable/button"
+        />
+
+
+
+
+
+</LinearLayout>

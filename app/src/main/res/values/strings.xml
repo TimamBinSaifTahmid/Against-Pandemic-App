@@ -7,6 +7,15 @@
     <string name="ok_label">OK</string>
     <string name="dismiss_label">Dismiss</string>
     <string name="clear_all_label">Clear all</string>
+    <string name="positiveTitle01">Coronavirus: Do you have a COVID plan ready?</string>
+    <string name="positiveTitle02">Approaching a doctor for help and  medical advise</string>
+    <string name="positiveDetails01">Received a positive COVID diagnosis? Getting a COVID test is not the best piece of news to receive right now. However, once you get the news, it is important to decide the next course of action. While over 80% of cases are mild or moderate in nature, not every patient requires hospitalization. Knowing what to do, when to seek help can fasten your recovery time and help you get back on your feet better. Hence, it is important to have a COVID plan ready.</string>
+    <string name="positiveDetails02">Received a positive COVID diagnosis? Getting a COVID test is not the best piece of news to receive right now. However, once you get the news, it is important to decide the next course of action. While over 80% of cases are mild or moderate in nature, not every patient requires hospitalization. Knowing what to do, when to seek help can fasten your recovery time and help you get back on your feet better. Hence, it is important to have a COVID plan ready.</string>
+    <string name="verification">A verification code has been send to your given email. Please enter the code below to verify the email"</string>
+
+
+
+
 
     <string-array name="help_reasons">
         <item>Physical-Disability</item>

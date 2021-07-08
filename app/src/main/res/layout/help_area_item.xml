@@ -4,26 +4,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <TextView
         android:id="@+id/helpAreaItem"
         android:gravity="center_vertical"
-        android:padding="5dp"
-        android:text="hello"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/bold"
+        android:text="Title here"
         android:textStyle="bold"
         android:layout_width="match_parent"
-        android:textAppearance="@android:style/TextAppearance.Large"
-        android:layout_height="50dp"
+        android:textColor="@color/dark"
+        android:layout_height="48dp"
         android:textSize="20sp"
         />
+
+
     <TextView
         android:id="@+id/affectedNumber"
-        android:gravity="center_vertical"
-        android:padding="5dp"
-        android:text="hello"
+        android:layout_gravity="top"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/regular"
+        android:text="Sub title here"
         android:layout_width="match_parent"
-        android:textAppearance="@android:style/TextAppearance.Small"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textColor="@color/darkLight"
+        android:layout_height="32dp"
+        android:textSize="16sp"
         />
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>

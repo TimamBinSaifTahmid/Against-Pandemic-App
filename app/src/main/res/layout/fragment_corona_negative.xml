@@ -5,10 +5,28 @@
     android:layout_height="match_parent"
     tools:context=".CoronaNegative">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">'
+
+        <TextView
+            android:gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/bold"
+            android:text="Negative"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:textColor="#00A825"
+            android:layout_height="40dp"
+            android:textSize="24sp"
+            android:layout_marginBottom="40dp"
+            />
+
+    </LinearLayout>
 
 </FrameLayout>
