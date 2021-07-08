@@ -21,4 +21,7 @@ public interface ApiServices {
     @POST("/helpForm")
     Call<Void> submitHelpForm(@Body HashMap<String,String> helpform);
 
+    @POST("/coronaResultshow")
+    Call<CoronaResult> getCoronaResult(@Body HashMap<String, String> id);
+
 }

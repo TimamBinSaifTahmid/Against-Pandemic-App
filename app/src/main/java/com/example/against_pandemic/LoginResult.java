@@ -9,6 +9,16 @@ public class LoginResult {
     public String Password;
     @SerializedName("financial_condition")
     public String financial_condition;
+    @SerializedName("nid")
+    public String nid;
+
+    public String getNid() {
+        return nid;
+    }
+
+    public void setNid(String nid) {
+        this.nid = nid;
+    }
 
     public String getFinancial_condition() {
         return financial_condition;

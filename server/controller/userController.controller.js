@@ -343,7 +343,7 @@ const getCoronaResult = (req, res) => {
     .where("nid", "=", req.body.nid)
     .then((ob) => {
       console.log(ob[0].nid, ob[0].result);
-      res.status(200).send(ob[0].result);
+      res.status(200).send(ob[0]);
     })
     .catch((err) => {
       console.log(err);

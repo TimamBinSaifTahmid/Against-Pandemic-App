@@ -34,6 +34,7 @@ public class LogIn extends AppCompatActivity {
     private ApiServices apiServices;
     Validation validation=new Validation();
 
+    Users users= new Users();;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,9 +93,11 @@ public class LogIn extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"on response",Toast.LENGTH_SHORT).show();
                 if (response.code() == 200) {
                     LoginResult result = response.body();
-                    Users users= new Users();
+
                     users.setFinancial_condition(result.getFinancial_condition());
-                    Toast.makeText(LogIn.this, result.getFinancial_condition(),
+                    users.setNid(result.getNid());
+                    getcovidresult(result.getNid());
+                    Toast.makeText(LogIn.this,result.getNid(),
                             Toast.LENGTH_LONG).show();
 
                     Intent intent=new Intent(LogIn.this,MainActivity.class);
@@ -122,49 +125,44 @@ public class LogIn extends AppCompatActivity {
 
     }
 
-    /*public void verifyEmail(){
-        dialogBuilder = new AlertDialog.Builder(this);
-        final View codePopupView = getLayoutInflater().inflate(R.layout.varification_code_popup,null);
-        verficationCode =(EditText) findViewById(R.id.verificationCode);
-        submit = (Button) findViewById(R.id.ok_code);
-        resend = (Button) findViewById(R.id.resend_btn);
-        String v_code = verficationCode.getText().toString();
+    private void getcovidresult(String nid) {
+        HashMap<String, String> id = new HashMap<>();
+        id.put("nid", nid);
 
-        dialogBuilder.setView(codePopupView);
-        dialog = dialogBuilder.create();
-        dialog.show();
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        Call<CoronaResult> call = apiServices.getCoronaResult(id);
+        Toast.makeText(getApplicationContext(), "get post", Toast.LENGTH_SHORT).show();
+        call.enqueue(new Callback<CoronaResult>() {
             @Override
-            public void onClick(View v) {
-                HashMap<String, String> verifyCode = new HashMap<>();
-                verifyCode.put("verficationCode", v_code);
-                Call<Void> call = apiServices.verifyUser(verifyCode);
+            public void onResponse(Call<CoronaResult> call, Response<CoronaResult> response) {
+                Toast.makeText(getApplicationContext(), "on response", Toast.LENGTH_SHORT).show();
+                if (response.code() == 200) {
+                    CoronaResult results = response.body();
 
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    users.setCoronaResult(results.getResult());
+                    Toast.makeText(LogIn.this, String.valueOf(response.code()),
+                            Toast.LENGTH_LONG).show();
 
-                        if (response.code() == 200) {
-                            Toast.makeText(LogIn.this,
-                                    "login successfully", Toast.LENGTH_LONG).show();
-                            Intent intent=new Intent(LogIn.this,Dashboard.class);
-                            startActivity(intent);
-                        } else if (response.code() == 400) {
-                            Toast.makeText(LogIn.this,
-                                    "Not varified, Try again", Toast.LENGTH_LONG).show();
-                        }
+                    Toast.makeText(LogIn.this, results.getResult(),
+                            Toast.LENGTH_LONG).show();
 
-                    }
 
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(LogIn.this, t.getMessage(),
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
+
+                } else if (response.code() == 400) {
+                    Toast.makeText(LogIn.this, "Not Tested",
+                            Toast.LENGTH_LONG).show();
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<CoronaResult> call, Throwable t) {
+                Toast.makeText(LogIn.this, t.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
         });
 
-    }*/
+    }
 }
