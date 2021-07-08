@@ -11,6 +11,7 @@ const {
   getHelpRequesterProfile,
   postCoronaResult,
   getCoronaResult,
+  postMedicalRepresentativeLogin,
 } = require("./controller/userController.controller");
 let {
   user,
@@ -38,6 +39,7 @@ app.get("/helpSeekerDetails", getHelpRequesterList);
 app.post("/helpSeekerProfile", getHelpRequesterProfile);
 app.post("/coronaResultUpdate", postCoronaResult);
 app.post("/coronaResultshow", getCoronaResult);
+app.post("/medicalRepresentativeLogin", postMedicalRepresentativeLogin);
 app.listen(PORT, () => {
   console.log(`server is running on :${PORT}`);
 });

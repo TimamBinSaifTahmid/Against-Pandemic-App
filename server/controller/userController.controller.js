@@ -83,7 +83,7 @@ const postRegister = (req, res) => {
   let hash = bcrypt.hashSync(password);
 
   console.log(nid, name, hash, verificationCode);
-  
+
   postgres
     .transaction((trx) => {
       trx
@@ -350,6 +350,21 @@ const getCoronaResult = (req, res) => {
       res.status(400).send("not tested yet");
     });
 };
+const postMedicalRepresentativeLogin = (req, res) => {
+  email = req.body.email;
+  password = req.body.password;
+  postgres
+    .select("email", "hash")
+    .from("medicalrepresentativelogin")
+    .where("email", "=", req.body.email)
+    .then((ob) => {
+      if (ob[0].hash == password) res.status(200).send("successful");
+      else res.status(400).send("credential error");
+    })
+    .catch((err) => {
+      res.status(400).send("database error");
+    });
+};
 module.exports = {
   postRegister,
   postLogin,
@@ -360,4 +375,5 @@ module.exports = {
   getHelpRequesterProfile,
   postCoronaResult,
   getCoronaResult,
+  postMedicalRepresentativeLogin,
 };
