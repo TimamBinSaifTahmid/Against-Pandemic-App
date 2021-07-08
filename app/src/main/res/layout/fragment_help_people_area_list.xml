@@ -5,23 +5,43 @@
     android:layout_height="match_parent"
     tools:context=".HelpPeopleAreaList"
     android:id="@+id/helpPeoplecontainer">
-
-
-    <ListView
-        android:id="@+id/helpPeopleList"
-        android:cacheColorHint="#00000000"
-        android:scrollbars="none"
-        android:fadingEdge="vertical"
-        android:soundEffectsEnabled="true"
-        android:dividerHeight="1px"
-        android:padding="2dp"
-        android:smoothScrollbar="true"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:drawSelectorOnTop="false"
-        android:layout_marginTop="5dip"
-        android:layout_marginRight="5dip"
-        android:layout_marginBottom="5dip"
-        android:layout_weight="1"/>
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:src="@drawable/area"
+            android:layout_marginBottom="40dp"
+            />
+
+        <ListView
+            android:id="@+id/helpPeopleList"
+            android:cacheColorHint="#00000000"
+            android:scrollbars="none"
+            android:fadingEdge="vertical"
+            android:soundEffectsEnabled="true"
+            android:dividerHeight="1px"
+            android:padding="2dp"
+            android:smoothScrollbar="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawSelectorOnTop="false"
+            android:layout_marginTop="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_marginBottom="5dip"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+
 
 </FrameLayout>
