@@ -96,7 +96,7 @@ public class LogIn extends AppCompatActivity {
 
 
 
-                    Intent intent=new Intent(LogIn.this,Dashboard.class);
+                    Intent intent=new Intent(LogIn.this,MainActivity.class);
                     startActivity(intent);
 
                 } else if (response.code() == 400) {

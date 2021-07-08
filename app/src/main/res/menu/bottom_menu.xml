@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/maps"
+        android:title="Maps"
+        android:icon="@drawable/maps_icon"/>
+    <item
+        android:id="@+id/dashboard2"
+        android:title="Help"
+        android:icon="@drawable/gift_icon"/>
+    <item
+        android:id="@+id/coronaStatus"
+        android:title="Corona"
+        android:icon="@drawable/corona_icon"/>
+</menu>
