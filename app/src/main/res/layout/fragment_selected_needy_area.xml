@@ -5,12 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".SelectedNeedyArea">
 
-    <!-- TODO: Update blank fragment layout -->
-
-
-
-
-
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -20,24 +14,57 @@
         android:layout_marginTop="5dp"
         android:orientation="vertical">
 
-        <!--  this list contains products -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:src="@drawable/need"
+            />
+        <TextView
+            android:gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/bold"
+            android:text="Food"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_height="40dp"
+            android:textSize="24sp"
+            />
+
         <ListView
             android:id="@+id/foodNeedList"
             android:cacheColorHint="#00000000"
+
             android:scrollbars="none"
             android:fadingEdge="vertical"
             android:soundEffectsEnabled="true"
             android:dividerHeight="1px"
-            android:padding="0dip"
+            android:padding="2dp"
             android:smoothScrollbar="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:drawSelectorOnTop="false"
             android:layout_marginTop="5dip"
-            android:layout_marginLeft="5dip"
             android:layout_marginRight="5dip"
             android:layout_marginBottom="5dip"
             android:layout_weight="1"
+            />
+
+        <TextView
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/bold"
+            android:text="Money"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_height="40dp"
+            android:textSize="24sp"
             />
 
         <ListView
@@ -47,13 +74,12 @@
             android:fadingEdge="vertical"
             android:soundEffectsEnabled="true"
             android:dividerHeight="1px"
-            android:padding="0dip"
+            android:padding="2dp"
             android:smoothScrollbar="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:drawSelectorOnTop="false"
             android:layout_marginTop="5dip"
-            android:layout_marginLeft="5dip"
             android:layout_marginRight="5dip"
             android:layout_marginBottom="5dip"
             android:layout_weight="1"/>

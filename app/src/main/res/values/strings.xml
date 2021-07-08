@@ -1,12 +1,21 @@
 <resources>
     <string name="app_name">Against_Pandemic</string>
-    <string name="baseURL">http://192.168.216.5:3000</string>
+    <string name="baseURL">http://192.168.0.108:3000</string>
 
     <string name="reasons_title">Select the appropriate reasons</string>
     <string name="conditions_title">Range of monthly income</string>
     <string name="ok_label">OK</string>
     <string name="dismiss_label">Dismiss</string>
     <string name="clear_all_label">Clear all</string>
+    <string name="positiveTitle01">Coronavirus: Do you have a COVID plan ready?</string>
+    <string name="positiveTitle02">Approaching a doctor for help and  medical advise</string>
+    <string name="positiveDetails01">Received a positive COVID diagnosis? Getting a COVID test is not the best piece of news to receive right now. However, once you get the news, it is important to decide the next course of action. While over 80% of cases are mild or moderate in nature, not every patient requires hospitalization. Knowing what to do, when to seek help can fasten your recovery time and help you get back on your feet better. Hence, it is important to have a COVID plan ready.</string>
+    <string name="positiveDetails02">Aliquet lacus, pellentesque iaculis etiam porta. Porta lobortis mauris euismod nullam quis est vitae. Sed pharetra ultricies pellentesque risus ipsum. Quis egestas tortor sed ligula lectus at neque turpis morbi. Sed cursus venenatis vitae, faucibus ornare egestas eu. Vitae libero massa imperdiet etiam cras. Morbi sit urna iaculis pellentesque leo nec in. Sed euismod diam condimentum eu morbi turpis</string>
+    <string name="verification">A verification code has been send to your given email. Please enter the code below to verify the email"</string>
+
+
+
+
 
     <string-array name="help_reasons">
         <item>Physical-Disability</item>

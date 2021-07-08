@@ -13,32 +13,144 @@
         android:padding="10dp"
         android:orientation="vertical">
 
-        <!--  this list contains products -->
+        <TextView
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/regular"
+            android:text="Name"
+            android:layout_width="match_parent"
+            android:textColor="@color/darkLight"
+            android:layout_height="32dp"
+            android:textSize="16sp"
+            />
+
         <TextView
             android:id="@+id/needyName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tahmid" />
+            android:layout_gravity="top"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/bold"
+            android:text="Name"
+            android:layout_width="match_parent"
+            android:textColor="@color/darkLight"
+            android:layout_height="40dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"
+            />
+
+
+        <TextView
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/regular"
+            android:text="Phone No."
+            android:layout_width="match_parent"
+            android:textColor="@color/darkLight"
+            android:layout_height="32dp"
+            android:textSize="16sp"
+            />
+
         <TextView
             android:id="@+id/needyPhoneNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="01963225462" />
+            android:layout_gravity="top"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/bold"
+            android:text="Phone No."
+            android:layout_width="match_parent"
+            android:textColor="@color/darkLight"
+            android:layout_height="40dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"
+            />
+
+
+
+
+
         <TextView
-            android:id="@+id/needylocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Farmgate" />
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/regular"
+            android:text="Location"
+            android:layout_width="match_parent"
+            android:textColor="@color/darkLight"
+            android:layout_height="32dp"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/needyLocation"
+            android:layout_gravity="top"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/bold"
+            android:text="Location"
+            android:layout_width="match_parent"
+            android:textColor="@color/darkLight"
+            android:layout_height="40dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"
+            />
+
+
+
+
+        <TextView
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/regular"
+            android:text="Current Condition"
+            android:layout_width="match_parent"
+            android:textColor="@color/darkLight"
+            android:layout_height="32dp"
+            android:textSize="16sp"
+            />
+
         <TextView
             android:id="@+id/needyCurrentCondition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_gravity="top"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/medium"
+            android:text="Condition Details"
+            android:layout_width="match_parent"
+            android:textColor="@color/darkLight"
+            android:layout_height="40dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"
+            />
+
+
+        <TextView
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/regular"
+            android:text="Reason"
+            android:layout_width="match_parent"
+            android:textColor="@color/darkLight"
+            android:layout_height="32dp"
+            android:textSize="16sp"
+            />
+
         <TextView
             android:id="@+id/needyReason"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_gravity="top"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/medium"
+            android:text="Reason Details"
+            android:layout_width="match_parent"
+            android:textColor="@color/darkLight"
+            android:layout_height="40dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"
+            />
 
     </LinearLayout>
     <!-- TODO: Update blank fragment layout -->
