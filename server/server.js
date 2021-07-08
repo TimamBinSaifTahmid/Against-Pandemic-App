@@ -6,6 +6,11 @@ const {
   postLogin,
   isVerified,
   postHelpRequest,
+  getHelpRequestList,
+  getHelpRequesterList,
+  getHelpRequesterProfile,
+  postCoronaResult,
+  getCoronaResult,
 } = require("./controller/userController.controller");
 let {
   user,
@@ -28,6 +33,11 @@ app.post("/emailVerification", isVerified);
 
 app.post("/helpForm", postHelpRequest);
 
+app.get("/helpSeekerList", getHelpRequestList);
+app.get("/helpSeekerDetails", getHelpRequesterList);
+app.post("/helpSeekerProfile", getHelpRequesterProfile);
+app.post("/coronaResultUpdate", postCoronaResult);
+app.post("/coronaResultshow", getCoronaResult);
 app.listen(PORT, () => {
   console.log(`server is running on :${PORT}`);
 });
