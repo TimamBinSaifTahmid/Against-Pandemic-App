@@ -1,12 +1,14 @@
-let user = {
-  nid: "",
-  name: "",
-  email: "",
-  password: "",
-  location: "",
-  contact_info: "",
-  financial_condition: "",
-};
+let user = [
+  {
+    nid: "",
+    name: "",
+    email: "",
+    password: "",
+    location: "",
+    contact_info: "",
+    financial_condition: "",
+  },
+];
 let verficationCode = 0;
 const userCreation = (
   nid,

@@ -275,4 +275,86 @@ const postHelpRequest = (req, res) => {
         });
     });
 };
-module.exports = { postRegister, postLogin, isVerified, postHelpRequest };
+const getHelpRequestList = (req, res) => {
+  postgres
+    .select("location", postgres.raw("count(nid)"))
+    .from("needhelp")
+    .groupByRaw("location")
+    .then((ob) => {
+      console.log(ob[0].location, ob[0].count);
+      res.status(200).send(ob);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+const getHelpRequesterList = (req, res) => {
+  postgres
+    .select("*")
+    .from("users")
+    .innerJoin("needhelp", "users.nid", "needhelp.nid")
+    .then((ob) => {
+      console.log(ob[0]);
+      res.status(200).send(ob);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+const getHelpRequesterProfile = (req, res) => {
+  nid = req.body.nid;
+  postgres
+    .select("*")
+    .from("needhelp")
+    .where("nid", "=", nid)
+    .then((ob) => {
+      res.send(ob);
+      console.log(ob);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const postCoronaResult = (req, res) => {
+  result = req.body.result;
+  nid = req.body.nid;
+  postgres
+    .insert({
+      nid: nid,
+      result: result,
+    })
+    .into("coronaresult")
+    .then(() => {
+      res.status(200).send("sucess");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+const getCoronaResult = (req, res) => {
+  nid = req.body.nid;
+  postgres
+    .select("*")
+    .from("coronaresult")
+    .where("nid", "=", req.body.nid)
+    .then((ob) => {
+      console.log(ob[0].nid, ob[0].result);
+      res.status(200).send(ob[0].result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(400).send("not tested yet");
+    });
+};
+module.exports = {
+  postRegister,
+  postLogin,
+  isVerified,
+  postHelpRequest,
+  getHelpRequestList,
+  getHelpRequesterList,
+  getHelpRequesterProfile,
+  postCoronaResult,
+  getCoronaResult,
+};
