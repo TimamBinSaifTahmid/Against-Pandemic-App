@@ -81,6 +81,9 @@ const postRegister = (req, res) => {
     financial_condition,
   } = req.body;
   let hash = bcrypt.hashSync(password);
+
+  console.log(nid, name, hash, verificationCode);
+  
   postgres
     .transaction((trx) => {
       trx

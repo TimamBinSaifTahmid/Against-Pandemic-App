@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/maps">
+
+    <fragment
+        android:id="@+id/maps"
+        android:name="com.example.against_pandemic.Maps"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+    <activity
+        android:id="@+id/dashboard2"
+        android:name="com.example.against_pandemic.Dashboard"
+        android:label="activity_dashboard"
+        tools:layout="@layout/activity_dashboard" />
+    <fragment
+        android:id="@+id/coronaStatus"
+        android:name="com.example.against_pandemic.CoronaStatus"
+        android:label="fragment_corona_status"
+        tools:layout="@layout/fragment_corona_status" />
+</navigation>
