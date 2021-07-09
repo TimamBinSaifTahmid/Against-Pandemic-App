@@ -151,6 +151,7 @@ public class LogIn extends AppCompatActivity {
                 } else if (response.code() == 400) {
                     Toast.makeText(LogIn.this, "Not Tested",
                             Toast.LENGTH_LONG).show();
+                    users.setCoronaResult("not");
 
                 }
 
