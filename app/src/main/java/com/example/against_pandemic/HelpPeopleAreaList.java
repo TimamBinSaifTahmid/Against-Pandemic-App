@@ -18,6 +18,16 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemClickListener {
 
     private static final String ARG_PARAM1 = "param1";
@@ -26,6 +36,7 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
     private ListView helpAreaList;
     private String mParam1;
     private String mParam2;
+    private ApiServices apiServices;
 
     public HelpPeopleAreaList() {
         // Required empty public constructor
@@ -46,6 +57,12 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getResources().getString(R.string.baseURL))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        apiServices = retrofit.create(ApiServices.class);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -76,6 +93,7 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
 
         helpAreaList.setAdapter(adapter);
         helpAreaList.setOnItemClickListener(this);
+        loadHelpList();
     }
 
     @Override
@@ -85,5 +103,46 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
 
     }
 
+    private void loadHelpList() {
+        HashMap<String, String> helpSeekerlist = new HashMap<>();
+
+
+
+        Call<AreaListResult> call = apiServices.getHelpSeekerlist(helpSeekerlist);
+        Toast.makeText(getContext(), "get post", Toast.LENGTH_SHORT).show();
+        call.enqueue(new Callback<AreaListResult>() {
+            @Override
+            public void onResponse(Call<AreaListResult> call, Response<AreaListResult> response) {
+                Toast.makeText(getContext(), "on response", Toast.LENGTH_SHORT).show();
+                if (response.code() == 200) {
+                    List<AreaListResult> results= new ArrayList<AreaListResult>();
+                    //AreaListResult[] results = new AreaListResult[5];
+                    results.add(response.body());
+
+
+                    Toast.makeText(getActivity(), String.valueOf(response.code()),
+                            Toast.LENGTH_LONG).show();
+
+                   // Toast.makeText(getActivity(),  results.get(0).getLocation(),Toast.LENGTH_LONG).show();
+
+
+
+                } else if (response.code() == 400) {
+                    Toast.makeText(getActivity(), "Not Tested",
+                            Toast.LENGTH_LONG).show();
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<AreaListResult> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(),
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
 
 }

@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiServices {
@@ -24,4 +25,6 @@ public interface ApiServices {
     @POST("/coronaResultshow")
     Call<CoronaResult> getCoronaResult(@Body HashMap<String, String> id);
 
+    @POST("/helpSeekerList")
+    Call<AreaListResult> getHelpSeekerlist(HashMap<String,String> helpSeekerlist);
 }

@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case 2:
-                        if(users.getFinancial_condition()=="Good"){
+                        if(users.getFinancial_condition().equals("Good")){
                             fragment = new HelpPeopleAreaList();
                             break;
                         }
-                        else {
+                        else if(users.getFinancial_condition().equals("Bad")){
                             fragment = new Dashboard();
                             break;
                         }
