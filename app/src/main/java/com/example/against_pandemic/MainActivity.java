@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                             fragment = new CoronaNegative();
                             break;
                         }
-                        else{
+                        else if(users.getCoronaResult().equals("not")){
                             fragment = new CoronaStatus();
                             break;
                         }

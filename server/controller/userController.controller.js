@@ -284,10 +284,15 @@ const getHelpRequestList = (req, res) => {
     .from("needhelp")
     .groupByRaw("location")
     .then((ob) => {
-      console.log(ob[0].location, ob[0].count);
-      res.status(200).send(ob);
+      const ob1 = {
+        needylist: [ob],
+      };
+      console.log("success");
+      console.log(ob1);
+      res.status(200).send(ob1);
     })
     .catch((err) => {
+      res.status(400).send("error");
       console.log(err);
     });
 };
@@ -342,7 +347,7 @@ const getCoronaResult = (req, res) => {
     .from("coronaresult")
     .where("nid", "=", req.body.nid)
     .then((ob) => {
-      console.log(ob[0].nid, ob[0].result);
+     // console.log(ob[0].nid, ob[0].result);
       res.status(200).send(ob[0]);
     })
     .catch((err) => {

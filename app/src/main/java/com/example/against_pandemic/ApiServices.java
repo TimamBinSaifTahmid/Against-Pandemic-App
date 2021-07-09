@@ -25,6 +25,6 @@ public interface ApiServices {
     @POST("/coronaResultshow")
     Call<CoronaResult> getCoronaResult(@Body HashMap<String, String> id);
 
-    @POST("/helpSeekerList")
-    Call<AreaListResult> getHelpSeekerlist(HashMap<String,String> helpSeekerlist);
+    @GET("/helpSeekerList")
+    Call<AreaListResult> getHelpSeekerlist();
 }

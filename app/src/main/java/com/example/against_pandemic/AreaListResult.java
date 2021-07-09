@@ -2,25 +2,17 @@ package com.example.against_pandemic;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class AreaListResult {
-    @SerializedName("count")
-    public int count;
-    @SerializedName("location")
-    public String location;
+    @SerializedName("needylist")
+  List<Needy> needylist;
 
-    public int getCount() {
-        return count;
+    public List<Needy> getNeedylist() {
+        return needylist;
     }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
+    public void setNeedylist(List<Needy> needylist) {
+        this.needylist = needylist;
     }
 }
