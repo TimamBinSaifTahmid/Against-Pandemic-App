@@ -37,8 +37,9 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
     private ListView helpAreaList;
     private String mParam1;
     private String mParam2;
-    private ApiServices apiServices;
+    List<Needy> needyList;
 
+    private ApiServices apiServices;
     public HelpPeopleAreaList() {
 
     }
@@ -53,20 +54,22 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getResources().getString(R.string.baseURL))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        apiServices = retrofit.create(ApiServices.class);
 
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        apiServices = retrofit.create(ApiServices.class);
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,17 +86,28 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
 
         helpAreaList = (ListView)view.findViewById(R.id.helpPeopleList);
 
+
+
+
         Call<AreaListResult> call = apiServices.getHelpSeekerlist();
-        Toast.makeText(getContext(), "ei porjonto", Toast.LENGTH_SHORT).show();
+
+
         call.enqueue(new Callback<AreaListResult>() {
+
+
             @Override
             public void onResponse(Call<AreaListResult> call, Response<AreaListResult> response) {
                // Toast.makeText(getContext(), "on response", Toast.LENGTH_SHORT).show();
                 if (response.code() == 200) {
+                    needyList = response.body().getNeedylist();
 
+
+                    area[0] = needyList.get(0).getLocation();
+                    number[0] = String.valueOf(needyList.get(0).getCount());
+                    AreaNameAdapter adapter = new AreaNameAdapter (getActivity(), area, number);
+                    helpAreaList.setAdapter(adapter);
 
                 } else if (response.code() == 400) {
-
                 }
             }
 
@@ -107,45 +121,43 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
         });
 
 
-        AreaNameAdapter adapter = new AreaNameAdapter (getActivity(), area, number);
-
-        helpAreaList.setAdapter(adapter);
         helpAreaList.setOnItemClickListener(this);
+
+
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         String selectedAreaName = area[i];
         Toast.makeText(getActivity(),selectedAreaName,Toast.LENGTH_SHORT).show();
-
     }
 
-    private void loadHelpList() {
-        //HashMap<String, String> helpSeekerlist = new HashMap<>();
-
-
-        Call<AreaListResult> call = apiServices.getHelpSeekerlist();
-        Toast.makeText(getContext(), "get post", Toast.LENGTH_SHORT).show();
-        call.enqueue(new Callback<AreaListResult>() {
-            @Override
-            public void onResponse(Call<AreaListResult> call, Response<AreaListResult> response) {
-                Toast.makeText(getContext(), "on response", Toast.LENGTH_SHORT).show();
-                if (response.code() == 200) {
-
-                    Toast.makeText(getActivity(), "success 200",
-                            Toast.LENGTH_LONG).show();
-
-                } else if (response.code() == 400) {
-                    Toast.makeText(getActivity(), "not found",
-                            Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<AreaListResult> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(),
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-    }
+//    private void loadHelpList() {
+//        //HashMap<String, String> helpSeekerlist = new HashMap<>();
+//
+//
+//        Call<AreaListResult> call = apiServices.getHelpSeekerlist();
+//        Toast.makeText(getContext(), "get post", Toast.LENGTH_SHORT).show();
+//        call.enqueue(new Callback<AreaListResult>() {
+//            @Override
+//            public void onResponse(Call<AreaListResult> call, Response<AreaListResult> response) {
+//                Toast.makeText(getContext(), "on response", Toast.LENGTH_SHORT).show();
+//                if (response.code() == 200) {
+//
+//                    Toast.makeText(getActivity(), "success 200",
+//                            Toast.LENGTH_LONG).show();
+//
+//                } else if (response.code() == 400) {
+//                    Toast.makeText(getActivity(), "not found",
+//                            Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<AreaListResult> call, Throwable t) {
+//                Toast.makeText(getActivity(), t.getMessage(),
+//                        Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
 }

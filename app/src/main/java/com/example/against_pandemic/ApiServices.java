@@ -27,4 +27,6 @@ public interface ApiServices {
 
     @GET("/helpSeekerList")
     Call<AreaListResult> getHelpSeekerlist();
+
+
 }

@@ -327,33 +327,63 @@ const getHelpRequesterProfile = (req, res) => {
 };
 
 const postCoronaResult = (req, res) => {
+    console.log("post e dhuika jhamela badhaise");
     result = req.body.result;
     nid = req.body.nid;
-    postgres
-        .insert({
-            nid: nid,
-            result: result,
-        })
-        .into("coronaresult")
-        .then(() => {
-            res.status(200).send("sucess");
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-};
-const getCoronaResult = (req, res) => {
-    nid = req.body.nid;
+
     postgres
         .select("*")
         .from("coronaresult")
-        .where("nid", "=", req.body.nid)
+        .where("nid", "=", nid)
         .then((ob) => {
-            // console.log(ob[0].nid, ob[0].result);
-            res.status(200).send(ob[0]);
+            console.log(ob[0].nid);
+            postgres("coronaresult")
+                .where("nid", "=", nid)
+                .update({
+                    result: result,
+                })
+                .then(() => {
+                    res.status(200).send("success");
+                })
+                .catch(() => {
+                    res.status(400).send("database error");
+                });
+        })
+        .catch(() => {
+            console.log("catch e dhukse");
+            postgres
+                .insert({
+                    nid: nid,
+                    result: result,
+                })
+                .into("coronaresult")
+                .then(() => {
+                    res.status(200).send("sucess");
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        });
+};
+
+const getCoronaResult = (req, res) => {
+    nid = req.body.nid;
+    console.log(nid);
+    postgres
+        .select("*")
+        .from("coronaresult")
+        .where("nid", "=", nid)
+        .then((ob) => {
+            if (ob[0].result == null) {
+                console.log("400 e jhamela");
+                res.status(400).send("not tested yet");
+            } else {
+                console.log("200 e jhamela");
+                res.status(200).send(ob[0]);
+            }
         })
         .catch((err) => {
-            console.log(err);
+            console.log("400 er pore jhamela");
             res.status(400).send("not tested yet");
         });
 };

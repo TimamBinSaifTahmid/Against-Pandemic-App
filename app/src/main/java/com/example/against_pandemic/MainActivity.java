@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case 2:
                         if(users.getFinancial_condition().equals("Good")){
+
                             fragment = new HelpPeopleAreaList();
                             break;
                         }

@@ -136,6 +136,7 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onResponse(Call<CoronaResult> call, Response<CoronaResult> response) {
                 Toast.makeText(getApplicationContext(), "on response", Toast.LENGTH_SHORT).show();
+
                 if (response.code() == 200) {
                     CoronaResult results = response.body();
 
@@ -145,22 +146,18 @@ public class LogIn extends AppCompatActivity {
 
                     Toast.makeText(LogIn.this, results.getResult(),
                             Toast.LENGTH_LONG).show();
-
-
-
-                } else if (response.code() == 400) {
-                    Toast.makeText(LogIn.this, "Not Tested",
+                }
+                else if (response.code() == 400) {
+                    Toast.makeText(LogIn.this, "utsha jhamela korse",
                             Toast.LENGTH_LONG).show();
                     users.setCoronaResult("not");
-
                 }
-
 
             }
 
             @Override
             public void onFailure(Call<CoronaResult> call, Throwable t) {
-                Toast.makeText(LogIn.this, t.getMessage(),
+                Toast.makeText(LogIn.this, "failure hoise",
                         Toast.LENGTH_LONG).show();
             }
         });

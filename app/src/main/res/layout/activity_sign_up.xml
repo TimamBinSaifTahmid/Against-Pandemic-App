@@ -80,20 +80,20 @@
             android:fontFamily="@font/medium"
             android:textColor="@color/darkLight"
             android:layout_height="wrap_content"
-            android:text="Are you financially suffering during pandemic?"
+            android:text="What's your financial condition?"
             android:layout_marginBottom="16dp"/>
 
         <RadioButton
             android:id="@+id/status_good"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No" />
+            android:text="Good" />
 
         <RadioButton
             android:id="@+id/status_bad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Yes" />
+            android:text="Bad" />
 
     </RadioGroup>
 
