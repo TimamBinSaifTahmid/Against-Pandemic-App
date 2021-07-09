@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
     private ApiServices apiServices;
 
     public HelpPeopleAreaList() {
-        // Required empty public constructor
+
     }
 
 
@@ -67,15 +68,11 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-
         return inflater.inflate(R.layout.fragment_help_people_area_list, container, false);
     }
 
@@ -86,10 +83,7 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
         helpAreaList = (ListView)view.findViewById(R.id.helpPeopleList);
-
 
         Call<AreaListResult> call = apiServices.getHelpSeekerlist();
         Toast.makeText(getContext(), "ei porjonto", Toast.LENGTH_SHORT).show();
@@ -99,25 +93,18 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
                // Toast.makeText(getContext(), "on response", Toast.LENGTH_SHORT).show();
                 if (response.code() == 200) {
 
-                    Toast.makeText(getActivity(), "success 200",
-                            Toast.LENGTH_LONG).show();
-
-
-
 
                 } else if (response.code() == 400) {
-                    Toast.makeText(getActivity(), "not found",
-                            Toast.LENGTH_LONG).show();
 
                 }
-
-
             }
 
+
             @Override
-            public void onFailure(Call<AreaListResult> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(),
-                        Toast.LENGTH_LONG).show();
+            public void onFailure(@NotNull Call<AreaListResult> call, @NotNull Throwable t) {
+//                Toast.makeText(getContext(), t.getMessage(),
+//                        Toast.LENGTH_LONG).show();
+                Log.e("helppeoplelist", "onFailure: "+t.getMessage(),t );
             }
         });
 
@@ -126,7 +113,6 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
 
         helpAreaList.setAdapter(adapter);
         helpAreaList.setOnItemClickListener(this);
-
     }
 
     @Override
@@ -151,16 +137,10 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
                     Toast.makeText(getActivity(), "success 200",
                             Toast.LENGTH_LONG).show();
 
-
-
-
                 } else if (response.code() == 400) {
                     Toast.makeText(getActivity(), "not found",
                             Toast.LENGTH_LONG).show();
-
                 }
-
-
             }
 
             @Override
@@ -169,7 +149,5 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
                         Toast.LENGTH_LONG).show();
             }
         });
-
     }
-
 }
