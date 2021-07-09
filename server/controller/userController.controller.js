@@ -287,7 +287,7 @@ const getHelpRequestList = (req, res) => {
       const ob1 = {
         needylist: [ob],
       };
-      console.log(ob[0].location, ob[0].count);
+      console.log(ob1);
       res.status(200).send(ob1);
     })
     .catch((err) => {
