@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +27,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class SelectedNeedyArea extends Fragment implements AdapterView.OnItemClickListener{
+public class SelectedNeedyArea extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -81,9 +82,11 @@ public class SelectedNeedyArea extends Fragment implements AdapterView.OnItemCli
 
     String[] needFood = new String[3];
     String[] phoneNoFood = new String[3];
+    String[] nidFood = new String[3];
 
     String[] needMoney = new String[3];
-    String[] phoneNomoney = new String[3];
+    String[] phoneNoMoney = new String[3];
+    String[] nidMoney = new String[3];
 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -101,7 +104,7 @@ public class SelectedNeedyArea extends Fragment implements AdapterView.OnItemCli
         Call<NeedyPeopleList> call = apiServices.posthelpseekerDetails(areaNameMap);
 
         NeedFoodAdapter adapter = new NeedFoodAdapter (getActivity(), needFood, phoneNoFood);
-        NeedMoneyAdapter adapter2 = new NeedMoneyAdapter (getActivity(), needMoney, phoneNomoney);
+        NeedMoneyAdapter adapter2 = new NeedMoneyAdapter (getActivity(), needMoney, phoneNoMoney);
 
         call.enqueue(new Callback<NeedyPeopleList>() {
 
@@ -120,13 +123,16 @@ public class SelectedNeedyArea extends Fragment implements AdapterView.OnItemCli
                         String typename = needyPeopleList.get(i).getType();
 
                         if (typename.equals("Food")){
+                            nidFood[j] = needyPeopleList.get(i).getNid();
                             needFood[j] = needyPeopleList.get(i).getName();
                             phoneNoFood[j] = String.valueOf(needyPeopleList.get(i).getContact_info());
                             j++;
                         }
+
                         else {
+                            nidMoney[k] = needyPeopleList.get(i).getNid();
                             needMoney[k] = needyPeopleList.get(i).getName();
-                            phoneNomoney[k] = String.valueOf(needyPeopleList.get(i).getContact_info());
+                            phoneNoMoney[k] = String.valueOf(needyPeopleList.get(i).getContact_info());
                             k++;
                         }
 
@@ -147,24 +153,44 @@ public class SelectedNeedyArea extends Fragment implements AdapterView.OnItemCli
             });
 
         helpFoodList.setAdapter(adapter);
-        helpFoodList.setOnItemClickListener(this);
-
-
 
         helpMoneyList.setAdapter(adapter2);
-        helpMoneyList.setOnItemClickListener(this);
 
+        helpFoodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("nid of food needy:", nidFood[i]);
+                NeedyNID needyNID = new NeedyNID();
+                needyNID.setNeedyNID(nidFood[i]);
+                needyNID.setNeedyName(needFood[i]);
 
+                NeedyDetails needyDetails = new NeedyDetails();
 
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.selectedNeedyAreaID,needyDetails);
+                fragmentTransaction.commit();
 
+            }
+        });
 
+        helpMoneyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-    }
+                Log.d("nid of money needy:", nidMoney[i]);
+                NeedyNID needyNID = new NeedyNID();
+                needyNID.setNeedyNID(nidMoney[i]);
+                needyNID.setNeedyName(needMoney[i]);
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        String selectedAreaName = needFood[i];
-        Toast.makeText(getActivity(),selectedAreaName,Toast.LENGTH_SHORT).show();
+                NeedyDetails needyDetails = new NeedyDetails();
+
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.selectedNeedyAreaID,needyDetails);
+                fragmentTransaction.commit();
+
+            }
+        });
+
     }
 
 }

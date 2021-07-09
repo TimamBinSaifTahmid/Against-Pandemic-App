@@ -32,4 +32,8 @@ public interface ApiServices {
     Call<NeedyPeopleList> posthelpseekerDetails(@Body HashMap<String, String> areaNameMap);
 
 
+    @POST("/helpSeekerProfile")
+    Call<NeedyPeopleDetails> postNeedyPeopleDetails(@Body HashMap<String, String> needyNIDMap);
+
+
 }

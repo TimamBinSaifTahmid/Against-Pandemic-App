@@ -325,10 +325,11 @@ const getHelpRequesterProfile = (req, res) => {
         .from("needhelp")
         .where("nid", "=", nid)
         .then((ob) => {
-            res.send(ob);
+            res.status(200).send(ob[0]);
             console.log(ob);
         })
         .catch((err) => {
+            res.status(400).send("error hoise dhur");
             console.log(err);
         });
 };

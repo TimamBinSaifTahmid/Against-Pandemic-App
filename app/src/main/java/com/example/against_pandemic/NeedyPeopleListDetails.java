@@ -5,11 +5,13 @@ public class NeedyPeopleListDetails {
     public String name;
     public String contact_info;
     public String type;
+    public String nid;
 
-    public NeedyPeopleListDetails(String name, String contact_info, String type) {
+    public NeedyPeopleListDetails(String name, String contact_info, String type, String nid) {
         this.name = name;
         this.contact_info = contact_info;
         this.type = type;
+        this.nid = nid;
     }
 
     public String getName() {
@@ -34,5 +36,13 @@ public class NeedyPeopleListDetails {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getNid() {
+        return nid;
+    }
+
+    public void setNid(String nid) {
+        this.nid = nid;
     }
 }
