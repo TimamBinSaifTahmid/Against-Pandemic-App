@@ -44,8 +44,6 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
     }
 
 
-
-
     public static HelpPeopleAreaList newInstance(String param1, String param2) {
         HelpPeopleAreaList fragment = new HelpPeopleAreaList();
         Bundle args = new Bundle();
