@@ -284,10 +284,14 @@ const getHelpRequestList = (req, res) => {
     .from("needhelp")
     .groupByRaw("location")
     .then((ob) => {
+      const ob1 = {
+        needylist: [ob],
+      };
       console.log(ob[0].location, ob[0].count);
-      res.status(200).send(ob);
+      res.status(200).send(ob1);
     })
     .catch((err) => {
+      res.status(400).send("error");
       console.log(err);
     });
 };

@@ -34,7 +34,7 @@ app.post("/emailVerification", isVerified);
 
 app.post("/helpForm", postHelpRequest);
 
-app.post("/helpSeekerList", getHelpRequestList);
+app.get("/helpSeekerList", getHelpRequestList);
 app.get("/helpSeekerDetails", getHelpRequesterList);
 app.post("/helpSeekerProfile", getHelpRequesterProfile);
 app.post("/coronaResultUpdate", postCoronaResult);
