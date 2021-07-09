@@ -89,11 +89,12 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
 
 
         helpAreaList = (ListView)view.findViewById(R.id.helpPeopleList);
+        loadHelpList();
         AreaNameAdapter adapter = new AreaNameAdapter (getActivity(), area, number);
 
         helpAreaList.setAdapter(adapter);
         helpAreaList.setOnItemClickListener(this);
-        loadHelpList();
+
     }
 
     @Override
@@ -104,20 +105,20 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
     }
 
     private void loadHelpList() {
-        HashMap<String, String> helpSeekerlist = new HashMap<>();
+        //HashMap<String, String> helpSeekerlist = new HashMap<>();
 
 
 
-        Call<AreaListResult> call = apiServices.getHelpSeekerlist(helpSeekerlist);
+        Call<AreaListResult> call = apiServices.getHelpSeekerlist();
         Toast.makeText(getContext(), "get post", Toast.LENGTH_SHORT).show();
         call.enqueue(new Callback<AreaListResult>() {
             @Override
             public void onResponse(Call<AreaListResult> call, Response<AreaListResult> response) {
                 Toast.makeText(getContext(), "on response", Toast.LENGTH_SHORT).show();
                 if (response.code() == 200) {
-                    List<AreaListResult> results= new ArrayList<AreaListResult>();
+                   // List<AreaListResult> results= new ArrayList<AreaListResult>();
                     //AreaListResult[] results = new AreaListResult[5];
-                    results.add(response.body());
+                   // results.add(response.body());
 
 
                     Toast.makeText(getActivity(), String.valueOf(response.code()),
@@ -128,7 +129,7 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
 
 
                 } else if (response.code() == 400) {
-                    Toast.makeText(getActivity(), "Not Tested",
+                    Toast.makeText(getActivity(), "not found",
                             Toast.LENGTH_LONG).show();
 
                 }
