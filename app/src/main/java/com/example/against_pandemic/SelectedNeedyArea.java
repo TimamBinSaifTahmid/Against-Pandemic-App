@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ public class SelectedNeedyArea extends Fragment implements AdapterView.OnItemCli
 
     private ListView helpFoodList;
     private ListView helpMoneyList;
+
+    Location location = new Location();
 
     private String mParam1;
     private String mParam2;
@@ -43,12 +46,11 @@ public class SelectedNeedyArea extends Fragment implements AdapterView.OnItemCli
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(getActivity(), users.getFinancial_condition(),
-                Toast.LENGTH_LONG).show();
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        String area = location.getLocation();
+
+        Log.d("needyareaname:",area);
+
     }
 
     @Override
@@ -69,6 +71,9 @@ public class SelectedNeedyArea extends Fragment implements AdapterView.OnItemCli
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+
 
 
 

@@ -38,11 +38,11 @@ public class AreaNameAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
+
         if(view==null){
 
             layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(R.layout.help_area_item,viewGroup, false);
-
 
         }
 
@@ -54,4 +54,5 @@ public class AreaNameAdapter extends BaseAdapter {
 
         return view;
     }
+
 }

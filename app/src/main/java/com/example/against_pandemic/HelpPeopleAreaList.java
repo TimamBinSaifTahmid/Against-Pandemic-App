@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,6 +39,9 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
     private String mParam1;
     private String mParam2;
     List<Needy> needyList;
+
+    String[] area = new String[50];
+    String[] number = new String[50];
 
     private ApiServices apiServices;
     public HelpPeopleAreaList() {
@@ -77,8 +81,7 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
         return inflater.inflate(R.layout.fragment_help_people_area_list, container, false);
     }
 
-    String[] area = {"Farmgate", "Bashundhara"};
-    String[] number = {"154", "45"};
+
 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -87,13 +90,11 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
         helpAreaList = (ListView)view.findViewById(R.id.helpPeopleList);
 
 
-
-
         Call<AreaListResult> call = apiServices.getHelpSeekerlist();
+        AreaNameAdapter adapter = new AreaNameAdapter (getActivity(), area, number);
 
 
         call.enqueue(new Callback<AreaListResult>() {
-
 
             @Override
             public void onResponse(Call<AreaListResult> call, Response<AreaListResult> response) {
@@ -101,11 +102,17 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
                 if (response.code() == 200) {
                     needyList = response.body().getNeedylist();
 
+                    int size = needyList.size();
 
-                    area[0] = needyList.get(0).getLocation();
-                    number[0] = String.valueOf(needyList.get(0).getCount());
-                    AreaNameAdapter adapter = new AreaNameAdapter (getActivity(), area, number);
-                    helpAreaList.setAdapter(adapter);
+                    for(int i=0; i<+size;i++){
+
+                        area[i] = needyList.get(i).getLocation();
+                        number[i] = String.valueOf(needyList.get(i).getCount());
+
+                    }
+
+                    adapter.notifyDataSetChanged();
+
 
                 } else if (response.code() == 400) {
                 }
@@ -120,17 +127,33 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
             }
         });
 
+        helpAreaList.setAdapter(adapter);
 
         helpAreaList.setOnItemClickListener(this);
-
 
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        String selectedAreaName = area[i];
-        Toast.makeText(getActivity(),selectedAreaName,Toast.LENGTH_SHORT).show();
+
+        Log.d("helpAreaList", area[i]);
+
+        Location location = new Location();
+        location.setLocation(area[i]);
+
+        SelectedNeedyArea selectedNeedyArea = new SelectedNeedyArea();
+
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.helpPeoplecontainer,selectedNeedyArea);
+        fragmentTransaction.commit();
+
     }
+
+
+//        String selectedAreaName = area[i];
+//        Toast.makeText(getActivity(),String.valueOf(i),Toast.LENGTH_SHORT).show();
+
+
 
 //    private void loadHelpList() {
 //        //HashMap<String, String> helpSeekerlist = new HashMap<>();

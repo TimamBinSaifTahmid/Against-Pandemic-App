@@ -12,15 +12,20 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#fff"
+        >
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:src="@drawable/need"
-            />
+
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="160dp"-->
+<!--            android:layout_marginLeft="60dp"-->
+<!--            android:layout_marginRight="60dp"-->
+<!--            android:src="@drawable/need"-->
+<!--            />-->
+
+
         <TextView
             android:gravity="center_vertical"
             android:layout_marginLeft="16dp"
@@ -44,7 +49,7 @@
             android:dividerHeight="1px"
             android:padding="2dp"
             android:smoothScrollbar="true"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawSelectorOnTop="false"
             android:layout_marginTop="5dip"
@@ -76,13 +81,16 @@
             android:dividerHeight="1px"
             android:padding="2dp"
             android:smoothScrollbar="true"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawSelectorOnTop="false"
             android:layout_marginTop="5dip"
             android:layout_marginRight="5dip"
             android:layout_marginBottom="5dip"
             android:layout_weight="1"/>
+
+
+
 
     </LinearLayout>
 </FrameLayout>
