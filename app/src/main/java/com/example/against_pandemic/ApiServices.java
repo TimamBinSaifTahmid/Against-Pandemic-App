@@ -28,5 +28,8 @@ public interface ApiServices {
     @GET("/helpSeekerList")
     Call<AreaListResult> getHelpSeekerlist();
 
+    @POST("/helpSeekerDetails")
+    Call<NeedyPeopleList> posthelpseekerDetails(@Body HashMap<String, String> areaNameMap);
+
 
 }

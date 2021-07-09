@@ -18,19 +18,19 @@
 
 
     <string-array name="help_reasons">
-        <item>Physical-Disability</item>
-        <item>Loss_of_job</item>
-        <item>Medical-complexity</item>
-        <item>Diseased-family_member </item>
+        <item>Physical disability</item>
+        <item>Loss of job</item>
+        <item>Medical complexity</item>
+        <item>Diseased family member</item>
     </string-array>
 
     <string-array name="help_condition">
-        <item>0-500_BDT</item>
-        <item>500-1000_BDT</item>
-        <item>1000-2000_BDT</item>
-        <item>2000-3000_BDT</item>
-        <item>3000-5000_BDT</item>
-        <item>more_than_5000</item>
+        <item>0 - 500 BDT</item>
+        <item>500 - 1000 BDT</item>
+        <item>1000 - 2000 BDT</item>
+        <item>2000 - 3000 BDT</item>
+        <item>3000 - 5000 BDT</item>
+        <item>More than 5000 BDT</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -18,6 +18,7 @@ public class AreaListResult {
     }
 
     public void setNeedylist(List<Needy> needylistList) {
+
         this.needylistList = needylistList;
     }
 }

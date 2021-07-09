@@ -2,22 +2,22 @@ const express = require("express");
 const bodyPerser = require("body-parser");
 
 const {
-  postRegister,
-  postLogin,
-  isVerified,
-  postHelpRequest,
-  getHelpRequestList,
-  getHelpRequesterList,
-  getHelpRequesterProfile,
-  postCoronaResult,
-  getCoronaResult,
-  postMedicalRepresentativeLogin,
+    postRegister,
+    postLogin,
+    isVerified,
+    postHelpRequest,
+    getHelpRequestList,
+    getHelpRequesterList,
+    getHelpRequesterProfile,
+    postCoronaResult,
+    getCoronaResult,
+    postMedicalRepresentativeLogin,
 } = require("./controller/userController.controller");
 let {
-  user,
-  userCreation,
-  getVerificationCode,
-  setVerificationCode,
+    user,
+    userCreation,
+    getVerificationCode,
+    setVerificationCode,
 } = require("./model/userModel.model");
 
 const app = express();
@@ -25,7 +25,7 @@ const PORT = 3000;
 
 app.use(bodyPerser.json());
 app.get("/", (req, res) => {
-  res.send("This is woring");
+    res.send("This is woring");
 });
 app.post("/signin", postLogin);
 app.post("/register", postRegister);
@@ -35,13 +35,13 @@ app.post("/emailVerification", isVerified);
 app.post("/helpForm", postHelpRequest);
 
 app.get("/helpSeekerList", getHelpRequestList);
-app.get("/helpSeekerDetails", getHelpRequesterList);
+app.post("/helpSeekerDetails", getHelpRequesterList);
 app.post("/helpSeekerProfile", getHelpRequesterProfile);
 app.post("/coronaResultUpdate", postCoronaResult);
 app.post("/coronaResultshow", getCoronaResult);
 app.post("/medicalRepresentativeLogin", postMedicalRepresentativeLogin);
 app.listen(PORT, () => {
-  console.log(`server is running on :${PORT}`);
+    console.log(`server is running on :${PORT}`);
 });
 
 // bcrypt.hash("bacon", null, null, function(err, hash) {

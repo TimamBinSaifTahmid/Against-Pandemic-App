@@ -75,7 +75,7 @@ public class HelpForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(money.isChecked()){
-                    choice.add(food.getText().toString());
+                    choice.add(money.getText().toString());
                 }
                 else{
                     choice.remove(food.getText().toString());
