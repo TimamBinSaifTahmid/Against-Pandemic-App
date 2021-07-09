@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class AreaListResult {
+    @SerializedName("needylist")
   List<Needy> needylist;
 
     public List<Needy> getNeedylist() {

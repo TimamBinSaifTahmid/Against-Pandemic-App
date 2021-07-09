@@ -287,6 +287,7 @@ const getHelpRequestList = (req, res) => {
       const ob1 = {
         needylist: [ob],
       };
+      console.log("success");
       console.log(ob1);
       res.status(200).send(ob1);
     })
@@ -346,7 +347,7 @@ const getCoronaResult = (req, res) => {
     .from("coronaresult")
     .where("nid", "=", req.body.nid)
     .then((ob) => {
-      console.log(ob[0].nid, ob[0].result);
+     // console.log(ob[0].nid, ob[0].result);
       res.status(200).send(ob[0]);
     })
     .catch((err) => {
