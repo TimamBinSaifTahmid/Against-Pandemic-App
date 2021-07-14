@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -56,8 +57,7 @@ public class HelpForm extends AppCompatActivity {
         conditionBtn =(Button) findViewById(R.id.condition_btn);
         food =(CheckBox) findViewById(R.id.food_box);
         money = (CheckBox)findViewById(R.id.money_box);
-        //reason =(EditText)findViewById(R.id.reason_writer);
-        //condition =(EditText)findViewById(R.id.condition_writer);
+
         choice =new ArrayList<>();
         food.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,6 +214,8 @@ public class HelpForm extends AppCompatActivity {
                 //help_Reason = reason.getText().toString();
                 //user_Condition = condition.getText().toString();
 
+                Toast.makeText(HelpForm.this,
+                        "Successful", Toast.LENGTH_LONG).show();
                 askingHelp();
 
 
@@ -224,6 +226,10 @@ public class HelpForm extends AppCompatActivity {
     }
 
     private void askingHelp() {
+
+        Toast.makeText(HelpForm.this,
+                "Successful Function", Toast.LENGTH_LONG).show();
+
         HashMap<String, String> helpfrom = new HashMap<>();
         if(choice.isEmpty()){
             Toast.makeText(HelpForm.this,
@@ -247,6 +253,11 @@ public class HelpForm extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
 
                 if (response.code() == 200) {
+
+                    Intent intent = new Intent(HelpForm.this, MainActivity.class );
+                    Log.d("dhuro", "onResponse: ");
+
+                    startActivity(intent);
                     Toast.makeText(HelpForm.this,
                             "Submitted successfully", Toast.LENGTH_LONG).show();
 
