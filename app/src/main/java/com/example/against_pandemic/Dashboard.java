@@ -12,6 +12,7 @@ import android.widget.Button;
 
 public class Dashboard extends Fragment {
     private Button askHelp;
+
 //
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
