@@ -91,7 +91,7 @@ public class Maps extends Fragment {
                         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                             @Override
                             public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
-
+                                Log.d("asd","asd");
                                 LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                                 MarkerOptions options = new MarkerOptions().position(latLng).title("current location");
                                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
@@ -114,7 +114,7 @@ public class Maps extends Fragment {
                 }
             });
         }else {
-            startActivity(new Intent(Settings.ACTION_LOCALE_SETTINGS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
 
