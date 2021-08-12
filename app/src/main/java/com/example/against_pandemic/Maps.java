@@ -33,6 +33,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -53,6 +54,23 @@ public class Maps extends Fragment {
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
         currentLocation = view.findViewById(R.id.currentLocation);
         supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.googleMap);
+        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
+                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(@NonNull @NotNull LatLng latLng) {
+                        MarkerOptions markerOptions1=new MarkerOptions();
+                        markerOptions1.position(latLng);
+                        markerOptions1.title(latLng.latitude+" : "+latLng.longitude);
+                        googleMap.clear();
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                      googleMap.addMarker(markerOptions1);
+                    }
+
+                });
+            }
+        });
         client = LocationServices.getFusedLocationProviderClient(getActivity());
         currentLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +90,7 @@ public class Maps extends Fragment {
                 }
             }
         });
+
 
 
 

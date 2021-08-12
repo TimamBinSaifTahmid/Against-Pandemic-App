@@ -14,9 +14,6 @@
     <string name="verification">A verification code has been send to your given email. Please enter the code below to verify the email"</string>
 
 
-
-
-
     <string-array name="help_reasons">
         <item>Physical disability</item>
         <item>Loss of job</item>
