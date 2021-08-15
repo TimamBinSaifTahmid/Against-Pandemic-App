@@ -411,6 +411,63 @@ const postMedicalRepresentativeLogin = (req, res) => {
             res.status(400).send("database error");
         });
 };
+
+
+const postGoogleSheet=(req,res)=>{
+    console.log("sheet e dhukse");
+    res.status(200).send("success");
+    let a = [];
+    a=req.body;
+    for(i=0;i<10;i++){
+        console.log(a[i]);
+    }
+    //console.log("length = ", req.body.length());
+};
+
+const getSheetData=(req,res)=>{
+    //for(i=0;i<Sheet1.size();i++){
+    nid=req.body.Sheet1[0].NID;
+    status=req.body.Sheet1[0].Status;
+    console.log("nid = ",nid);
+    console.log("status = ",status);
+   // }
+    /*postgres
+    .select("*")
+    .from("coronaresult")
+    .where("nid", "=", nid)
+    .then((ob) => {
+        //console.log(ob[0].nid);
+        postgres("")
+            .where("nid", "=", nid)
+            .update({
+                result: result,
+            })
+            .then(() => {
+                res.status(200).send("success");
+            })
+            .catch(() => {
+                res.status(400).send("database error");
+            });
+    })
+    .catch(() => {
+        //console.log("catch e dhukse");
+        postgres
+            .insert({
+                nid: nid,
+                result: result,
+            })
+            .into("coronaresult")
+            .then(() => {
+                res.status(200).send("sucess");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    });*/
+    
+}
+
+
 module.exports = {
     postRegister,
     postLogin,
@@ -422,4 +479,7 @@ module.exports = {
     postCoronaResult,
     getCoronaResult,
     postMedicalRepresentativeLogin,
+    postGoogleSheet,
+    //sheetUrl,
+    getSheetData,
 };
