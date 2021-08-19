@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.media.audiofx.BassBoost;
@@ -32,6 +33,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -57,6 +59,12 @@ public class Maps extends Fragment {
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(23.810331,90.412521)).title("Dhaka"));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                        new LatLng(23.810331,90.412521),
+                        10f
+                ));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(23.810331,90.412521)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
                 googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(@NonNull @NotNull LatLng latLng) {
@@ -110,6 +118,7 @@ public class Maps extends Fragment {
                         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                             @Override
                             public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
+
                                 Log.d("asd","asd");
                                 LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                                 MarkerOptions options = new MarkerOptions().position(latLng).title("current location");
