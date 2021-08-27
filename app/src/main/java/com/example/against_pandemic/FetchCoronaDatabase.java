@@ -24,6 +24,8 @@ import java.util.regex.Pattern;
 public class FetchCoronaDatabase extends AppCompatActivity {
 Button fetchData;
 TextView coronaData;
+public static String[] district=new String[10000];
+    public static String[] strings=new String[10000];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +58,7 @@ TextView coronaData;
       Element a= document.getElementById("example");
       String[] sp=String.valueOf(a).split("\\D");
       Log.d("asd",String.valueOf(sp.length));
-      String[] strings=new String[10000];
+
         HashMap<String, String> districtWiseResult = new HashMap<String, String>();
 int j=0,i=0;
    for( i=0;i<sp.length;i++){
@@ -68,7 +70,7 @@ int j=0,i=0;
        }
    }
 
-        String[] district=new String[10000];
+
         district[0]="Barguna";
         district[1]="Barishal";
         district[2]="Bhola";
@@ -161,5 +163,7 @@ for(i=0;i<j-3;i++){
 
     }
 
-
+public String[] getStringData(){
+       return strings;
+}
 }

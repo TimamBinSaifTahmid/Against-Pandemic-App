@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,7 +65,11 @@ public class LogIn extends AppCompatActivity {
                     password.setError(validPassword);
                 }
                 else {
-                    getPosts();
+                    try {
+                        getPosts();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                 }
             }
@@ -80,8 +85,20 @@ public class LogIn extends AppCompatActivity {
     }
 
 
-    private void getPosts() {
+    private void getPosts() throws IOException {
         HashMap<String, String> parameters = new HashMap<>();
+        FetchCoronaDatabase fatchConoraDb=new FetchCoronaDatabase();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    fatchConoraDb.getApiData();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
         parameters.put("email", Email);
         parameters.put("password",Password);
 
