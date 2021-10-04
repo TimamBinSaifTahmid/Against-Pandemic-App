@@ -149,6 +149,7 @@ const postLogin = (req, res) => {
     .then((data) => {
       const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
       console.log(req.body.password);
+      console.log(isValid);
       if (isValid) {
         postgres
           .select("*")

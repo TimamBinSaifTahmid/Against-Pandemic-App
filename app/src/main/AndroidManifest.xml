@@ -17,7 +17,9 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".QrGenerator"
-            android:exported="true" />
+            android:exported="true" >
+
+        </activity>
         <activity android:name=".FetchCoronaDatabase"></activity>
 
         <meta-data
