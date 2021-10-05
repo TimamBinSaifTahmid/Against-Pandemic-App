@@ -229,6 +229,8 @@ const postHelpRequest = (req, res) => {
   let year = date_ob.getFullYear();
   let date = year + "-" + month + "-" + date1;
   console.log(user.nid);
+  console.log(qrCodeString);
+  console.log(qrHash);
   postgres
     .select("date")
     .from("needhelp")
@@ -274,6 +276,7 @@ const postHelpRequest = (req, res) => {
           reason: reason,
           current_situation: condition,
           type: type,
+          qrcode: qrHash,
         })
         .into("needhelp")
         .then(() => {
@@ -515,12 +518,15 @@ const getSheetData = (req, res) => {
     });*/
 };
 const getQrCodePoor = (req, res) => {
+  console.log("qr e dhukse");
   postgres
     .select("qrcode")
     .from("needhelp")
     .where("nid", "=", user.nid)
     .then((qrCode) => {
-      res.status(200).send(qrCode[0].qrcode);
+      var hashedQrCode = qrCode[0].qrcode;
+      console.log(hashedQrCode);
+      res.status(200).send(qrCode[0]);
     })
     .catch(() => {
       res.status(400).send("Please ask help first");

@@ -59,10 +59,36 @@ public class Dashboard extends Fragment {
         generateQr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                generateQrCode();
-                Intent intent = new Intent(getActivity().getApplication(), QrGenerator.class);
-                intent.putExtra("qrKey",hashQr);
-                startActivity(intent);
+                Call<QRHash> call = apiServices.getQrCode();
+
+                call.enqueue(new Callback<QRHash>() {
+
+                    @Override
+                    public void onResponse(Call<QRHash> call, Response<QRHash> response) {
+                        Log.d("resposeCode",String.valueOf(response.code()));
+                        if (response.code() == 200) {
+
+                            QRHash qrHash = response.body();
+                            Log.d("qrhash",qrHash.getQrcode());
+
+                            hashQr = qrHash.getQrcode();
+
+                            Intent intent = new Intent(getActivity().getApplication(), QrGenerator.class);
+                            intent.putExtra("qrKey",hashQr);
+                            startActivity(intent);
+
+
+                        } else if (response.code() == 400) {
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull Call<QRHash> call, @NotNull Throwable t) {
+
+                        Log.e("last e aisha vejal", "onFailure: "+t.getMessage(),t );
+                    }
+                });
+
             }
         });
 
@@ -70,32 +96,7 @@ public class Dashboard extends Fragment {
     }
 
     private void generateQrCode() {
-        Call<QRHash> call = apiServices.getQrCode();
 
-
-
-        call.enqueue(new Callback<QRHash>() {
-
-            @Override
-            public void onResponse(Call<QRHash> call, Response<QRHash> response) {
-
-                if (response.code() == 200) {
-
-                    QRHash qrHash = response.body();
-
-                    hashQr = qrHash.getHashedQrCode();
-
-
-                } else if (response.code() == 400) {
-                }
-            }
-
-            @Override
-            public void onFailure(@NotNull Call<QRHash> call, @NotNull Throwable t) {
-
-                Log.e("last e aisha vejal", "onFailure: "+t.getMessage(),t );
-            }
-        });
     }
 
     public void init(View view){

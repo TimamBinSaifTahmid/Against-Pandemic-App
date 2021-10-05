@@ -3,14 +3,14 @@ package com.example.against_pandemic;
 import com.google.gson.annotations.SerializedName;
 
 public class QRHash {
-    @SerializedName("hashedQrCode")
-    public String hashedQrCode;
+    @SerializedName("qrcode")
+    public String qrcode;
 
-    public String getHashedQrCode() {
-        return hashedQrCode;
+    public String getQrcode() {
+        return qrcode;
     }
 
-    public void setHashedQrCode(String hashedQrCode) {
-        this.hashedQrCode = hashedQrCode;
+    public void setQrcode(String qrcode) {
+        this.qrcode = qrcode;
     }
 }
