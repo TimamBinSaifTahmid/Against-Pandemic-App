@@ -526,6 +526,61 @@ const getQrCodePoor = (req, res) => {
       res.status(400).send("Please ask help first");
     });
 };
+const isValidQrCode = (req, res) => {
+  var richNid = req.body.richNid;
+  var poorNid = req.body.poorNid;
+  var qrCode = req.body.qrCode;
+  postgres
+    .select("qrcode")
+    .from("needhelp")
+    .where("nid", "=", poorNid)
+    .then((data) => {
+      databaseQrCode = data[0].qrcode;
+      if (qrCode == databaseQrCode) {
+        postgres("needhelp")
+          .where("nid", "=", poorNid)
+          .del()
+          .then(() => {
+            postgres
+              .insert({
+                nid: poorNid,
+                provider: richNid,
+              })
+              .into("helptoken")
+              .then(() => {
+                postgres
+                  .insert({
+                    nid: richNid,
+                    helpseeker: poorNid,
+                  })
+                  .into("helpprovided")
+                  .then(() => {
+                    res.status(200).send("Successfull");
+                    console.log("success", nid);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    res.status(400).send("database error");
+                  });
+                console.log("success", nid);
+              })
+              .catch((err) => {
+                console.log(err);
+                res.status(400).send("database error");
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(400).send("database error");
+          });
+      } else {
+        res.status(400).send("Qr doesn't match");
+      }
+    })
+    .catch(() => {
+      res.status(400).send("Something went wrong");
+    });
+};
 module.exports = {
   postRegister,
   postLogin,
@@ -539,6 +594,7 @@ module.exports = {
   postMedicalRepresentativeLogin,
   postGoogleSheet,
   getQrCodePoor,
+  isValidQrCode,
   //sheetUrl,
   getSheetData,
 };
