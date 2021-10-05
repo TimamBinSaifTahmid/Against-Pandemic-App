@@ -2,6 +2,7 @@ package com.example.against_pandemic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
 public class QrGenerator extends AppCompatActivity {
+    Intent intent =getIntent();
     String TAG="GenerateQrCode";
     EditText qrCodeE1;
     ImageView qrCodeI1;
@@ -47,6 +49,8 @@ public class QrGenerator extends AppCompatActivity {
                 Random random=new Random();
                final int myRandomNumber= random.nextInt(10000000);
 
+               String qrCode = getIntent().getStringExtra("qrKey");
+
               //  String key=reference.push().getKey();
           //      Toast.makeText(getApplicationContext(),key,Toast.LENGTH_LONG).show();
          //       inputValue=key;
@@ -59,7 +63,7 @@ public class QrGenerator extends AppCompatActivity {
                     int height=point.y;
                     int smallerDimension=width<height ? width:height;
                     smallerDimension=smallerDimension*3/4;
-                    qrgEncoder =new QRGEncoder(String.valueOf(myRandomNumber),null, QRGContents.Type.TEXT,smallerDimension);
+                    qrgEncoder =new QRGEncoder(qrCode,null, QRGContents.Type.TEXT,smallerDimension);
                     try{
                         bitmap=qrgEncoder.encodeAsBitmap();
                         qrCodeI1.setImageBitmap(bitmap);
