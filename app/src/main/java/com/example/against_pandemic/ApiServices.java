@@ -35,5 +35,7 @@ public interface ApiServices {
     @POST("/helpSeekerProfile")
     Call<NeedyPeopleDetails> postNeedyPeopleDetails(@Body HashMap<String, String> needyNIDMap);
 
+    @GET("/generateQrCode")
+    Call<QRHash> getQrCode();
 
 }
