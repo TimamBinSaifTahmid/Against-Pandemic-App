@@ -214,6 +214,11 @@ const isVerified = (req, res) => {
   console.log(getVerificationCode());
 };
 const postHelpRequest = (req, res) => {
+  const qrCode = req.body.qrCode;
+  let qrCodeString = qrCode.toString();
+  var crypto = require("crypto");
+  var qrHash = crypto.createHash("md5").update(qrCodeString).digest("hex");
+
   const reason = req.body.reason;
   const condition = req.body.condition;
   const type = req.body.choice;
@@ -244,6 +249,7 @@ const postHelpRequest = (req, res) => {
             reason: reason,
             current_situation: condition,
             type: type,
+            qrcode: qrHash,
           })
           .into("needhelp")
           .then(() => {
@@ -508,7 +514,18 @@ const getSheetData = (req, res) => {
             });
     });*/
 };
-
+const getQrCodePoor = (req, res) => {
+  postgres
+    .select("qrcode")
+    .from("needhelp")
+    .where("nid", "=", user.nid)
+    .then((qrCode) => {
+      res.status(200).send(qrCode[0].qrcode);
+    })
+    .catch(() => {
+      res.status(400).send("Please ask help first");
+    });
+};
 module.exports = {
   postRegister,
   postLogin,
@@ -521,6 +538,7 @@ module.exports = {
   getCoronaResult,
   postMedicalRepresentativeLogin,
   postGoogleSheet,
+  getQrCodePoor,
   //sheetUrl,
   getSheetData,
 };
