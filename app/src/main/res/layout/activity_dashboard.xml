@@ -24,5 +24,22 @@
         android:background="@drawable/button"
         />
 
+    <Button
+        android:id="@+id/generateQr_btn"
+        android:text="Generate Qr Code"
+
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/bold"
+        android:textColor="#fff"
+        android:background="@drawable/button"
+        />
+
 
 </LinearLayout>
