@@ -7,10 +7,21 @@
         <entry key="..\:/Design_Project1/app/src/main/res/layout/fragment_needy_details.xml" value="0.2269021739130435" />
         <entry key="..\:/Design_Project1/app/src/main/res/layout/fragment_selected_needy_area.xml" value="0.2269021739130435" />
         <entry key="..\:/Design_Project1/app/src/main/res/layout/help_area_item.xml" value="0.2269021739130435" />
+        <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/activity_dashboard.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/activity_fetch_corona_database.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/activity_help_form.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/activity_location_of_needy.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/activity_qr_generator.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/activity_scanner.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/fragment_corona_positive.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/fragment_corona_status.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/fragment_help_people_area_list.xml" value="0.22" />
+        <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/fragment_maps.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/fragment_needy_details.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

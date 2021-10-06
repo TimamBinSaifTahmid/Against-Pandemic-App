@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -242,9 +243,13 @@ public class HelpForm extends AppCompatActivity {
         else {
             helpfrom.put("choice", choice.get(0));
         }
+        Random random=new Random();
+        final int myRandomNumber= random.nextInt(10000000);
+        String randomno = String.valueOf(myRandomNumber);
 
         helpfrom.put("reason",help_reasons.get(0));
         helpfrom.put("condition",help_conditions.get(0));
+        helpfrom.put("qrCode",randomno);
 
 
         Call<Void> call = apiServices.submitHelpForm(helpfrom);

@@ -149,6 +149,7 @@ const postLogin = (req, res) => {
     .then((data) => {
       const isValid = bcrypt.compareSync(req.body.password, data[0].hash);
       console.log(req.body.password);
+      console.log(isValid);
       if (isValid) {
         postgres
           .select("*")
@@ -213,6 +214,11 @@ const isVerified = (req, res) => {
   console.log(getVerificationCode());
 };
 const postHelpRequest = (req, res) => {
+  const qrCode = req.body.qrCode;
+  let qrCodeString = qrCode.toString();
+  var crypto = require("crypto");
+  var qrHash = crypto.createHash("md5").update(qrCodeString).digest("hex");
+
   const reason = req.body.reason;
   const condition = req.body.condition;
   const type = req.body.choice;
@@ -223,6 +229,8 @@ const postHelpRequest = (req, res) => {
   let year = date_ob.getFullYear();
   let date = year + "-" + month + "-" + date1;
   console.log(user.nid);
+  console.log(qrCodeString);
+  console.log(qrHash);
   postgres
     .select("date")
     .from("needhelp")
@@ -243,6 +251,7 @@ const postHelpRequest = (req, res) => {
             reason: reason,
             current_situation: condition,
             type: type,
+            qrcode: qrHash,
           })
           .into("needhelp")
           .then(() => {
@@ -267,6 +276,7 @@ const postHelpRequest = (req, res) => {
           reason: reason,
           current_situation: condition,
           type: type,
+          qrcode: qrHash,
         })
         .into("needhelp")
         .then(() => {
@@ -507,7 +517,76 @@ const getSheetData = (req, res) => {
             });
     });*/
 };
-
+const getQrCodePoor = (req, res) => {
+  console.log("qr e dhukse");
+  postgres
+    .select("qrcode")
+    .from("needhelp")
+    .where("nid", "=", user.nid)
+    .then((qrCode) => {
+      var hashedQrCode = qrCode[0].qrcode;
+      console.log(hashedQrCode);
+      res.status(200).send(qrCode[0]);
+    })
+    .catch(() => {
+      res.status(400).send("Please ask help first");
+    });
+};
+const isValidQrCode = (req, res) => {
+  var richNid = req.body.richNid;
+  var poorNid = req.body.poorNid;
+  var qrCode = req.body.qrCode;
+  postgres
+    .select("qrcode")
+    .from("needhelp")
+    .where("nid", "=", poorNid)
+    .then((data) => {
+      databaseQrCode = data[0].qrcode;
+      if (qrCode == databaseQrCode) {
+        postgres("needhelp")
+          .where("nid", "=", poorNid)
+          .del()
+          .then(() => {
+            postgres
+              .insert({
+                nid: poorNid,
+                provider: richNid,
+              })
+              .into("helptoken")
+              .then(() => {
+                postgres
+                  .insert({
+                    nid: richNid,
+                    helpseeker: poorNid,
+                  })
+                  .into("helpprovided")
+                  .then(() => {
+                    res.status(200).send("Successfull");
+                    console.log("success", nid);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    res.status(400).send("database error");
+                  });
+                console.log("success", nid);
+              })
+              .catch((err) => {
+                console.log(err);
+                res.status(400).send("database error");
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(400).send("database error");
+          });
+      } else {
+        res.status(400).send("Qr doesn't match");
+      }
+    })
+    .catch(() => {
+      res.status(400).send("Something went wrong");
+    });
+};
 module.exports = {
   postRegister,
   postLogin,
@@ -520,6 +599,8 @@ module.exports = {
   getCoronaResult,
   postMedicalRepresentativeLogin,
   postGoogleSheet,
+  getQrCodePoor,
+  isValidQrCode,
   //sheetUrl,
   getSheetData,
 };
