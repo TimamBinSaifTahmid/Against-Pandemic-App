@@ -1,10 +1,14 @@
 package com.example.against_pandemic;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -21,6 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,6 +34,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class NeedyDetails extends Fragment {
+    int num=0;
+    private ZXingScannerView scannerView;
+    private static final int RequestCode=1;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -137,11 +145,29 @@ public class NeedyDetails extends Fragment {
     completeTransaction.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getActivity().getApplication(), Scanner.class);
-            intent.putExtra("poorNID",needynid);
-            startActivity(intent);
+            verifypermission();
+            if(num==1) {
+                Intent intent = new Intent(getActivity().getApplication(), Scanner.class);
+                intent.putExtra("poorNID", needynid);
+                startActivity(intent);
+            }
         }
     });
 
+    }
+
+    private void verifypermission(){
+        String [] permission ={Manifest.permission.CAMERA};
+        if(ContextCompat.checkSelfPermission(getContext(),permission[0])== PackageManager.PERMISSION_GRANTED){
+            num=1;
+        }
+        else {
+            ActivityCompat.requestPermissions(getActivity(),permission,RequestCode);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        verifypermission();
     }
 }

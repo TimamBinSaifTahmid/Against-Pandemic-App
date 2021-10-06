@@ -533,7 +533,7 @@ const getQrCodePoor = (req, res) => {
     });
 };
 const isValidQrCode = (req, res) => {
-  var richNid = req.body.richNid;
+  var richNid = user.nid;
   var poorNid = req.body.poorNid;
   var qrCode = req.body.qrCode;
   postgres
