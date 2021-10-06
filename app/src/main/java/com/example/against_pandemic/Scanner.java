@@ -10,9 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.budiyev.android.codescanner.CodeScanner;
-import com.budiyev.android.codescanner.CodeScannerView;
-import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -31,39 +28,19 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Scanner extends AppCompatActivity {
+public class Scanner extends AppCompatActivity implements ZXingScannerView.ResultHandler  {
     Intent intent =getIntent();
-    //ZXingScannerView ScannerView;
-    private CodeScanner mCodeScanner;
+    ZXingScannerView ScannerView;
+    String qrCode;
 
     private ApiServices apiServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scanner);
-        CodeScannerView scannerView = findViewById(R.id.scanner_view);
-        mCodeScanner = new CodeScanner(this, scannerView);
-        mCodeScanner.setDecodeCallback(new DecodeCallback() {
-            @Override
-            public void onDecoded(@NonNull final Result result) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(Scanner.this, result.getText(), Toast.LENGTH_SHORT).show();
-                        String qrResult = result.getText();
-                        String poorNID = getIntent().getStringExtra("poorNID");
-                        sendValidationData(poorNID,qrResult);
-                    }
-                });
-            }
-        });
-        scannerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mCodeScanner.startPreview();
-            }
-        });
+        ScannerView=new ZXingScannerView(Scanner.this);
+        setContentView(ScannerView);
+
 
 
 
@@ -74,47 +51,19 @@ public class Scanner extends AppCompatActivity {
                 .build();
         apiServices = retrofit.create(ApiServices.class);
 
+        String poorNID = getIntent().getStringExtra("poorNID");
+       // sendValidationData(poorNID);
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mCodeScanner.startPreview();
-        requestForCamera();
-    }
 
-    @Override
-    protected void onPause() {
-        mCodeScanner.releaseResources();
-        super.onPause();
-    }
 
-    public void requestForCamera() {
-        Dexter.withActivity(this).withPermission(Manifest.permission.CAMERA).withListener(new PermissionListener() {
-            @Override
-            public void onPermissionGranted(PermissionGrantedResponse response) {
-                mCodeScanner.startPreview();
-            }
 
-            @Override
-            public void onPermissionDenied(PermissionDeniedResponse response) {
-                Toast.makeText(Scanner.this, "Camera Permission is Required.", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-                token.continuePermissionRequest();
-
-            }
-        }).check();
-    }
-
-    public void sendValidationData(String poorNID,String qrResult){
+    public void sendValidationData(String poorNID){
         HashMap<String, String> qrInfo = new HashMap<>();
 
         qrInfo.put("poorNid",poorNID);
-        qrInfo.put("qrCode",qrResult);
+        qrInfo.put("qrCode",qrCode);
 
 
         Call<Void> call = apiServices.isValidQrCode(qrInfo);
@@ -142,4 +91,32 @@ public class Scanner extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void handleResult(Result result) {
+        qrCode=result.getText();
+        if(!qrCode.isEmpty()){
+            Log.d("QrCodescanned",qrCode);
+            Toast.makeText(Scanner.this, qrCode,
+                    Toast.LENGTH_LONG).show();
+        }
+        onBackPressed();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        ScannerView.stopCamera();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        ScannerView.setResultHandler(Scanner.this);
+        ScannerView.startCamera();
+    }
+
+
 }
