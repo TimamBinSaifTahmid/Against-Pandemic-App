@@ -68,6 +68,9 @@ public class Maps extends Fragment {
                 ));
 
 
+                Log.d("value", str[0]);
+
+
                 googleMap.addCircle(new CircleOptions().center(new LatLng(23.707310,90.415482)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
                 googleMap.addCircle(new CircleOptions().center(new LatLng(22.700411,90.374992)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
                 googleMap.addCircle(new CircleOptions().center(new LatLng(22.1785,90.7101)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
@@ -121,6 +124,41 @@ public class Maps extends Fragment {
                 googleMap.addCircle(new CircleOptions().center(new LatLng(23.1657,89.4990)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
                 googleMap.addCircle(new CircleOptions().center(new LatLng(22.7185,89.0705)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
 
+
+
+
+                googleMap.addCircle(new CircleOptions().center(new LatLng(24.9196,89.9481)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(24.7563,90.4064)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(24.8835,90.7289)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(25.0188,90.0175)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(24.8509,89.3710)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(24.7413,88.2912)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(25.0968,89.0227)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(24.7936,88.9318)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(24.4260,89.0179)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(24.0129,89.2591)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+
+
+
+
+                googleMap.addCircle(new CircleOptions().center(new LatLng(24.3745,88.6042)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(24.4526,89.6816)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(25.6279,88.6332)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(25.3290,89.5415)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(25.8103,89.6487)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(25.9923,89.2847)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(25.9363,88.8407)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(26.2709,88.5952)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(25.7439,89.2752)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(26.0418,88.4283)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+
+
+
+
+                googleMap.addCircle(new CircleOptions().center(new LatLng(24.3840,91.4169)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(24.4809,91.7643)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(25.0667,91.4072)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+                googleMap.addCircle(new CircleOptions().center(new LatLng(24.8949,91.8687)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
 
 
                 googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
