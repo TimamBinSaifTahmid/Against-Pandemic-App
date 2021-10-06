@@ -66,6 +66,8 @@ public class Maps extends Fragment {
                         new LatLng(23.810331,90.412521),
                         10f
                 ));
+
+
                 googleMap.addCircle(new CircleOptions().center(new LatLng(23.707310,90.415482)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
                 googleMap.addCircle(new CircleOptions().center(new LatLng(22.700411,90.374992)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
                 googleMap.addCircle(new CircleOptions().center(new LatLng(22.1785,90.7101)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
@@ -118,7 +120,11 @@ public class Maps extends Fragment {
                 googleMap.addCircle(new CircleOptions().center(new LatLng(23.8052,88.6724)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
                 googleMap.addCircle(new CircleOptions().center(new LatLng(23.1657,89.4990)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
                 googleMap.addCircle(new CircleOptions().center(new LatLng(22.7185,89.0705)).radius(5000).strokeWidth(3f).strokeColor(Color.RED).fillColor(Color.rgb(255,220,220)));
+
+
+
                 googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
                     @Override
                     public void onMapClick(@NonNull @NotNull LatLng latLng) {
                         MarkerOptions markerOptions1=new MarkerOptions();
