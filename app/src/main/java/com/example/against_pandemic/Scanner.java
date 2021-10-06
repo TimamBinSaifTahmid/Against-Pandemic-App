@@ -32,6 +32,7 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
     Intent intent =getIntent();
     ZXingScannerView ScannerView;
     String qrCode;
+    String poorNID;
 
     private ApiServices apiServices;
 
@@ -51,15 +52,15 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
                 .build();
         apiServices = retrofit.create(ApiServices.class);
 
-        String poorNID = getIntent().getStringExtra("poorNID");
-       // sendValidationData(poorNID);
+         poorNID= getIntent().getStringExtra("poorNID");
+
 
     }
 
 
 
 
-    public void sendValidationData(String poorNID){
+    public void sendValidationData(){
         HashMap<String, String> qrInfo = new HashMap<>();
 
         qrInfo.put("poorNid",poorNID);
@@ -99,6 +100,7 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
             Log.d("QrCodescanned",qrCode);
             Toast.makeText(Scanner.this, qrCode,
                     Toast.LENGTH_LONG).show();
+            sendValidationData();
         }
         onBackPressed();
     }
