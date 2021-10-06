@@ -38,4 +38,7 @@ public interface ApiServices {
     @GET("/generateQrCode")
     Call<QRHash> getQrCode();
 
+    @POST("/isValidQrCode")
+    Call<Void> isValidQrCode(@Body HashMap<String,String> qrInfo);
+
 }

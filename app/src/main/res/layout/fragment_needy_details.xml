@@ -154,6 +154,15 @@
             android:layout_marginBottom="20dp"
             />
 
+        <Button
+            android:id="@+id/complete_transaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#3A9CEA"
+            android:text="Complete Transaction"
+            android:textColor="#FDF8F8"
+            android:textSize="20sp" />
+
     </LinearLayout>
     <!-- TODO: Update blank fragment layout -->
 

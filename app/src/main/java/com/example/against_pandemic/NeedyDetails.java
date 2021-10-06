@@ -1,5 +1,6 @@
 package com.example.against_pandemic;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,6 +34,7 @@ public class NeedyDetails extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     TextView nidTextView, phoneNoTextView, locationTextView, currentConditionTextView, reasonTextView;
+    Button completeTransaction;
 
     private String mParam1;
     private String mParam2;
@@ -83,6 +86,7 @@ public class NeedyDetails extends Fragment {
         locationTextView = (TextView)view.findViewById(R.id.needyLocation);
         currentConditionTextView = (TextView)view.findViewById(R.id.needyCurrentCondition);
         reasonTextView = (TextView)view.findViewById(R.id.needyReason);
+        completeTransaction=(Button)view.findViewById(R.id.complete_transaction);
 
         String needynid = needyNID.getNeedyNID();
         Log.d("needyareaname:",needynid);
@@ -130,7 +134,14 @@ public class NeedyDetails extends Fragment {
             }
         });
 
-
+    completeTransaction.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(getActivity().getApplication(), Scanner.class);
+            intent.putExtra("poorNID",needynid);
+            startActivity(intent);
+        }
+    });
 
     }
 }
