@@ -131,7 +131,7 @@ int j=0,i=0;
 
         district[56]="Nilphamari";
         district[57]="Panchagarh";
-        district[58]="Raqngpur";
+        district[58]="Rangpur";
         district[59]="Thakurgaon";
         district[60]="Habiganj";
         district[61]="Maulvibazar";

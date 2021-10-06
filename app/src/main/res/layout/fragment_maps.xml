@@ -10,11 +10,35 @@
         android:layout_height="match_parent"
         android:id="@+id/googleMap"
         android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sv_location"
+        android:queryHint="Search..."
+        android:iconifiedByDefault="false"
+        android:layout_margin="10dp"
+        android:elevation="5dp"
+        android:background="@drawable/secondarybutton"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        />
+
+
     <Button
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/currentLocation"
+        android:background="@drawable/secondarybutton"
         android:text="current Location"
         />
+
+
+
+
+
 
 </FrameLayout>
