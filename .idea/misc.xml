@@ -18,10 +18,12 @@
         <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/fragment_help_people_area_list.xml" value="0.22" />
         <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/fragment_maps.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/fragment_needy_details.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/help_area_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/shahr/StudioProjects/Against_Pandemic/app/src/main/res/layout/help_history.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -24,6 +24,7 @@ import android.widget.TextView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
+import java.util.List;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import retrofit2.Call;
@@ -33,16 +34,22 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class NeedyDetails extends Fragment {
+public class NeedyDetails extends Fragment implements AdapterView.OnItemClickListener {
     int num=0;
     private ZXingScannerView scannerView;
     private static final int RequestCode=1;
 
+    List<History> HistoryList;
+
+    String[] providerid = new String[50];
+    String[] helpdate = new String[50];
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    TextView nidTextView, phoneNoTextView, locationTextView, currentConditionTextView, reasonTextView;
+    TextView nidTextView, phoneNoTextView, locationTextView, currentConditionTextView, reasonTextView, typeT;
     Button completeTransaction;
+    ListView history;
 
     private String mParam1;
     private String mParam2;
@@ -95,6 +102,8 @@ public class NeedyDetails extends Fragment {
         currentConditionTextView = (TextView)view.findViewById(R.id.needyCurrentCondition);
         reasonTextView = (TextView)view.findViewById(R.id.needyReason);
         completeTransaction=(Button)view.findViewById(R.id.complete_transaction);
+        typeT = (TextView)view.findViewById(R.id.type);
+        history =(ListView)view.findViewById(R.id.history);
 
         String needynid = needyNID.getNeedyNID();
         Log.d("needyareaname:",needynid);
@@ -106,7 +115,7 @@ public class NeedyDetails extends Fragment {
 
 
         Call<NeedyPeopleDetails> call = apiServices.postNeedyPeopleDetails(needyNIDMap);
-
+        HistoryAdapter adapter = new HistoryAdapter (providerid, helpdate, getActivity());
 
 
         call.enqueue(new Callback<NeedyPeopleDetails>() {
@@ -123,13 +132,27 @@ public class NeedyDetails extends Fragment {
                     String locationFront = needyPeopleDetails.getLocation();
                     String currentConditionFront = needyPeopleDetails.getCurrent_situation();
                     String reasonFront = needyPeopleDetails.getReason();
+                    String type = needyPeopleDetails.getType();
+                    HistoryList= needyPeopleDetails.getHistoryList();
 
                     nidTextView.setText(nidFront);
                     phoneNoTextView.setText(phoneNoFront);
                     locationTextView.setText(locationFront);
                     currentConditionTextView.setText(currentConditionFront);
                     reasonTextView.setText(reasonFront);
+                    typeT.setText(type);
 
+                    int size = HistoryList.size();
+                    Log.d("size",String.valueOf(size));
+                    for(int i=0; i<+size;i++){
+
+                        providerid[i] = HistoryList.get(i).getProvider();
+                       // helpdate[i] = String.valueOf(HistoryList.get(i).getDate());
+                        helpdate[i] = "Null";
+
+                    }
+
+                    adapter.notifyDataSetChanged();
 
                 } else if (response.code() == 400) {
                 }
@@ -141,6 +164,10 @@ public class NeedyDetails extends Fragment {
                 Log.e("last e aisha vejal", "onFailure: "+t.getMessage(),t );
             }
         });
+
+        history.setAdapter(adapter);
+
+        history.setOnItemClickListener(this);
 
     completeTransaction.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -169,5 +196,11 @@ public class NeedyDetails extends Fragment {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         verifypermission();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
     }
 }
