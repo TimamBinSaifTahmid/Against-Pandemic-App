@@ -333,8 +333,36 @@ const getHelpRequesterProfile = (req, res) => {
     .from("needhelp")
     .where("nid", "=", nid)
     .then((ob) => {
-      res.status(200).send(ob[0]);
-      console.log(ob);
+      postgres
+        .select("provider", "date")
+        .from("helptoken")
+        .where("nid", "=", nid)
+        .then((ob2) => {
+          if (ob2[0] != undefined && ob[0] != undefined) {
+            provider = ob2[0].provider;
+            date = ob2[0].date;
+            var test = ob + ob2;
+
+            var jsonObject = {
+              nid: ob[0].nid,
+              location: ob[0].location,
+              financial_condition: ob[0].financial_condition,
+              contact_info: ob[0].contact_info,
+              reason: ob[0].reason,
+              current_situation: ob[0].current_situation,
+              type: ob[0].type,
+              date: ob[0].date,
+              history: ob2,
+            };
+            console.log(jsonObject);
+            res.status(200).send(jsonObject);
+            console.log(ob);
+          }
+        })
+        .catch((err) => {
+          res.status(400).send("error hoise dhur");
+          console.log(err);
+        });
     })
     .catch((err) => {
       res.status(400).send("error hoise dhur");
