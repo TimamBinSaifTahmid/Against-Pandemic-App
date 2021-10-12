@@ -207,15 +207,6 @@
                 android:layout_marginBottom="5dip"
                 android:layout_weight="1"/>
 
-        <Button
-            android:id="@+id/complete_transaction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#3A9CEA"
-            android:layout_marginTop="20dp"
-            android:text="Complete Transaction"
-            android:textColor="#FDF8F8"
-            android:textSize="20sp" />
 
 
 
