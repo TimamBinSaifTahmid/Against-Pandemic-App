@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.maps_icon));
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.gift_icon));
         bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.corona_icon));
+        bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.person_icon));
 
 
         bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
@@ -84,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
                             fragment = new CoronaStatus();
                             break;
                         }
+
+                    case 4:
+                        fragment = new Profile();
+                        break;
 
                 }
 

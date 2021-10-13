@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NeedyDetails">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:background="#fff">
+
+
+
+
+
+            <TextView
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/regular"
+                android:layout_marginTop="40dp"
+                android:text="Name"
+                android:layout_width="match_parent"
+                android:textColor="@color/darkLight"
+                android:layout_height="32dp"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/needyName"
+                android:layout_gravity="top"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/bold"
+                android:text="Name"
+                android:layout_width="match_parent"
+                android:textColor="@color/darkLight"
+                android:layout_height="40dp"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                />
+
+
+            <TextView
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/regular"
+                android:text="Phone No."
+                android:layout_width="match_parent"
+                android:textColor="@color/darkLight"
+                android:layout_height="32dp"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/needyPhoneNo"
+                android:layout_gravity="top"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/bold"
+                android:text="Phone No."
+                android:layout_width="match_parent"
+                android:textColor="@color/darkLight"
+                android:layout_height="40dp"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                />
+
+
+
+
+
+            <TextView
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/regular"
+                android:text="Location"
+                android:layout_width="match_parent"
+                android:textColor="@color/darkLight"
+                android:layout_height="32dp"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/needyLocation"
+                android:layout_gravity="top"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/bold"
+                android:text="Location"
+                android:layout_width="match_parent"
+                android:textColor="@color/darkLight"
+                android:layout_height="40dp"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                />
+
+
+
+
+            <TextView
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/regular"
+                android:text="Current Condition"
+                android:layout_width="match_parent"
+                android:textColor="@color/darkLight"
+                android:layout_height="32dp"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/needyCurrentCondition"
+                android:layout_gravity="top"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/medium"
+                android:text="Condition Details"
+                android:layout_width="match_parent"
+                android:textColor="@color/darkLight"
+                android:layout_height="40dp"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                />
+
+
+            <TextView
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/regular"
+                android:text="Reason"
+                android:layout_width="match_parent"
+                android:textColor="@color/darkLight"
+                android:layout_height="32dp"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/needyReason"
+                android:layout_gravity="top"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/medium"
+                android:text="Reason Details"
+                android:layout_width="match_parent"
+                android:textColor="@color/darkLight"
+                android:layout_height="40dp"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:fontFamily="@font/regular"
+                android:text="Help Type"
+                android:textColor="@color/darkLight"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="top"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/medium"
+                android:text="Help Type"
+                android:textColor="@color/darkLight"
+                android:textSize="20sp" />
+
+
+
+
+            <ListView
+                android:id="@+id/history"
+                android:cacheColorHint="#00000000"
+                android:scrollbars="none"
+                android:fadingEdge="vertical"
+                android:soundEffectsEnabled="true"
+                android:dividerHeight="1px"
+                android:padding="2dp"
+                android:smoothScrollbar="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawSelectorOnTop="false"
+                android:layout_marginTop="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_marginBottom="5dip"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/complete_transaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#3A9CEA"
+                android:layout_marginTop="20dp"
+                android:text="Complete Transaction"
+                android:textColor="#FDF8F8"
+                android:textSize="20sp" />
+
+
+
+        </LinearLayout>
+    </ScrollView>
+    <!-- TODO: Update blank fragment layout -->
+
+
+</FrameLayout>
