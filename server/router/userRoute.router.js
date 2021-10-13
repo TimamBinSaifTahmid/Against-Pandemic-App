@@ -17,6 +17,7 @@ const {
   isAskHelp,
   getProfile,
   updateProfile,
+  updateHelpRequest,
   //sheetUrl,
   getSheetData,
 } = require("../controller/userController.controller");
@@ -42,4 +43,5 @@ router.post("/isValidQrCode", isValidQrCode);
 router.get("/isAskHelp", isAskHelp);
 router.get("/getProfile", getProfile);
 router.post("/updateProfile", updateProfile);
+router.post("/updateHelpRequest", updateHelpRequest);
 module.exports = router;
