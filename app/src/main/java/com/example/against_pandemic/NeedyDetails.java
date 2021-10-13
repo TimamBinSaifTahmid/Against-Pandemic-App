@@ -144,6 +144,7 @@ public class NeedyDetails extends Fragment implements AdapterView.OnItemClickLis
 
                     int size = HistoryList.size();
                     Log.d("size",String.valueOf(size));
+                    Log.d("sad",HistoryList.get(0).getProvider());
                     for(int i=0; i<+size;i++){
 
                         providerid[i] = HistoryList.get(i).getProvider();

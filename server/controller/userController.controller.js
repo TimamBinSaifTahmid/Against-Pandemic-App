@@ -14,6 +14,7 @@ let {
   setVerificationCode,
 } = require("../model/userModel.model");
 const knex = require("knex");
+const { loadavg } = require("os");
 const postgres = knex({
   client: "pg",
   connection: {
@@ -615,6 +616,142 @@ const isValidQrCode = (req, res) => {
       res.status(400).send("Something went wrong");
     });
 };
+const isAskHelp = (req, res) => {
+  console.log("qr e dhukse");
+  postgres
+    .select("qrcode")
+    .from("needhelp")
+    .where("nid", "=", user.nid)
+    .then((qrCode) => {
+      if (qrCode[0] != undefined) {
+        res.status(200).send("Success");
+      } else {
+        res.status(400).send("Error");
+      }
+    })
+    .catch(() => {
+      res.status(400).send("Please ask help first");
+    });
+};
+const getProfile = (req, res) => {
+  console.log("qr e dhukse");
+  postgres
+    .select("*")
+    .from("users")
+    .where("nid", "=", user.nid)
+    .then((userData) => {
+      if (userData[0] != undefined) {
+        res.status(200).send(userData[0]);
+      } else {
+        res.status(400).send("Error");
+      }
+    })
+    .catch(() => {
+      res.status(400).send("Error");
+    });
+};
+const updateProfile = (req, res) => {
+  var nid, name, email, location, contact_info, financial_condition;
+  console.log("qr e dhukse");
+  postgres
+    .select("*")
+    .from("users")
+    .where("nid", "=", user.nid)
+    .then((userData) => {
+      if (userData[0] != undefined) {
+        nid = userData[0].nid;
+        name = userData[0].name;
+        email = userData[0].email;
+        location = userData[0].location;
+        contact_info = userData[0].contact_info;
+        financial_condition = userData[0].financial_condition;
+        if (!(req.body.nid === "")) {
+          nid = req.body.nid;
+        }
+        if (!(req.body.name === "")) {
+          name = req.body.name;
+        }
+        if (!(req.body.email === "")) {
+          email = req.body.email;
+        }
+        if (!(req.body.location === "")) {
+          location = req.body.location;
+        }
+        if (!(req.body.contact_info === "")) {
+          contact_info = req.body.contact_info;
+        }
+        if (!(req.body.financial_condition === "")) {
+          financial_condition = req.body.financial_condition;
+        }
+        postgres("users")
+          .where("nid", "=", user.nid)
+          .update({
+            nid: nid,
+            name: name,
+            email: email,
+            location: location,
+            contact_info: contact_info,
+            financial_condition: financial_condition,
+          })
+          .then(() => {
+            res.status(200).send("success");
+          })
+          .catch((err) => {
+            res.status(400).send("err");
+          });
+      } else {
+        res.status(400).send("Error");
+      }
+    })
+    .catch(() => {
+      res.status(400).send("Error");
+    });
+};
+const updateHelpRequest = (req, res) => {
+  var type, reason, current_situation;
+  console.log(req.body.type);
+  postgres
+    .select("type", "reason", "current_situation")
+    .from("needhelp")
+    .where("nid", "=", user.nid)
+    .then((userData) => {
+      console.log(userData[0]);
+      if (userData[0] != undefined) {
+        type = userData[0].type;
+        reason = userData[0].reason;
+        current_situation = userData[0].current_situation;
+        if (!(req.body.type === "")) {
+          type = req.body.type;
+          console.log(type);
+        }
+        if (!(req.body.reason === "")) {
+          reason = req.body.reason;
+        }
+        if (!(req.body.current_situation === "")) {
+          current_situation = req.body.current_situation;
+        }
+
+        postgres("needhelp")
+          .where("nid", "=", user.nid)
+          .update({
+            type: type,
+            reason: reason,
+            current_situation: current_situation,
+          })
+          .then(() => {
+            res.status(200).send("success");
+          })
+          .catch((err) => {
+            res.status(400).send("err");
+          });
+      } else {
+        res.status(400).send("Error");
+      }
+    })
+    .catch(() => {
+      res.status(400).send("Error");
+    });
+};
 module.exports = {
   postRegister,
   postLogin,
@@ -629,6 +766,10 @@ module.exports = {
   postGoogleSheet,
   getQrCodePoor,
   isValidQrCode,
+  isAskHelp,
+  getProfile,
+  updateProfile,
+  updateHelpRequest,
   //sheetUrl,
   getSheetData,
 };

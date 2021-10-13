@@ -1,23 +1,7 @@
 const express = require("express");
 const bodyPerser = require("body-parser");
 
-const {
-  postRegister,
-  postLogin,
-  isVerified,
-  postHelpRequest,
-  getHelpRequestList,
-  getHelpRequesterList,
-  getHelpRequesterProfile,
-  postCoronaResult,
-  getCoronaResult,
-  postMedicalRepresentativeLogin,
-  postGoogleSheet,
-  getQrCodePoor,
-  isValidQrCode,
-  //sheetUrl,
-  getSheetData,
-} = require("./controller/userController.controller");
+const userRouter = require("./router/userRoute.router");
 let {
   user,
   userCreation,
@@ -29,25 +13,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(bodyPerser.json());
-app.get("/", (req, res) => {
-  res.send("This is woring");
-});
-app.post("/signin", postLogin);
-app.post("/register", postRegister);
-
-app.post("/emailVerification", isVerified);
-
-app.post("/helpForm", postHelpRequest);
-
-app.get("/helpSeekerList", getHelpRequestList);
-app.post("/helpSeekerDetails", getHelpRequesterList);
-app.post("/helpSeekerProfile", getHelpRequesterProfile);
-app.post("/coronaResultUpdate", postCoronaResult);
-app.post("/coronaResultshow", getCoronaResult);
-app.post("/medicalRepresentativeLogin", postMedicalRepresentativeLogin);
-app.post("/googleSheetUpdate", postGoogleSheet);
-app.get("/generateQrCode", getQrCodePoor);
-app.post("/isValidQrCode", isValidQrCode);
+app.use(userRouter);
 //app.get("https://script.google.com/macros/s/AKfycbxOLElujQcy1-ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk/exec?id=1wyWse6RwXHx8L8xB4yfC_HcVADCtEivhIlx7l30kX5k&sheet=Sheet1", getSheetData);
 app.listen(PORT, () => {
   console.log(`server is running on :${PORT}`);
