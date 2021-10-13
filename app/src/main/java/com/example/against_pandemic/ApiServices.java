@@ -41,4 +41,10 @@ public interface ApiServices {
     @POST("/isValidQrCode")
     Call<Void> isValidQrCode(@Body HashMap<String,String> qrInfo);
 
+    @GET("/isAskHelp")
+    Call<Void> isAskHelp();
+
+    @GET("/getProfile")
+    Call<MyProfileDetails> getProfile();
+
 }

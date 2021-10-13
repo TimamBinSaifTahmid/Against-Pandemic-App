@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 
 import org.jetbrains.annotations.NotNull;
@@ -56,6 +57,8 @@ public class Dashboard extends Fragment {
             }
         });
 
+
+        verifyNeedy();
         generateQr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +98,28 @@ public class Dashboard extends Fragment {
         return view;
     }
 
-    private void generateQrCode() {
+    private void verifyNeedy() {
+        Call<Void> call = apiServices.isAskHelp();
+
+        call.enqueue(new Callback<Void>() {
+
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.d("resposeCode",String.valueOf(response.code()));
+                if (response.code() == 200) {
+                    generateQr.setVisibility(View.VISIBLE);
+                }
+                else if (response.code() == 400) {
+                    generateQr.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<Void> call, @NotNull Throwable t) {
+
+                Log.e("last e aisha vejal", "onFailure: "+t.getMessage(),t );
+            }
+        });
 
     }
 
