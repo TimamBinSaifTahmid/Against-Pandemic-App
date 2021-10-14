@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/editProfile"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center_horizontal"
+        android:fontFamily="@font/bold"
+        android:text="Update Your Information"
+        android:layout_width="match_parent"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:layout_marginBottom="8dp"
+        />
+
+
+    <EditText
+        android:id="@+id/editname"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/editcurrentlocation"
+        android:hint="Current Location"
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:textSize="16sp"/>
+
+
+
+
+
+    <RadioGroup
+        android:id="@+id/editradioGroup"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+
+        >
+
+        <TextView
+            android:id="@+id/editstatus"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:fontFamily="@font/medium"
+            android:textColor="@color/darkLight"
+            android:layout_height="wrap_content"
+            android:text="What's your financial condition?"
+            android:layout_marginBottom="16dp"/>
+
+        <RadioButton
+            android:id="@+id/editstatus_good"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Good" />
+
+        <RadioButton
+            android:id="@+id/editstatus_bad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bad" />
+
+    </RadioGroup>
+
+
+
+
+    <EditText
+        android:id="@+id/editcontact_no"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Contact no"
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="16sp"
+        />
+
+    <EditText
+        android:id="@+id/editemail"
+        android:layout_marginTop="16dp"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:textSize="16sp"
+
+        />
+
+
+    <Button
+
+        android:id="@+id/submit"
+        android:layout_marginTop="40dp"
+        android:text="Submit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/bold"
+        android:textColor="#fff"
+        android:background="@drawable/button"
+
+        />
+
+
+
+
+</LinearLayout>
