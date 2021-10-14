@@ -54,7 +54,11 @@ public class Maps extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
-        currentLocation = view.findViewById(R.id.currentLocation);
+
+
+        //Current Location
+//        currentLocation = view.findViewById(R.id.currentLocation);
+
         supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.googleMap);
         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -206,85 +210,88 @@ public class Maps extends Fragment {
                         markerOptions1.title(latLng.latitude+" : "+latLng.longitude);
                         googleMap.clear();
                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
-                      googleMap.addMarker(markerOptions1);
+                        googleMap.addMarker(markerOptions1);
                     }
 
                 });
             }
         });
         client = LocationServices.getFusedLocationProviderClient(getActivity());
-        currentLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                if (ContextCompat.checkSelfPermission(getActivity()
-                        , Manifest.permission.ACCESS_FINE_LOCATION)
-                        == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)
-                        == PackageManager.PERMISSION_GRANTED) {
-                    getCurrentLocation();
-
-
-
-                } else {
-                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION
-                    ,Manifest.permission.ACCESS_COARSE_LOCATION}, 44);
-                }
-            }
-        });
-
-
-
-
+        //Current Location
+//        currentLocation.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                if (ContextCompat.checkSelfPermission(getActivity()
+//                        , Manifest.permission.ACCESS_FINE_LOCATION)
+//                        == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)
+//                        == PackageManager.PERMISSION_GRANTED) {
+//                    getCurrentLocation();
+//
+//
+//
+//                } else {
+//                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION
+//                    ,Manifest.permission.ACCESS_COARSE_LOCATION}, 44);
+//                }
+//            }
+//        });
         return view;
+
+
     }
 
-    @SuppressLint("MissingPermission")
-    private void getCurrentLocation() {
-        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        if (locationManager.isProviderEnabled(locationManager.GPS_PROVIDER)
-                || locationManager.isProviderEnabled(locationManager.NETWORK_PROVIDER)) {
-            client.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-                @Override
-                public void onComplete(@NonNull @NotNull Task<Location> task) {
-                    Location location = task.getResult();
-                    if (location != null) {
-                        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
-                            @Override
-                            public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
+//    @SuppressLint("MissingPermission")
 
-                                Log.d("asd","asd");
-                                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                                MarkerOptions options = new MarkerOptions().position(latLng).title("current location");
-                                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-                                googleMap.addMarker(options);
-                            }
-                        });
-                    } else {
-                        LocationRequest locationRequest = new LocationRequest().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                                .setInterval(10000)
-                                .setFastestInterval(10000)
-                                .setNumUpdates(1);
-                        LocationCallback locationCallback = new LocationCallback() {
-                            @Override
-                            public void onLocationResult(LocationResult locationResult) {
-                                Location location1 = locationResult.getLastLocation();
-                            }
-                        };
-                        client.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
-                    }
-                }
-            });
-        }else {
-            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-        }
-    }
+    //Current Location
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
-        if(requestCode==44){
-            if(grantResults.length>0 && grantResults[0]+grantResults[1]==PackageManager.PERMISSION_GRANTED) {
-                getCurrentLocation();
-            }
-        }
-    }
+//    private void getCurrentLocation() {
+//        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+//        if (locationManager.isProviderEnabled(locationManager.GPS_PROVIDER)
+//                || locationManager.isProviderEnabled(locationManager.NETWORK_PROVIDER)) {
+//            client.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+//                @Override
+//                public void onComplete(@NonNull @NotNull Task<Location> task) {
+//                    Location location = task.getResult();
+//                    if (location != null) {
+//                        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+//                            @Override
+//                            public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
+//
+//                                Log.d("asd","asd");
+//                                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+//                                MarkerOptions options = new MarkerOptions().position(latLng).title("current location");
+//                                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+//                                googleMap.addMarker(options);
+//                            }
+//                        });
+//                    } else {
+//                        LocationRequest locationRequest = new LocationRequest().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+//                                .setInterval(10000)
+//                                .setFastestInterval(10000)
+//                                .setNumUpdates(1);
+//                        LocationCallback locationCallback = new LocationCallback() {
+//                            @Override
+//                            public void onLocationResult(LocationResult locationResult) {
+//                                Location location1 = locationResult.getLastLocation();
+//                            }
+//                        };
+//                        client.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
+//                    }
+//                }
+//            });
+//        }else {
+//            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+//        }
+//    }
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {
+//        if(requestCode==44){
+//            if(grantResults.length>0 && grantResults[0]+grantResults[1]==PackageManager.PERMISSION_GRANTED) {
+//                getCurrentLocation();
+//            }
+//        }
+//    }
 }

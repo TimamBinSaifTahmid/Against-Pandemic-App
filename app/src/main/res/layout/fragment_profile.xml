@@ -192,7 +192,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Edit Profile"
                 android:textColor="#FDF8F8"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_marginBottom="100dp"/>
 
 
         </LinearLayout>
