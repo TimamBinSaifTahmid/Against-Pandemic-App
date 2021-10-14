@@ -50,4 +50,7 @@ public interface ApiServices {
     @POST("/updateProfile")
     Call<Void> updateProfile (@Body HashMap<String, String> editInfo);
 
+    @POST("/updateHelpRequest")
+    Call<Void> updateHelpRequest (@Body HashMap<String, String> updatehelpfrom);
+
 }

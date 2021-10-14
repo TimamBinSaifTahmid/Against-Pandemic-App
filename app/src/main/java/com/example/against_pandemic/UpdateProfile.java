@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -87,6 +88,9 @@ public class UpdateProfile extends AppCompatActivity {
         editInfo.put("financial_condition", Status);
         editInfo.put("email", Email);
 
+        Log.d("NID",NID.toString());
+        Log.d("location",location.toString());
+
 
         Call<Void> call = apiServices.updateProfile(editInfo);
         call.enqueue(new Callback<Void>() {
@@ -95,11 +99,13 @@ public class UpdateProfile extends AppCompatActivity {
 
                 if (response.code() == 200) {
                     Toast.makeText(UpdateProfile.this,
-                            "Signed up successfully", Toast.LENGTH_LONG).show();
+                            "successfully", Toast.LENGTH_LONG).show();
+                    Intent intent =new Intent(UpdateProfile.this,LogIn.class);
+                    startActivity(intent);
 
                 } else if (response.code() == 400) {
                     Toast.makeText(UpdateProfile.this,
-                            "Already registered", Toast.LENGTH_LONG).show();
+                            "not succesful", Toast.LENGTH_LONG).show();
                 }
 
             }
