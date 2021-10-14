@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".CoronaPositive"
     android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -77,13 +81,13 @@
             android:textColor="@color/darkLight"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="160dp"
             />
 
 
 
     </LinearLayout>
-
+    </ScrollView>
 
 
 </FrameLayout>
