@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case 3:
 
-                        Toast.makeText(MainActivity.this, users.getCoronaResult(),Toast.LENGTH_LONG).show();
+                        //Toast.makeText(MainActivity.this, users.getCoronaResult(),Toast.LENGTH_LONG).show();
                         if(users.getCoronaResult().equals("Positive")){
                             fragment = new CoronaPositive();
                             break;
@@ -137,16 +137,14 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
-                Toast.makeText(getApplicationContext(),"clicked",Toast.LENGTH_SHORT).show();
-
+                //Toast.makeText(getApplicationContext(),"clicked",Toast.LENGTH_SHORT).show();
             }
         });
 
         bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
             @Override
             public void onReselectItem(MeowBottomNavigation.Model item) {
-                Toast.makeText(getApplicationContext(),"released",Toast.LENGTH_SHORT).show();
-
+                //Toast.makeText(getApplicationContext(),"released",Toast.LENGTH_SHORT).show();
             }
         });
 

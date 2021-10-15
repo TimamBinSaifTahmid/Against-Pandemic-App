@@ -116,7 +116,7 @@ public class UpdateRequest extends AppCompatActivity {
                             }
                         }
                         help_reasons.add(item);
-                        Toast.makeText(UpdateRequest.this, item, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(UpdateRequest.this, item, Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -181,7 +181,7 @@ public class UpdateRequest extends AppCompatActivity {
                         }
                         else {
                             help_conditions.add(item);
-                            Toast.makeText(UpdateRequest.this, item, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(UpdateRequest.this, item, Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -218,8 +218,7 @@ public class UpdateRequest extends AppCompatActivity {
                     partialChoise="";
                 }
                 else if(choice.size()>1){
-                    Toast.makeText(UpdateRequest.this,
-                            "choose either food or money", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UpdateRequest.this, "Choose either Food or Money", Toast.LENGTH_LONG).show();
                 }
                 else {
                     partialChoise=choice.get(0);
@@ -242,21 +241,17 @@ public class UpdateRequest extends AppCompatActivity {
                             Log.d("dhuro", "onResponse: ");
 
                             startActivity(intent);
-                            Toast.makeText(UpdateRequest.this,
-                                    "Submitted successfully", Toast.LENGTH_LONG).show();
+                            Toast.makeText(UpdateRequest.this, "Submitted Successfully", Toast.LENGTH_LONG).show();
 
                         } else if (response.code() == 400) {
-                            Toast.makeText(UpdateRequest.this,
-                                    "database error", Toast.LENGTH_LONG).show();
+                            Toast.makeText(UpdateRequest.this, "Database Error", Toast.LENGTH_LONG).show();
                         }
-
-
                     }
+
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(UpdateRequest.this, t.getMessage(),
-                                Toast.LENGTH_LONG).show();
+                        Toast.makeText(UpdateRequest.this, "Database Error", Toast.LENGTH_LONG).show();
                     }
                 });
 

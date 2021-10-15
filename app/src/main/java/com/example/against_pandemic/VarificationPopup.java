@@ -48,8 +48,7 @@ public class VarificationPopup extends AppCompatActivity {
             public void onClick(View v) {
                 String v_code=verficationCode.getText().toString();
                 Log.i("Varificatin_code",v_code);
-                Toast.makeText(VarificationPopup.this,
-                        "Verific"+v_code, Toast.LENGTH_LONG).show();
+                //Toast.makeText(VarificationPopup.this, "Verified"+v_code, Toast.LENGTH_LONG).show();
                 HashMap<String, String> verifyCode = new HashMap<>();
                 verifyCode.put("verificationCode", v_code);
                 Call<Void> call = apiServices.verifyUser(verifyCode);
@@ -59,8 +58,7 @@ public class VarificationPopup extends AppCompatActivity {
                     public void onResponse(Call<Void> call, Response<Void> response) {
 
                         if (response.code() == 200) {
-                            Toast.makeText(VarificationPopup.this,
-                                    "Email varified", Toast.LENGTH_LONG).show();
+                            Toast.makeText(VarificationPopup.this, "Email Verified", Toast.LENGTH_LONG).show();
                             if(validation.isloggedin()==1) {
                                 Intent intent = new Intent(VarificationPopup.this, Dashboard.class);
                                 startActivity(intent);
@@ -71,16 +69,14 @@ public class VarificationPopup extends AppCompatActivity {
                             }
                         } else if (response.code() == 400) {
 
-                            Toast.makeText(VarificationPopup.this,
-                                    "Not varified, Try again", Toast.LENGTH_LONG).show();
+                            Toast.makeText(VarificationPopup.this, "Wrong code, Try again", Toast.LENGTH_LONG).show();
                         }
 
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(VarificationPopup.this, t.getMessage(),
-                                Toast.LENGTH_LONG).show();
+                        Toast.makeText(VarificationPopup.this, "Database Error", Toast.LENGTH_LONG).show();
                     }
                 });
             }

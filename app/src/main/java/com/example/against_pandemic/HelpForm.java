@@ -116,7 +116,7 @@ public class HelpForm extends AppCompatActivity {
                             }
                         }
                         help_reasons.add(item);
-                        Toast.makeText(HelpForm.this, item, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(HelpForm.this, item, Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -177,11 +177,11 @@ public class HelpForm extends AppCompatActivity {
                         if(conditions.size()>1){
                             Intent intent=new Intent(HelpForm.this,HelpForm.class);
                             startActivity(intent);
-                            Toast.makeText(HelpForm.this, "Please select a single range", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(HelpForm.this, "Please select a single range", Toast.LENGTH_LONG).show();
                         }
                         else {
                             help_conditions.add(item);
-                            Toast.makeText(HelpForm.this, item, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(HelpForm.this, item, Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -215,8 +215,7 @@ public class HelpForm extends AppCompatActivity {
                 //help_Reason = reason.getText().toString();
                 //user_Condition = condition.getText().toString();
 
-                Toast.makeText(HelpForm.this,
-                        "Successful", Toast.LENGTH_LONG).show();
+                //Toast.makeText(HelpForm.this,"Successful", Toast.LENGTH_LONG).show();
                 askingHelp();
 
 
@@ -228,17 +227,14 @@ public class HelpForm extends AppCompatActivity {
 
     private void askingHelp() {
 
-        Toast.makeText(HelpForm.this,
-                "Successful Function", Toast.LENGTH_LONG).show();
+        //Toast.makeText(HelpForm.this,"Successful Function", Toast.LENGTH_LONG).show();
 
         HashMap<String, String> helpfrom = new HashMap<>();
         if(choice.isEmpty()){
-            Toast.makeText(HelpForm.this,
-                    "choose a helpline", Toast.LENGTH_LONG).show();
+            //Toast.makeText(HelpForm.this,"choose a helpline", Toast.LENGTH_LONG).show();
         }
         else if(choice.size()>1){
-            Toast.makeText(HelpForm.this,
-                    "choose either food or money", Toast.LENGTH_LONG).show();
+            //Toast.makeText(HelpForm.this,"choose either food or money", Toast.LENGTH_LONG).show();
         }
         else {
             helpfrom.put("choice", choice.get(0));
@@ -263,24 +259,20 @@ public class HelpForm extends AppCompatActivity {
                     Log.d("dhuro", "onResponse: ");
 
                     startActivity(intent);
-                    Toast.makeText(HelpForm.this,
-                            "Submitted successfully", Toast.LENGTH_LONG).show();
+                    Toast.makeText(HelpForm.this,"Successfully Submitted", Toast.LENGTH_LONG).show();
 
                 } else if (response.code() == 400) {
-                    Toast.makeText(HelpForm.this,
-                            "database error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(HelpForm.this,"Database Error", Toast.LENGTH_LONG).show();
                 }
                 else if (response.code() == 405) {
-                    Toast.makeText(HelpForm.this,
-                            "Request already exists. Ask for help in 20 days.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(HelpForm.this,"Request already exists. Try again later.", Toast.LENGTH_LONG).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(HelpForm.this, t.getMessage(),
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(HelpForm.this, "Database Error",Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -41,7 +41,7 @@ public class LogIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         validation.setFlag(1);
-        Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
         login=findViewById(R.id.login_button);
@@ -103,26 +103,24 @@ public class LogIn extends AppCompatActivity {
         parameters.put("password",Password);
 
         Call<LoginResult> call = apiServices.executeLogin(parameters);
-        Toast.makeText(getApplicationContext(),"get post",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"get post",Toast.LENGTH_SHORT).show();
         call.enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-                Toast.makeText(getApplicationContext(),"on response",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"on response",Toast.LENGTH_SHORT).show();
                 if (response.code() == 200) {
                     LoginResult result = response.body();
 
                     users.setFinancial_condition(result.getFinancial_condition());
                     users.setNid(result.getNid());
                     getcovidresult(result.getNid());
-                    Toast.makeText(LogIn.this,result.getNid(),
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(LogIn.this,"Login Successful",Toast.LENGTH_LONG).show();
 
                     Intent intent=new Intent(LogIn.this,MainActivity.class);
                     startActivity(intent);
 
                 } else if (response.code() == 400) {
-                    Toast.makeText(LogIn.this, "Wrong Credentials",
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(LogIn.this, "Wrong Credentials", Toast.LENGTH_LONG).show();
                 }
                 else if (response.code() == 405) {
                     //verifyEmail();
@@ -135,12 +133,11 @@ public class LogIn extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResult> call, Throwable t) {
-                Toast.makeText(LogIn.this, t.getMessage(),
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(LogIn.this, "Database Error", Toast.LENGTH_LONG).show();
             }
         });
-
     }
+
 
     private void getcovidresult(String nid) {
         HashMap<String, String> id = new HashMap<>();
@@ -148,25 +145,23 @@ public class LogIn extends AppCompatActivity {
 
 
         Call<CoronaResult> call = apiServices.getCoronaResult(id);
-        Toast.makeText(getApplicationContext(), "get post", Toast.LENGTH_SHORT).show();
+
+        //Toast.makeText(getApplicationContext(), "get post", Toast.LENGTH_SHORT).show();
+
         call.enqueue(new Callback<CoronaResult>() {
             @Override
             public void onResponse(Call<CoronaResult> call, Response<CoronaResult> response) {
-                Toast.makeText(getApplicationContext(), "on response", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "on response", Toast.LENGTH_SHORT).show();
 
                 if (response.code() == 200) {
                     CoronaResult results = response.body();
 
                     users.setCoronaResult(results.getResult());
-                    Toast.makeText(LogIn.this, String.valueOf(response.code()),
-                            Toast.LENGTH_LONG).show();
-
-                    Toast.makeText(LogIn.this, results.getResult(),
-                            Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LogIn.this, String.valueOf(response.code()), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LogIn.this, results.getResult(),Toast.LENGTH_LONG).show();
                 }
                 else if (response.code() == 400) {
-                    Toast.makeText(LogIn.this, "utsha jhamela korse",
-                            Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LogIn.this, "utsha jhamela korse",Toast.LENGTH_LONG).show();
                     users.setCoronaResult("not");
                 }
 
@@ -174,8 +169,7 @@ public class LogIn extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CoronaResult> call, Throwable t) {
-                Toast.makeText(LogIn.this, "failure hoise",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(LogIn.this, "Database Error", Toast.LENGTH_LONG).show();
             }
         });
 

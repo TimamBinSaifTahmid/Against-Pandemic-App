@@ -48,7 +48,7 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         validation.setFlag(2);
-        Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT).show();
         nid=findViewById(R.id.nid);
         name=findViewById(R.id.name);
         currentlocation=findViewById(R.id.currentlocation);
@@ -109,22 +109,19 @@ private void createPost() {
         public void onResponse(Call<Void> call, Response<Void> response) {
 
             if (response.code() == 200) {
-                Toast.makeText(SignUp.this,
-                        "Signed up successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(SignUp.this, "Signed up Successfully", Toast.LENGTH_LONG).show();
                 //createPopup();
                 Intent intent=new Intent(SignUp.this,VarificationPopup.class);
                 startActivity(intent);
             } else if (response.code() == 400) {
-                Toast.makeText(SignUp.this,
-                        "Already registered", Toast.LENGTH_LONG).show();
+                Toast.makeText(SignUp.this, "Already Registered", Toast.LENGTH_LONG).show();
             }
 
         }
 
         @Override
         public void onFailure(Call<Void> call, Throwable t) {
-            Toast.makeText(SignUp.this, t.getMessage(),
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(SignUp.this, "Database Error", Toast.LENGTH_LONG).show();
         }
     });
 }

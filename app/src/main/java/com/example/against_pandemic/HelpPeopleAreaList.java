@@ -115,15 +115,17 @@ public class HelpPeopleAreaList extends Fragment implements AdapterView.OnItemCl
 
 
                 } else if (response.code() == 400) {
+                    Toast.makeText(getContext(), "Database Error", Toast.LENGTH_SHORT).show();
                 }
             }
 
 
             @Override
             public void onFailure(@NotNull Call<AreaListResult> call, @NotNull Throwable t) {
-//                Toast.makeText(getContext(), t.getMessage(),
-//                        Toast.LENGTH_LONG).show();
+
+//                Toast.makeText(getContext(), t.getMessage(),Toast.LENGTH_LONG).show();
                 Log.e("helppeoplelist", "onFailure: "+t.getMessage(),t );
+
             }
         });
 

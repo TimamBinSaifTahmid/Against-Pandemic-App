@@ -98,22 +98,19 @@ public class UpdateProfile extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
 
                 if (response.code() == 200) {
-                    Toast.makeText(UpdateProfile.this,
-                            "successfully", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UpdateProfile.this, "Successfully Updated", Toast.LENGTH_LONG).show();
                     Intent intent =new Intent(UpdateProfile.this,LogIn.class);
                     startActivity(intent);
 
                 } else if (response.code() == 400) {
-                    Toast.makeText(UpdateProfile.this,
-                            "not succesful", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UpdateProfile.this, "Couldn't update database", Toast.LENGTH_LONG).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(UpdateProfile.this, t.getMessage(),
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(UpdateProfile.this, "Database Error", Toast.LENGTH_LONG).show();
             }
         });
     }

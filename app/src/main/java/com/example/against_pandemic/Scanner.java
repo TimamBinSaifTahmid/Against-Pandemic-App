@@ -69,21 +69,17 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
 
                 if (response.code() == 200) {
 
-                    Toast.makeText(Scanner.this,
-                            "Transaction Succesful", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Scanner.this, "Transaction Successful", Toast.LENGTH_LONG).show();
 
                 } else if (response.code() == 400) {
-                    Toast.makeText(Scanner.this,
-                            "Not the same profile", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Scanner.this, "Wrong profile", Toast.LENGTH_LONG).show();
                 }
-
 
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(Scanner.this, t.getMessage(),
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(Scanner.this, "Database Error", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -93,8 +89,7 @@ public class Scanner extends AppCompatActivity implements ZXingScannerView.Resul
         qrCode=result.getText();
         if(!qrCode.isEmpty()){
             Log.d("QrCodescanned",qrCode);
-            Toast.makeText(Scanner.this, qrCode,
-                    Toast.LENGTH_LONG).show();
+            //Toast.makeText(Scanner.this, qrCode, Toast.LENGTH_LONG).show();
             sendValidationData();
         }
         onBackPressed();
