@@ -23,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Dashboard extends Fragment {
     private Button askHelp;
     private Button generateQr;
+    private Button editrequest;
     public String hashQr;
     private ApiServices apiServices;
 
@@ -95,6 +96,14 @@ public class Dashboard extends Fragment {
             }
         });
 
+        editrequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplication(), UpdateRequest.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
@@ -108,9 +117,12 @@ public class Dashboard extends Fragment {
                 Log.d("resposeCode",String.valueOf(response.code()));
                 if (response.code() == 200) {
                     generateQr.setVisibility(View.VISIBLE);
+                    editrequest.setVisibility(View.VISIBLE);
+
                 }
                 else if (response.code() == 400) {
                     generateQr.setVisibility(View.INVISIBLE);
+                    editrequest.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -126,6 +138,7 @@ public class Dashboard extends Fragment {
     public void init(View view){
         askHelp =view.findViewById(R.id.askHelp_btn);
         generateQr = view.findViewById(R.id.generateQr_btn);
+        editrequest = view.findViewById(R.id.editRequest);
 
     }
 

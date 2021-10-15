@@ -47,4 +47,10 @@ public interface ApiServices {
     @GET("/getProfile")
     Call<MyProfileDetails> getProfile();
 
+    @POST("/updateProfile")
+    Call<Void> updateProfile (@Body HashMap<String, String> editInfo);
+
+    @POST("/updateHelpRequest")
+    Call<Void> updateHelpRequest (@Body HashMap<String, String> updatehelpfrom);
+
 }

@@ -1,5 +1,6 @@
 package com.example.against_pandemic;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -131,6 +132,14 @@ public class Profile extends Fragment {
             public void onFailure(@NotNull Call<MyProfileDetails> call, @NotNull Throwable t) {
 
                 Log.e("last e aisha vejal", "onFailure: "+t.getMessage(),t );
+            }
+        });
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplication(), UpdateProfile.class);
+                startActivity(intent);
             }
         });
 

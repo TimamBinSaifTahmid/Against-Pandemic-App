@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HelpForm"
+    android:orientation="vertical">
+
+
+
+    <CheckBox
+        android:id="@+id/editmoney_box"
+        android:text="Money"
+        android:textSize="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
+
+    <CheckBox
+        android:id="@+id/editfood_box"
+        android:text="Food"
+        android:textSize="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
+
+
+    <TextView
+        android:id="@+id/textView5"
+        android:text="Reasons:"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/darkLight"
+        />
+
+
+    <Button
+        android:id="@+id/editreason_btn"
+        android:text="Please select your reasons"
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/dark"
+        android:background="@drawable/secondarybutton"
+        />
+
+
+    <TextView
+        android:id="@+id/editcondition"
+        android:text="Current Financial Condition:"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/darkLight"
+        />
+
+
+    <Button
+        android:id="@+id/editcondition_btn"
+        android:text="Please select your income range"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/dark"
+        android:background="@drawable/secondarybutton"
+        />
+
+
+    <Button
+        android:id="@+id/editdone_btn"
+        android:layout_marginBottom="84dp"
+        android:text="Done"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/bold"
+        android:textColor="#fff"
+        android:background="@drawable/button"
+        />
+
+
+
+
+
+</LinearLayout>

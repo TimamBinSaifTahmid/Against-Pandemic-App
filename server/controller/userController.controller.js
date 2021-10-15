@@ -652,7 +652,7 @@ const getProfile = (req, res) => {
 };
 const updateProfile = (req, res) => {
   var nid, name, email, location, contact_info, financial_condition;
-  console.log("qr e dhukse");
+  console.log("update qr e dhukse");
   postgres
     .select("*")
     .from("users")
@@ -683,6 +683,8 @@ const updateProfile = (req, res) => {
         if (!(req.body.financial_condition === "")) {
           financial_condition = req.body.financial_condition;
         }
+       
+
         postgres("users")
           .where("nid", "=", user.nid)
           .update({
