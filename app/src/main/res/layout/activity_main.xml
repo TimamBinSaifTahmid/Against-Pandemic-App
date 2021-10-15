@@ -24,12 +24,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:mbn_backgroundBottomColor="#3978D6"
+        app:mbn_backgroundBottomColor="@color/colorPrimary"
         app:mbn_circleColor="#fff"
-        app:mbn_countBackgroundColor="#fff"
-        app:mbn_countTextColor="#3978D6"
+        app:mbn_countBackgroundColor="@color/colorPrimary"
+        app:mbn_countTextColor="@color/colorPrimary"
         app:mbn_defaultIconColor="#fff"
-        app:mbn_selectedIconColor="#3978D6" />
+        app:mbn_selectedIconColor="@color/colorPrimary"
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--Color.argb(50,255,0, 0)-->

@@ -11,9 +11,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
             android:padding="10dp"
             android:orientation="vertical"
             android:background="#fff">
@@ -186,14 +183,22 @@
 
             <Button
                 android:id="@+id/edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#3A9CEA"
-                android:layout_marginTop="20dp"
+
                 android:text="Edit Profile"
-                android:textColor="#FDF8F8"
-                android:textSize="20sp"
-                android:layout_marginBottom="100dp"/>
+
+                android:layout_marginBottom="100dp"
+
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textAllCaps="false"
+                android:fontFamily="@font/medium"
+                android:textSize="18dp"
+                android:textColor="@color/dark"
+                android:background="@drawable/secondarybutton"
+                />
 
 
         </LinearLayout>

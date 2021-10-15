@@ -7,20 +7,31 @@
     tools:context=".SignUp"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#fff">
+
+
     <TextView
         android:id="@+id/signup"
+        android:text="Create Account."
         android:layout_marginTop="24dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:gravity="center_horizontal"
-        android:fontFamily="@font/bold"
-        android:text="Sign Up"
+        android:gravity="left"
+        android:fontFamily="@font/extrabold"
         android:layout_width="match_parent"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:layout_marginBottom="8dp"
-        />
+        android:textSize="32dp"
+        android:layout_marginBottom="8dp"/>
+
 
     <EditText
         android:id="@+id/nid"
@@ -126,7 +137,6 @@
         android:layout_marginRight="16dp"
         android:ems="10"
         android:textSize="16sp"
-
         />
 
     <EditText
@@ -144,22 +154,21 @@
         />
 
     <Button
-
         android:id="@+id/signup_button"
-        android:layout_marginTop="40dp"
         android:text="Sign Up"
+        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:textAllCaps="false"
-        android:fontFamily="@font/bold"
+        android:fontFamily="@font/medium"
+        android:textSize="18dp"
         android:textColor="#fff"
         android:background="@drawable/button"
-
+        android:layout_marginBottom="160dp"
         />
 
-
-
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

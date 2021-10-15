@@ -35,56 +35,58 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:text="Reasons:"
+        android:text="Select your reason for asking help"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:textSize="16sp"
-        android:fontFamily="@font/medium"
+        android:fontFamily="@font/regular"
         android:textColor="@color/darkLight"
         />
 
 
     <Button
         android:id="@+id/reason_btn"
-        android:text="Please select your reasons"
+        android:text="Select Reason"
         android:layout_width="match_parent"
         android:layout_marginTop="16dp"
         android:layout_height="40dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:textAllCaps="false"
-        android:fontFamily="@font/medium"
-        android:textColor="@color/dark"
         android:background="@drawable/secondarybutton"
+        android:fontFamily="@font/medium"
+        android:textSize="18dp"
+        android:textColor="@color/dark"
         />
 
 
     <TextView
         android:id="@+id/condition"
-        android:text="Current Financial Condition:"
+        android:text="Your current financial condition, Please select your income range"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:textSize="16sp"
-        android:fontFamily="@font/medium"
+        android:fontFamily="@font/regular"
         android:textColor="@color/darkLight"
         />
 
 
     <Button
         android:id="@+id/condition_btn"
-        android:text="Please select your income range"
+        android:text="Select Range"
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:textAllCaps="false"
+        android:textSize="18dp"
         android:fontFamily="@font/medium"
         android:textColor="@color/dark"
         android:background="@drawable/secondarybutton"
@@ -93,16 +95,19 @@
 
     <Button
         android:id="@+id/done_btn"
-        android:layout_marginBottom="84dp"
-        android:text="Done"
+        android:layout_marginBottom="160dp"
+        android:text="Submit Request"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:textAllCaps="false"
-        android:fontFamily="@font/bold"
         android:textColor="#fff"
+        android:fontFamily="@font/medium"
+        android:textSize="18dp"
         android:background="@drawable/button"
         />
 
