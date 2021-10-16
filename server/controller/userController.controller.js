@@ -15,6 +15,7 @@ let {
 } = require("../model/userModel.model");
 const knex = require("knex");
 const { loadavg } = require("os");
+const { use } = require("../router/userRoute.router");
 const postgres = knex({
     client: "pg",
     connection: {
@@ -191,12 +192,13 @@ const postLogin = (req, res) => {
 };
 const isVerified = (req, res) => {
     console.log(user.email);
+    console.log("ver code ="+req.body.verficationCode);
     postgres
         .select("*")
         .from("login")
         .where("email", "=", user.email)
         .then((user1) => {
-            if (user1.verificationcode == req.verficationCode) {
+            if (user1[0].verificationcode == req.body.verficationCode) {
                 setVerificationCode();
                 console.log("verified");
                 postgres("login")
@@ -211,7 +213,10 @@ const isVerified = (req, res) => {
                         console.log(err);
                         res.status(400).send("failed");
                     });
-            } else res.status(405).json("email not varified");
+            } else {
+              console.log("verify er else e dhukse");
+              res.status(405).json("email not varified");
+            }
         })
         .catch((err) => res.status(400).json("cant find user"));
     console.log(getVerificationCode());

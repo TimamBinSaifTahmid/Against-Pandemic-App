@@ -50,7 +50,7 @@ public class VarificationPopup extends AppCompatActivity {
                 Log.i("Varificatin_code",v_code);
                 //Toast.makeText(VarificationPopup.this, "Verified"+v_code, Toast.LENGTH_LONG).show();
                 HashMap<String, String> verifyCode = new HashMap<>();
-                verifyCode.put("verificationCode", v_code);
+                verifyCode.put("verficationCode", v_code);
                 Call<Void> call = apiServices.verifyUser(verifyCode);
 
                 call.enqueue(new Callback<Void>() {
