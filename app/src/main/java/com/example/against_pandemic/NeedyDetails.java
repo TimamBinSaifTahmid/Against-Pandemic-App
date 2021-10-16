@@ -39,7 +39,6 @@ public class NeedyDetails extends Fragment implements AdapterView.OnItemClickLis
     private ZXingScannerView scannerView;
     private static final int RequestCode=1;
 
-    List<History> HistoryList;
 
     String[] providerid = new String[50];
     String[] helpdate = new String[50];
@@ -49,7 +48,7 @@ public class NeedyDetails extends Fragment implements AdapterView.OnItemClickLis
 
     TextView nidTextView, phoneNoTextView, locationTextView, currentConditionTextView, reasonTextView, typeT;
     Button completeTransaction;
-    ListView history;
+    TextView historyNumber;
 
     private String mParam1;
     private String mParam2;
@@ -103,7 +102,7 @@ public class NeedyDetails extends Fragment implements AdapterView.OnItemClickLis
         reasonTextView = (TextView)view.findViewById(R.id.needyReason);
         completeTransaction=(Button)view.findViewById(R.id.complete_transaction);
         typeT = (TextView)view.findViewById(R.id.type);
-        history =(ListView)view.findViewById(R.id.history);
+        historyNumber =(TextView)view.findViewById(R.id.historyNumber);
 
         String needynid = needyNID.getNeedyNID();
         Log.d("needyareaname:",needynid);
@@ -115,7 +114,7 @@ public class NeedyDetails extends Fragment implements AdapterView.OnItemClickLis
 
 
         Call<NeedyPeopleDetails> call = apiServices.postNeedyPeopleDetails(needyNIDMap);
-        HistoryAdapter adapter = new HistoryAdapter (providerid, helpdate, getActivity());
+//        HistoryAdapter adapter = new HistoryAdapter (providerid, helpdate, getActivity());
 
 
         call.enqueue(new Callback<NeedyPeopleDetails>() {
@@ -133,7 +132,8 @@ public class NeedyDetails extends Fragment implements AdapterView.OnItemClickLis
                     String currentConditionFront = needyPeopleDetails.getCurrent_situation();
                     String reasonFront = needyPeopleDetails.getReason();
                     String type = needyPeopleDetails.getType();
-                    HistoryList= needyPeopleDetails.getHistoryList();
+//                  HistoryList= needyPeopleDetails.getHistoryList();
+                    String historyN = needyPeopleDetails.getHistoryNumber();
 
                     nidTextView.setText(nidFront);
                     phoneNoTextView.setText(phoneNoFront);
@@ -141,19 +141,21 @@ public class NeedyDetails extends Fragment implements AdapterView.OnItemClickLis
                     currentConditionTextView.setText(currentConditionFront);
                     reasonTextView.setText(reasonFront);
                     typeT.setText(type);
+                    historyNumber.setText(historyN);
 
-                    int size = HistoryList.size();
-                    Log.d("size",String.valueOf(size));
-                    Log.d("sad",HistoryList.get(0).getProvider());
-                    for(int i=0; i<+size;i++){
 
-                        providerid[i] = HistoryList.get(i).getProvider();
-                       // helpdate[i] = String.valueOf(HistoryList.get(i).getDate());
-                        helpdate[i] = "Null";
 
-                    }
-
-                    adapter.notifyDataSetChanged();
+//                    int size = HistoryList.size();
+//                    Log.d("size",String.valueOf(size));
+//                    Log.d("sad",HistoryList.get(0).getProvider());
+//                    for(int i=0; i<+size;i++){
+//
+//                        providerid[i] = HistoryList.get(i).getProvider();
+//                        //helpdate[i] = String.valueOf(HistoryList.get(i).getDate());
+//                        helpdate[i] = "Null";
+//
+//                    }
+//                    adapter.notifyDataSetChanged();
 
                 } else if (response.code() == 400) {
                 }
@@ -166,9 +168,8 @@ public class NeedyDetails extends Fragment implements AdapterView.OnItemClickLis
             }
         });
 
-        history.setAdapter(adapter);
-
-        history.setOnItemClickListener(this);
+//        history.setAdapter(adapter);
+//        history.setOnItemClickListener(this);
 
     completeTransaction.setOnClickListener(new View.OnClickListener() {
         @Override

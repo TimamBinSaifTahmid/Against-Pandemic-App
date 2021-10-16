@@ -182,24 +182,33 @@
             android:textSize="20sp" />
 
 
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/regular"
+            android:text="Number of Help Received"
+            android:textColor="@color/darkLight"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/historyNumber"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="top"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/medium"
+            android:text="History Number"
+            android:textColor="@color/darkLight"
+            android:textSize="20sp" />
 
 
-            <ListView
-                android:id="@+id/history"
-                android:cacheColorHint="#00000000"
-                android:scrollbars="none"
-                android:fadingEdge="vertical"
-                android:soundEffectsEnabled="true"
-                android:dividerHeight="1px"
-                android:padding="2dp"
-                android:smoothScrollbar="true"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:drawSelectorOnTop="false"
-                android:layout_marginTop="5dip"
-                android:layout_marginRight="5dip"
-                android:layout_marginBottom="5dip"
-                android:layout_weight="1"/>
+
 
 
         <Button

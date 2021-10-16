@@ -80,13 +80,13 @@ public class SelectedNeedyArea extends Fragment {
         return inflater.inflate(R.layout.fragment_selected_needy_area, container, false);
     }
 
-    String[] needFood = new String[3];
-    String[] phoneNoFood = new String[3];
-    String[] nidFood = new String[3];
+    String[] needFood = new String[5];
+    String[] phoneNoFood = new String[5];
+    String[] nidFood = new String[5];
 
-    String[] needMoney = new String[3];
-    String[] phoneNoMoney = new String[3];
-    String[] nidMoney = new String[3];
+    String[] needMoney = new String[5];
+    String[] phoneNoMoney = new String[5];
+    String[] nidMoney = new String[5];
 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -107,6 +108,7 @@ private void createPost() {
     call.enqueue(new Callback<Void>() {
         @Override
         public void onResponse(Call<Void> call, Response<Void> response) {
+            Log.d("the code",String.valueOf(response.code()));
 
             if (response.code() == 200) {
                 Toast.makeText(SignUp.this, "Signed up Successfully", Toast.LENGTH_LONG).show();

@@ -12,17 +12,17 @@ public class NeedyPeopleDetails {
     public String reason;
     public String contact_info;
     @SerializedName("history")
-    List<History> historyList;
+    public String historyNumber;
     public String type;
 
-    public NeedyPeopleDetails(String nid, String location, String current_situation, String reason, String contact_info, List<History> historyList, String type) {
+    public NeedyPeopleDetails(String nid, String location, String current_situation, String reason, String contact_info, String historyNumber, String type) {
         this.nid = nid;
         this.location = location;
         this.current_situation = current_situation;
         this.reason = reason;
         this.contact_info = contact_info;
 
-        this.historyList=historyList;
+        this.historyNumber=historyNumber;
         this.type=type;
     }
 
@@ -66,12 +66,21 @@ public class NeedyPeopleDetails {
         this.contact_info = contact_info;
     }
 
-    public List<History> getHistoryList() {
-        return historyList;
+//    public List<History> getHistoryList() {
+//        return historyList;
+//    }
+//
+//    public void setHistoryList(List<History> historyList) {
+//        this.historyList = historyList;
+//    }
+
+
+    public String getHistoryNumber() {
+        return historyNumber;
     }
 
-    public void setHistoryList(List<History> historyList) {
-        this.historyList = historyList;
+    public void setHistoryNumber(String historyNumber) {
+        this.historyNumber = historyNumber;
     }
 
     public String getType() {

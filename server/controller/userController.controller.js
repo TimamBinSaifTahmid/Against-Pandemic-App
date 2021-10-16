@@ -87,59 +87,70 @@ const postRegister = (req, res) => {
     console.log(nid, name, hash, verificationCode);
 
     postgres
-        .transaction((trx) => {
-            trx.insert({
-                nid: nid,
-                email: email,
-                hash: hash,
-                verificationcode: verificationCode,
-            })
-                .into("login")
-                .returning("email")
-                .then((loginEmail) => {
-                    console.log(loginEmail[0], verificationCode);
-                    sendMail(loginEmail[0], verificationCode)
-                        .then((result) => {
-                            console.log("EMAIL SENT ...", result);
+        .select("*")
+        .from("users")
+        .where("nid", "=", req.body.nid)
+        .then((data) => {
+            if (data[0] == undefined) {
+                postgres
+                    .transaction((trx) => {
+                        trx.insert({
+                            nid: nid,
+                            email: email,
+                            hash: hash,
+                            verificationcode: verificationCode,
                         })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                    console.log(
-                        nid,
-                        name,
-                        email,
-                        password,
-                        location,
-                        contact_info,
-                        financial_condition
-                    );
-                    userCreation(
-                        nid,
-                        name,
-                        email,
-                        password,
-                        location,
-                        contact_info,
-                        financial_condition
-                    );
-                    setVerificationCode(verificationCode);
-                    console.log(user);
-                    console.log("asd" + getVerificationCode());
-                    return trx("users").insert({
-                        nid: nid,
-                        name: name,
-                        email: loginEmail[0],
-                        location: location,
-                        contact_info: contact_info,
-                        financial_condition: financial_condition,
-                    });
-                })
-                .then(trx.commit)
-                .catch(trx.rollback);
+                            .into("login")
+                            .returning("email")
+                            .then((loginEmail) => {
+                                console.log(loginEmail[0], verificationCode);
+                                sendMail(loginEmail[0], verificationCode)
+                                    .then((result) => {
+                                        console.log("EMAIL SENT ...", result);
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                    });
+                                console.log(
+                                    nid,
+                                    name,
+                                    email,
+                                    password,
+                                    location,
+                                    contact_info,
+                                    financial_condition
+                                );
+                                userCreation(
+                                    nid,
+                                    name,
+                                    email,
+                                    password,
+                                    location,
+                                    contact_info,
+                                    financial_condition
+                                );
+                                setVerificationCode(verificationCode);
+                                console.log(user);
+                                console.log("asd" + getVerificationCode());
+                                return trx("users").insert({
+                                    nid: nid,
+                                    name: name,
+                                    email: loginEmail[0],
+                                    location: location,
+                                    contact_info: contact_info,
+                                    financial_condition: financial_condition,
+                                });
+                            })
+                            .then(trx.commit)
+                            .catch(trx.rollback);
+                    })
+                    .catch((err) => res.status(400).json("unable to register"));
+                res.send("sign in ");
+            } else {
+                res.status(400).send("muri kha");
+            }
         })
-        .catch((err) => res.status(400).json("unable to register"));
-    res.send("sign in ");
+        .catch((err) => res.status(400).json("database error"));
 };
 
 const postLogin = (req, res) => {
@@ -192,7 +203,7 @@ const postLogin = (req, res) => {
 };
 const isVerified = (req, res) => {
     console.log(user.email);
-    console.log("ver code ="+req.body.verficationCode);
+    console.log("ver code =" + req.body.verficationCode);
     postgres
         .select("*")
         .from("login")
@@ -214,8 +225,8 @@ const isVerified = (req, res) => {
                         res.status(400).send("failed");
                     });
             } else {
-              console.log("verify er else e dhukse");
-              res.status(405).json("email not varified");
+                console.log("verify er else e dhukse");
+                res.status(405).json("email not varified");
             }
         })
         .catch((err) => res.status(400).json("cant find user"));
@@ -336,6 +347,7 @@ const getHelpRequesterList = (req, res) => {
 
 const getHelpRequesterProfile = (req, res) => {
     nid = req.body.nid;
+    console.log(nid);
     postgres
         .select("*")
         .from("needhelp")
@@ -347,9 +359,16 @@ const getHelpRequesterProfile = (req, res) => {
                 .where("nid", "=", nid)
                 .then((ob2) => {
                     if (ob2[0] != undefined && ob[0] != undefined) {
+                        console.log(ob2[0]);
+                        console.log(ob[0]);
+
                         provider = ob2[0].provider;
                         date = ob2[0].date;
                         var test = ob + ob2;
+                        var historySize = ob2.length;
+                        var historySizeString = historySize.toString();
+
+                        console.log(historySizeString);
 
                         var jsonObject = {
                             nid: ob[0].nid,
@@ -360,11 +379,35 @@ const getHelpRequesterProfile = (req, res) => {
                             current_situation: ob[0].current_situation,
                             type: ob[0].type,
                             date: ob[0].date,
-                            history: ob2,
+                            history: historySizeString,
                         };
+
                         console.log(jsonObject);
                         res.status(200).send(jsonObject);
                         console.log(ob);
+                    } else if (ob[0] != undefined && ob2[0] == undefined) {
+                        // console.log(ob2[0]);
+                        console.log(ob[0]);
+
+                        // provider = ob2[0].provider;
+                        // date = ob2[0].date;
+                        // var test = ob + ob2;
+                        // var test = [];
+                        // test[0] = "habijabi";
+
+                        var jsonObject = {
+                            nid: ob[0].nid,
+                            location: ob[0].location,
+                            current_situation: ob[0].current_situation,
+                            reason: ob[0].reason,
+                            contact_info: ob[0].contact_info,
+                            history: "0",
+                            type: ob[0].type,
+                        };
+
+                        console.log(jsonObject);
+                        res.status(200).send(jsonObject);
+                        // console.log(ob);
                     }
                 })
                 .catch((err) => {
