@@ -99,8 +99,8 @@ public class UpdateProfile extends AppCompatActivity {
 
                 if (response.code() == 200) {
                     Toast.makeText(UpdateProfile.this, "Successfully Updated", Toast.LENGTH_LONG).show();
-                    Intent intent =new Intent(UpdateProfile.this,LogIn.class);
-                    startActivity(intent);
+                    //Intent intent =new Intent(UpdateProfile.this,LogIn.class);
+                    //startActivity(intent);
 
                 } else if (response.code() == 400) {
                     Toast.makeText(UpdateProfile.this, "Couldn't update database", Toast.LENGTH_LONG).show();

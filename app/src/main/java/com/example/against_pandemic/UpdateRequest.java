@@ -60,87 +60,64 @@ public class UpdateRequest extends AppCompatActivity {
         money = (CheckBox)findViewById(R.id.editmoney_box);
 
         choice =new ArrayList<>();
-        food.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(food.isChecked()){
-                    choice.add(food.getText().toString());
-                }
-                else{
-                    choice.remove(food.getText().toString());
-                }
+        food.setOnClickListener(v -> {
+            if(food.isChecked()){
+                choice.add(food.getText().toString());
+            }
+            else{
+                choice.remove(food.getText().toString());
             }
         });
 
-        money.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(money.isChecked()){
-                    choice.add(money.getText().toString());
-                }
-                else{
-                    choice.remove(food.getText().toString());
-                }
+        money.setOnClickListener(v -> {
+            if(money.isChecked()){
+                choice.add(money.getText().toString());
+            }
+            else{
+                choice.remove(food.getText().toString());
             }
         });
 
         listreasons = getResources().getStringArray(R.array.help_reasons);
         checkedreasons = new boolean[listreasons.length];
 
-        reasonBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(UpdateRequest.this);
-                mBuilder.setTitle(R.string.reasons_title);
-                mBuilder.setMultiChoiceItems(listreasons, checkedreasons, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
-                        if(isChecked){
-                            reasons.add(position);
-                        }else{
-                            reasons.remove((Integer.valueOf(position)));
-                        }
+        reasonBtn.setOnClickListener(v -> {
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(UpdateRequest.this);
+            mBuilder.setTitle(R.string.reasons_title);
+            mBuilder.setMultiChoiceItems(listreasons, checkedreasons, (dialogInterface, position, isChecked) -> {
+                if(isChecked){
+                    reasons.add(position);
+                }else{
+                    reasons.remove((Integer.valueOf(position)));
+                }
+            });
+
+            mBuilder.setCancelable(false);
+            mBuilder.setPositiveButton(R.string.ok_label, (dialogInterface, which) -> {
+                String item = "";
+                for (int i = 0; i < reasons.size(); i++) {
+
+                    item = item + listreasons[reasons.get(i)];
+                    if (i != reasons.size() - 1) {
+                        item = item + ", ";
                     }
-                });
+                }
+                help_reasons.add(item);
+                //Toast.makeText(UpdateRequest.this, item, Toast.LENGTH_LONG).show();
+            });
 
-                mBuilder.setCancelable(false);
-                mBuilder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        String item = "";
-                        for (int i = 0; i < reasons.size(); i++) {
+            mBuilder.setNegativeButton(R.string.dismiss_label, (dialogInterface, i) -> dialogInterface.dismiss());
 
-                            item = item + listreasons[reasons.get(i)];
-                            if (i != reasons.size() - 1) {
-                                item = item + ", ";
-                            }
-                        }
-                        help_reasons.add(item);
-                        //Toast.makeText(UpdateRequest.this, item, Toast.LENGTH_LONG).show();
-                    }
-                });
+            mBuilder.setNeutralButton(R.string.clear_all_label, (dialogInterface, which) -> {
+                for (int i = 0; i < checkedreasons.length; i++) {
+                    checkedreasons[i] = false;
+                    reasons.clear();
+                }
+            });
 
-                mBuilder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
+            AlertDialog mDialog = mBuilder.create();
+            mDialog.show();
 
-                mBuilder.setNeutralButton(R.string.clear_all_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        for (int i = 0; i < checkedreasons.length; i++) {
-                            checkedreasons[i] = false;
-                            reasons.clear();
-                        }
-                    }
-                });
-
-                AlertDialog mDialog = mBuilder.create();
-                mDialog.show();
-
-            }
         });
 
         listCondition = getResources().getStringArray(R.array.help_condition);
@@ -151,55 +128,41 @@ public class UpdateRequest extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(UpdateRequest.this);
                 mBuilder.setTitle(R.string.conditions_title);
-                mBuilder.setMultiChoiceItems(listCondition, checkedCondition, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
-                        if(isChecked){
-                            conditions.add(position);
-                        }else{
-                            conditions.remove((Integer.valueOf(position)));
-                        }
+                mBuilder.setMultiChoiceItems(listCondition, checkedCondition, (dialogInterface, position, isChecked) -> {
+                    if(isChecked){
+                        conditions.add(position);
+                    }else{
+                        conditions.remove((Integer.valueOf(position)));
                     }
                 });
 
                 mBuilder.setCancelable(false);
-                mBuilder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        String item = "";
-                        for (int i = 0; i < conditions.size(); i++) {
+                mBuilder.setPositiveButton(R.string.ok_label, (dialogInterface, which) -> {
+                    String item = "";
+                    for (int i = 0; i < conditions.size(); i++) {
 
-                            item = item + listCondition[conditions.get(i)];
-                            if (i != conditions.size() - 1) {
-                                item = item + ", ";
-                            }
+                        item = item + listCondition[conditions.get(i)];
+                        if (i != conditions.size() - 1) {
+                            item = item + ", ";
                         }
-                        if(conditions.size()>1){
-                            Intent intent=new Intent(UpdateRequest.this,UpdateRequest.class);
-                            startActivity(intent);
-                            Toast.makeText(UpdateRequest.this, "Please select a single range", Toast.LENGTH_LONG).show();
-                        }
-                        else {
-                            help_conditions.add(item);
-                            //Toast.makeText(UpdateRequest.this, item, Toast.LENGTH_LONG).show();
-                        }
+                    }
+                    if(conditions.size()>1){
+                        //Intent intent=new Intent(UpdateRequest.this,UpdateRequest.class);
+                        //startActivity(intent);
+                        Toast.makeText(UpdateRequest.this, "Please select a single range", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        help_conditions.add(item);
+                        //Toast.makeText(UpdateRequest.this, item, Toast.LENGTH_LONG).show();
                     }
                 });
 
-                mBuilder.setNegativeButton(R.string.dismiss_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
+                mBuilder.setNegativeButton(R.string.dismiss_label, (dialogInterface, i) -> dialogInterface.dismiss());
 
-                mBuilder.setNeutralButton(R.string.clear_all_label, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        for (int i = 0; i < checkedCondition.length; i++) {
-                            checkedCondition[i] = false;
-                            conditions.clear();
-                        }
+                mBuilder.setNeutralButton(R.string.clear_all_label, (dialogInterface, which) -> {
+                    for (int i = 0; i < checkedCondition.length; i++) {
+                        checkedCondition[i] = false;
+                        conditions.clear();
                     }
                 });
 
@@ -209,53 +172,50 @@ public class UpdateRequest extends AppCompatActivity {
             }
         });
 
-        done.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        done.setOnClickListener(v -> {
 
-                HashMap<String, String> updatehelpfrom = new HashMap<>();
-                if(choice.isEmpty()){
-                    partialChoise="";
-                }
-                else if(choice.size()>1){
-                    Toast.makeText(UpdateRequest.this, "Choose either Food or Money", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    partialChoise=choice.get(0);
-                    updatehelpfrom.put("type", partialChoise);
-                }
+            HashMap<String, String> updatehelpfrom = new HashMap<>();
+            if(choice.isEmpty()){
+                partialChoise="";
+            }
+            else if(choice.size()>1){
+                Toast.makeText(UpdateRequest.this, "Choose either Food or Money", Toast.LENGTH_LONG).show();
+            }
+            else {
+                partialChoise=choice.get(0);
+                updatehelpfrom.put("type", partialChoise);
+            }
 
-                updatehelpfrom.put("reason",help_reasons.get(0));
-                updatehelpfrom.put("condition",help_conditions.get(0));
+            updatehelpfrom.put("reason",help_reasons.get(0));
+            updatehelpfrom.put("condition",help_conditions.get(0));
 
 
 
-                Call<Void> call = apiServices.updateHelpRequest(updatehelpfrom);
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+            Call<Void> call = apiServices.updateHelpRequest(updatehelpfrom);
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
 
-                        if (response.code() == 200) {
+                    if (response.code() == 200) {
 
-                            Intent intent = new Intent(UpdateRequest.this,Dashboard.class );
-                            Log.d("dhuro", "onResponse: ");
+                       // Intent intent = new Intent(UpdateRequest.this,Dashboard.class );
+                        Log.d("dhuro", "onResponse: ");
 
-                            startActivity(intent);
-                            Toast.makeText(UpdateRequest.this, "Submitted Successfully", Toast.LENGTH_LONG).show();
+                       // startActivity(intent);
+                        Toast.makeText(UpdateRequest.this, "Submitted Successfully", Toast.LENGTH_LONG).show();
 
-                        } else if (response.code() == 400) {
-                            Toast.makeText(UpdateRequest.this, "Database Error", Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    } else if (response.code() == 400) {
                         Toast.makeText(UpdateRequest.this, "Database Error", Toast.LENGTH_LONG).show();
                     }
-                });
+                }
 
-            }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(UpdateRequest.this, "Database Error", Toast.LENGTH_LONG).show();
+                }
+            });
+
         });
 
     }
