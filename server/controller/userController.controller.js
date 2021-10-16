@@ -375,7 +375,8 @@ const postCoronaResult = (req, res) => {
   console.log("post e dhuika jhamela badhaise");
   result = req.body.result;
   nid = req.body.nid;
-
+  console.log("nid "+nid);
+  console.log("result "+result);
   postgres
     .select("*")
     .from("coronaresult")
