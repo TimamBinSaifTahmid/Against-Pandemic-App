@@ -3,7 +3,7 @@ It is basically an android base project that help us to stand against Covid pand
 
 The main features of this project are 
 1. Track the places which are very prone to corona virus.
-2. View live percentage of covid affected people in a perticula area
+2. View live percentage of covid affected people in a perticular area through map view
 3. Locate the areas in which people are suffering from hunger and money.
 4. Provide home delivery of foods, medicines, oxygen cylinders to the affected people.
 5. Asking help feature for the needy person
